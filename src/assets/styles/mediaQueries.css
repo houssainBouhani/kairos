@@ -1,0 +1,10 @@
+@media (max-width: 768px) {
+
+    .navbar-vertical.navbar-expand-md.fixed-start {
+        min-width: 100% !important
+    }
+
+    .main-content {
+        margin-top: 15px;
+    }
+}

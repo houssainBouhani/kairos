@@ -1,0 +1,83 @@
+
+.dashboard-header {
+    background-color: #a7b8d242 !important;
+}
+
+.stats-card-content .card-body:hover {
+    background: #f9fbfdb0;
+    cursor: pointer;
+}
+
+.stats-amount {
+    font-size: 20px;
+    font-family: 'Poppins-Medium';
+}
+
+.commandes-states .svg-icon-stats svg path {
+    fill: #95aac9 !important;
+}
+
+.commandes-states .svg-icon-stats-rec svg path {
+    fill: #95aac9 !important;
+}
+
+.commandes-states .svg-icon-stats-half svg path {
+    fill: #95aac9 !important;
+}
+
+.commandes-states .svg-icon-package svg path {
+    fill: #95aac9 !important;
+}
+
+.commandes-states .svg-icon-package svg polygon {
+    fill: #95aac9 !important;
+}
+
+.commandes-states .package-part svg path {
+    fill: #95aac9 !important;
+}
+
+.svg-icon svg {
+    width: 30px;
+    height: 30px;
+}
+
+.commandes-states .svg-icon-stats svg path:hover, .commandes-states .svg-icon-stats-half svg path:hover, .commandes-states .svg-icon-stats-rec svg path:hover, .commandes-states .svg-icon-package svg path:hover, .commandes-states .package-part svg path:hover {
+    fill: #00d97f73 !important;
+    opacity: 0.2;
+}
+
+.none {
+    display: none !important;
+}
+
+.no-border .header-body {
+    border-bottom: 0 !important;
+}
+
+.premier-materiel img {
+    width: 100px;
+}
+
+.premier-materiel .la-pagelines::before, .premier-materiel .la-capsules, .premier-materiel .la-box::before {
+    font-size: 40px;
+
+}
+
+.premier-materiel .la-pagelines::before {
+
+    color: #95aac9;
+}
+
+.premier-materiel .la-capsules {
+    color: #95aac9
+}
+
+.premier-materiel .la-box::before {
+    color: #95aac9
+}
+
+.pf:hover {
+    background: #f9fbfdb0;
+    cursor: pointer;
+}

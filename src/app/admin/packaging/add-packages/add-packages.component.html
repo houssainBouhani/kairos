@@ -1,0 +1,92 @@
+<div class="container-fluid">
+    <div class="row justify-content-center">
+
+      <div class="col-12 col-lg-10 col-xl-10">
+        <div class="header mt-md-5">
+          <div
+            class="
+              header-body
+              d-flex
+              justify-content-between
+              align-items-center
+              pt-0
+            "
+          >
+            <div class="row align-items-center">
+              <div class="col">
+                <h6 class="header-pretitle">Overview</h6>
+                <h1 class="header-title">Créer un emballage</h1>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container-lg container-fluid">
+      <div class="row justify-content-center">
+        <div class="col-12 col-lg-12 col-xl-12 form-label-custom">
+          <!-- Form -->
+          <form class="py-6">
+            <div class="row">
+              <div class="col-8">
+                <div class="row justify-content-end mb-3">
+                  <div class="form-group col-8">
+                    <!-- Label -->
+                    <label class="form-label">Description emballage</label>
+
+                    <!-- Input -->
+                    <textarea type="text" class="form-control"></textarea>
+                  </div>
+                </div>
+
+
+                <div class="row justify-content-end mb-3">
+                  <div class="form-group col-8">
+                    <label class="form-label">Qunatité</label>
+                    <!-- Input -->
+                    <input type="number" class="form-control" />
+                  </div>
+
+                </div>
+                <div class="row justify-content-end mb-3">
+                  <div class="form-group col-8">
+                    <label class="form-label">Dépot</label>
+                    <div class="mb-3">
+                      <select class="form-select mb-3">
+                        <option>Dianna Smiley</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                <div class="row justify-content-end mb-3">
+                  <div class="form-group col-8">
+                    <!-- Label -->
+                    <label class="form-label">Code</label>
+
+                    <!-- Input -->
+                    <input type="number" class="form-control" />
+                  </div>
+                </div>
+
+                <div class="row align-items-center justify-content-end">
+                  <div class="col-auto">
+                    <!-- Button -->
+                    <button class="btn btn-lg btn-white" type="reset">
+                      Cancel
+                    </button>
+                  </div>
+
+                  <div class="col-auto">
+                    <!-- Button -->
+                    <a class="btn btn-lg btn-primary" (click)="addPackage()"
+                      >Continue</a
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>

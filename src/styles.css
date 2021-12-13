@@ -1,0 +1,7 @@
+/* You can add global styles to this file, and also import other style files */
+@import url("assets/styles/bootstrap.css");
+@import url("assets/styles/main.css");
+@import url("assets/styles/mediaQueries.css");
+@import url("assets/styles/animations.css");
+@import url("assets/fonts/poppins.css");
+@import url("assets/fonts/awesome/css/line-awesome.min.css");

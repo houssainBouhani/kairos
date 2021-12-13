@@ -1,0 +1,36 @@
+.custom-toast {
+    position: absolute !important;
+    right: 5px;
+    top: 15px;
+}
+
+.custom-toast .toast-body {
+    font-family: "poppins-light";
+}
+
+.custom-toast .toast-header i {
+    color: #fff !important;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.custom-toast .toast-header {
+    color: #fff !important;
+}
+
+.sucess-added .toast-header {
+    background: #3eb580
+}
+
+.warning-added .toast-header {
+    background: #ff5722
+}
+
+.danger-added .toast-header {
+    background: #e63757
+}
+
+.toast-header {
+
+    border-radius: 4px !important;
+}

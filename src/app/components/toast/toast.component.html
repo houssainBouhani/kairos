@@ -1,0 +1,10 @@
+<div
+  *ngIf="message"
+  class="toast custom-toast d-block"
+  [ngClass]="message.cssClass"
+>
+  <div class="toast-header">
+    <i class="me-2" [ngClass]="message.icon"></i>
+    <div class="toast-body">{{ message.text }}</div>
+  </div>
+</div>
