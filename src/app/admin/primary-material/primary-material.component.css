@@ -1,0 +1,48 @@
+.leaf {
+    color: #8bc34a;
+    font-size: 25px;
+}
+
+.mp-table .badge {
+    font-size: 13px;
+    padding: 5px 10px;
+    font-family: 'Poppins-Medium';
+}
+
+.mp-table th.intial-quantity,
+.mp-table td.rest-quantity,
+.mp-table td.intial-quantity {
+    text-align: center;
+}
+
+.mp-table th {
+    font-family: "Poppins-Light";
+    font-size: .650rem;
+}
+
+
+
+.mp-table td {
+
+    font-size: 13px;
+}
+
+.action-td .ver-menu {
+    font-size: 25px;
+    color: #6e86a9;
+}
+
+.action-td .dropdown-menu {
+    right: 0;
+    top: 14px;
+}
+
+.action-td .dropdown-item {
+    display: flex;
+    align-items: center;
+}
+
+.action-td .la-edit, .action-td .la-trash {
+    font-size: 23px;
+    margin-right: 5px;
+}

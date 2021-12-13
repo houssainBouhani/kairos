@@ -1,0 +1,273 @@
+<div class="container-fluid">
+  <div class="row justify-content-center">
+    <div class="col-12 col-lg-10 col-xl-10">
+      <div class="header mt-md-5">
+        <div
+          class="
+            header-body
+            d-flex
+            justify-content-between
+            align-items-center
+            pt-0
+          "
+        >
+          <div class="row align-items-center">
+            <div class="col">
+              <h6 class="header-pretitle">Overview</h6>
+              <h1 class="header-title">Liste des Fournisseurs</h1>
+            </div>
+          </div>
+          <div class="row align-items-center">
+            <a
+              [routerLink]="['/admin/providers/add']"
+              class="
+                btn btn-primary
+                d-flex
+                justify-content-center
+                align-items-center
+                lift
+              "
+            >
+            <i  class="las la-shipping-fast add-icon"></i>
+              ajouter
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-2"></div>
+    </div>
+  </div>
+  <div class="row justify-content-center">
+    <div
+      class="
+        empty-log
+        d-flex
+        flex-column
+        align-items-center
+        justify-content-center
+      "
+    >
+      <p class="text-center">ajoutez pour commencer</p>
+      <i class="las la-shipping-fast"></i>
+    </div>
+    <div class="col-xl-10">
+      <form class="mb-4">
+        <div class="input-group input-group-merge">
+          <input
+            class="form-control humain-search"
+            type="search"
+            placeholder="Rechercher"
+          />
+          <div class="input-group-text">
+            <i class="las la-search"></i>
+          </div>
+        </div>
+      </form>
+      <div class="card">
+        <div class="card-header">
+          <!-- Title -->
+          <h4 class="card-header-title d-flex align-items-center">
+            <i class="las la-shipping-fast shipping me-2"></i>
+            Liste des Fournisseurs
+          </h4>
+
+          <!-- Button -->
+          <a
+            href="#!"
+            class="
+              btn btn-sm btn-white
+              d-flex
+              export-button
+              justify-content-center
+              align-items-center
+            "
+          >
+            Export <i class="lar la-file-pdf export-pdf"></i>
+          </a>
+        </div>
+        <div class="table-responsive mb-0">
+          <table
+            class="
+              table table-sm table-nowrap
+              card-table
+              table-hover
+              rh-table
+              overflow-visible
+            "
+          >
+            <thead>
+              <tr>
+                <th>Nom</th>
+                <th>Prénom</th>
+                <th>Sexe</th>
+                <th>Date inscri</th>
+                <th>Adresse</th>
+                <th>Nationalité</th>
+                <th>Email</th>
+                <th>Télephone</th>
+                <th class="text-center">Actions</th>
+              </tr>
+            </thead>
+            <tbody class="list">
+              <tr>
+                <td>Bouhani</td>
+                <td>Houssain</td>
+                <td>Homme</td>
+                <td>12/6/2021</td>
+                <td>DPC</td>
+                <td>Tunisienne</td>
+                <td>Housyn123@gmail.com</td>
+                <td>000 000 000</td>
+                <td class="text-center">
+                  <button
+                    pButton
+                    pRipple
+                    type="button"
+                    icon="pi pi-user"
+                    (click)="showPositionDialog('center')"
+                    class="p-button-rounded p-button-secondary p-button-text"
+                  ></button>
+                  <button
+                    pButton
+                    pRipple
+                    type="button"
+                    icon="pi pi-pencil"
+                    class="p-button-rounded p-button-text p-button-secondary"
+                  ></button>
+                  <button
+                    pButton
+                    pRipple
+                    type="button"
+                    icon="pi pi-trash"
+                    class="p-button-rounded p-button-danger p-button-text"
+                  ></button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<p-dialog
+  header="Details"
+  [(visible)]="displayPosition"
+  [position]="position"
+  [modal]="true"
+  [style]="{ width: '50vw' }"
+  [baseZIndex]="10000"
+  [draggable]="false"
+  [resizable]="false"
+  class="custom-dialog"
+>
+  <div class="card">
+    <div class="card-body">
+      <!-- List group -->
+      <div class="list-group list-group-flush my-n3">
+        <div class="list-group-item">
+          <div class="row align-items-center">
+            <div class="col">
+              <!-- Title -->
+              <h5 class="mb-0">Adresse Homme</h5>
+            </div>
+            <div class="col-auto text-muted">
+              <!-- Time -->
+
+              xxx xxx xxx
+            </div>
+          </div>
+          <!-- / .row -->
+        </div>
+        <div class="list-group-item">
+          <div class="row align-items-center">
+            <div class="col">
+              <!-- Title -->
+              <h5 class="mb-0">Adresse Détaillé</h5>
+            </div>
+            <div class="col-auto text-muted">
+              <!-- Time -->
+
+              s e
+            </div>
+          </div>
+          <!-- / .row -->
+        </div>
+        <div class="list-group-item">
+          <div class="row align-items-center">
+            <div class="col">
+              <!-- Title -->
+              <h5 class="mb-0">Raison social</h5>
+            </div>
+            <div class="col-auto">
+              <!-- Text -->
+              <small class="text-muted"> Raison 1 </small>
+            </div>
+          </div>
+          <!-- / .row -->
+        </div>
+        <div class="list-group-item">
+          <div class="row align-items-center">
+            <div class="col">
+              <!-- Title -->
+              <h5 class="mb-0">Nom ville</h5>
+            </div>
+            <div class="col-auto text-muted">
+              <!-- Link -->
+
+              ariana
+            </div>
+          </div>
+          <!-- / .row -->
+        </div>
+        <div class="list-group-item">
+          <div class="row align-items-center">
+            <div class="col">
+              <!-- Title -->
+              <h5 class="mb-0">Rue</h5>
+            </div>
+            <div class="col-auto text-muted">
+              <!-- Link -->
+
+              wcwc
+            </div>
+          </div>
+          <!-- / .row -->
+        </div>
+        <div class="list-group-item">
+          <div class="row align-items-center">
+            <div class="col">
+              <!-- Title -->
+              <h5 class="mb-0">Code Postal</h5>
+            </div>
+            <div class="col-auto text-muted">
+              <!-- Link -->
+
+              2083
+            </div>
+          </div>
+          <!-- / .row -->
+        </div>
+        <div class="list-group-item">
+          <div class="row align-items-center">
+            <div class="col">
+              <!-- Title -->
+              <h5 class="mb-0">Région</h5>
+            </div>
+            <div class="col-auto text-muted">
+              <!-- Link -->
+
+              tunis
+            </div>
+          </div>
+          <!-- / .row -->
+        </div>
+      </div>
+    </div>
+  </div>
+</p-dialog>

@@ -1,0 +1,532 @@
+
+
+<div class="commandes-states" >
+  <div class="container-fluid">
+    <div class="row justify-content-center">
+      <div class="col-12 col-lg-10 col-xl-10">
+        <!-- Header -->
+        <div class="header mt-md-5">
+          <div class="header-body pt-0">
+            <div class="row align-items-center">
+              <div class="col">
+                <!-- Pretitle -->
+                <h6 class="header-pretitle">Overview</h6>
+                <!-- Title -->
+                <h1 class="header-title">Liste des commandes</h1>
+              </div>
+            </div>
+            <!-- / .row -->
+            <div class="row align-items-center">
+              <div class="col">
+                <!-- Nav -->
+                <ul class="nav nav-tabs nav-overflow header-tabs">
+                  <li class="nav-item">
+                    <a
+
+                      class="nav-link client"
+                      [ngClass]="{ active: active }"
+                      (click)="switchMenus($event)"
+                    >
+                      Fournisseur
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a
+
+                      class="nav-link provider"
+                      (click)="switchMenus($event)"
+                      [ngClass]="{ active: !active }"
+                    >
+                      Clients
+                    </a>
+                  </li>
+                </ul>
+              </div>
+              <!-- Nav -->
+            </div>
+          </div>
+        </div>
+        <div
+          class="row show"
+          [ngClass]="{ 'none fadeOut': !clientsListOpened }"
+        >
+          <div class="col-12 col-md-4">
+            <!-- Card -->
+            <div class="card stats-card-content">
+              <div class="card-body">
+                <div class="row align-items-center">
+                  <div class="col">
+                    <!-- Title -->
+                    <h6 class="text-uppercase text-muted mb-2">A valider</h6>
+
+                    <!-- Heading -->
+                    <span class="h2 stats-amount mb-0"> 80 </span>
+                  </div>
+                  <div class="col-auto">
+                    <!-- Icon -->
+                    <span class="svg-icon svg-icon-stats svg-icon-2x"
+                      ><!--begin::Svg Icon | path:/var/www/preview.keenthemes.com/keen/releases/2021-04-21-040700/theme/demo5/dist/../src/media/svg/icons/Communication/Clipboard-check.svg--><svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        xmlns:xlink="http://www.w3.org/1999/xlink"
+                        width="24px"
+                        height="24px"
+                        viewBox="0 0 24 24"
+                        version="1.1"
+                      >
+                        <g
+                          stroke="none"
+                          stroke-width="1"
+                          fill="none"
+                          fill-rule="evenodd"
+                        >
+                          <rect x="0" y="0" width="24" height="24" />
+                          <path
+                            d="M8,3 L8,3.5 C8,4.32842712 8.67157288,5 9.5,5 L14.5,5 C15.3284271,5 16,4.32842712 16,3.5 L16,3 L18,3 C19.1045695,3 20,3.8954305 20,5 L20,21 C20,22.1045695 19.1045695,23 18,23 L6,23 C4.8954305,23 4,22.1045695 4,21 L4,5 C4,3.8954305 4.8954305,3 6,3 L8,3 Z"
+                            fill="#000000"
+                            opacity="0.3"
+                          />
+                          <path
+                            d="M10.875,15.75 C10.6354167,15.75 10.3958333,15.6541667 10.2041667,15.4625 L8.2875,13.5458333 C7.90416667,13.1625 7.90416667,12.5875 8.2875,12.2041667 C8.67083333,11.8208333 9.29375,11.8208333 9.62916667,12.2041667 L10.875,13.45 L14.0375,10.2875 C14.4208333,9.90416667 14.9958333,9.90416667 15.3791667,10.2875 C15.7625,10.6708333 15.7625,11.2458333 15.3791667,11.6291667 L11.5458333,15.4625 C11.3541667,15.6541667 11.1145833,15.75 10.875,15.75 Z"
+                            fill="#000000"
+                          />
+                          <path
+                            d="M11,2 C11,1.44771525 11.4477153,1 12,1 C12.5522847,1 13,1.44771525 13,2 L14.5,2 C14.7761424,2 15,2.22385763 15,2.5 L15,3.5 C15,3.77614237 14.7761424,4 14.5,4 L9.5,4 C9.22385763,4 9,3.77614237 9,3.5 L9,2.5 C9,2.22385763 9.22385763,2 9.5,2 L11,2 Z"
+                            fill="#000000"
+                          />
+                        </g></svg
+                      ><!--end::Svg Icon--></span
+                    >
+                  </div>
+                </div>
+                <!-- / .row -->
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-md-4">
+            <!-- Card -->
+            <div class="card stats-card-content">
+              <div class="card-body">
+                <div class="row align-items-center">
+                  <div class="col">
+                    <!-- Title -->
+                    <h6 class="text-uppercase text-muted mb-2">
+                      A réceptionner
+                    </h6>
+
+                    <!-- Heading -->
+                    <span class="h2 stats-amount mb-0"> 80 </span>
+                  </div>
+                  <div class="col-auto">
+                    <!-- Icon -->
+
+                    <span class="svg-icon svg-icon-stats-rec svg-icon-2x"
+                      ><!--begin::Svg Icon | path:/var/www/preview.keenthemes.com/keen/releases/2021-04-21-040700/theme/demo5/dist/../src/media/svg/icons/Communication/Incoming-box.svg--><svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        xmlns:xlink="http://www.w3.org/1999/xlink"
+                        width="24px"
+                        height="24px"
+                        viewBox="0 0 24 24"
+                        version="1.1"
+                      >
+                        <g
+                          stroke="none"
+                          stroke-width="1"
+                          fill="none"
+                          fill-rule="evenodd"
+                        >
+                          <rect x="0" y="0" width="24" height="24" />
+                          <path
+                            d="M22,17 L22,21 C22,22.1045695 21.1045695,23 20,23 L4,23 C2.8954305,23 2,22.1045695 2,21 L2,17 L6.27924078,17 L6.82339262,18.6324555 C7.09562072,19.4491398 7.8598984,20 8.72075922,20 L15.381966,20 C16.1395101,20 16.8320364,19.5719952 17.1708204,18.8944272 L18.118034,17 L22,17 Z"
+                            fill="#000000"
+                          />
+                          <path
+                            d="M2.5625,15 L5.92654389,9.01947752 C6.2807805,8.38972356 6.94714834,8 7.66969497,8 L16.330305,8 C17.0528517,8 17.7192195,8.38972356 18.0734561,9.01947752 L21.4375,15 L18.118034,15 C17.3604899,15 16.6679636,15.4280048 16.3291796,16.1055728 L15.381966,18 L8.72075922,18 L8.17660738,16.3675445 C7.90437928,15.5508602 7.1401016,15 6.27924078,15 L2.5625,15 Z"
+                            fill="#000000"
+                            opacity="0.3"
+                          />
+                          <path
+                            d="M11.1288761,0.733697713 L11.1288761,2.69017121 L9.12120481,2.69017121 C8.84506244,2.69017121 8.62120481,2.91402884 8.62120481,3.19017121 L8.62120481,4.21346991 C8.62120481,4.48961229 8.84506244,4.71346991 9.12120481,4.71346991 L11.1288761,4.71346991 L11.1288761,6.66994341 C11.1288761,6.94608579 11.3527337,7.16994341 11.6288761,7.16994341 C11.7471877,7.16994341 11.8616664,7.12798964 11.951961,7.05154023 L15.4576222,4.08341738 C15.6683723,3.90498251 15.6945689,3.58948575 15.5161341,3.37873564 C15.4982803,3.35764848 15.4787093,3.33807751 15.4576222,3.32022374 L11.951961,0.352100892 C11.7412109,0.173666017 11.4257142,0.199862688 11.2472793,0.410612793 C11.1708299,0.500907473 11.1288761,0.615386087 11.1288761,0.733697713 Z"
+                            fill="#000000"
+                            fill-rule="nonzero"
+                            transform="translate(11.959697, 3.661508) rotate(-270.000000) translate(-11.959697, -3.661508) "
+                          />
+                        </g></svg
+                      ><!--end::Svg Icon--></span
+                    >
+                  </div>
+                </div>
+                <!-- / .row -->
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-md-4">
+            <!-- Card -->
+            <div class="card stats-card-content">
+              <div class="card-body">
+                <div class="row align-items-center">
+                  <div class="col">
+                    <!-- Title -->
+                    <h6 class="text-uppercase text-muted mb-2">
+                      Réception partielle
+                    </h6>
+
+                    <!-- Heading -->
+                    <span class="h2 stats-amount mb-0"> 80 </span>
+                  </div>
+                  <div class="col-auto">
+                    <!-- Icon -->
+
+                    <span class="svg-icon svg-icon-stats-half svg-icon-2x"
+                      ><!--begin::Svg Icon | path:/var/www/preview.keenthemes.com/keen/releases/2021-04-21-040700/theme/demo5/dist/../src/media/svg/icons/Communication/Incoming-box.svg--><svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        xmlns:xlink="http://www.w3.org/1999/xlink"
+                        width="24px"
+                        height="24px"
+                        viewBox="0 0 24 24"
+                        version="1.1"
+                      >
+                        <g
+                          stroke="none"
+                          stroke-width="1"
+                          fill="none"
+                          fill-rule="evenodd"
+                        >
+                          <rect x="0" y="0" width="24" height="24" />
+                          <path
+                            d="M22,17 L22,21 C22,22.1045695 21.1045695,23 20,23 L4,23 C2.8954305,23 2,22.1045695 2,21 L2,17 L6.27924078,17 L6.82339262,18.6324555 C7.09562072,19.4491398 7.8598984,20 8.72075922,20 L15.381966,20 C16.1395101,20 16.8320364,19.5719952 17.1708204,18.8944272 L18.118034,17 L22,17 Z"
+                            fill="#000000"
+                          />
+                          <path
+                            d="M2.5625,15 L5.92654389,9.01947752 C6.2807805,8.38972356 6.94714834,8 7.66969497,8 L16.330305,8 C17.0528517,8 17.7192195,8.38972356 18.0734561,9.01947752 L21.4375,15 L18.118034,15 C17.3604899,15 16.6679636,15.4280048 16.3291796,16.1055728 L15.381966,18 L8.72075922,18 L8.17660738,16.3675445 C7.90437928,15.5508602 7.1401016,15 6.27924078,15 L2.5625,15 Z"
+                            fill="#000000"
+                            opacity="0.3"
+                          />
+                          <path
+                            d="M11.1288761,0.733697713 L11.1288761,2.69017121 L9.12120481,2.69017121 C8.84506244,2.69017121 8.62120481,2.91402884 8.62120481,3.19017121 L8.62120481,4.21346991 C8.62120481,4.48961229 8.84506244,4.71346991 9.12120481,4.71346991 L11.1288761,4.71346991 L11.1288761,6.66994341 C11.1288761,6.94608579 11.3527337,7.16994341 11.6288761,7.16994341 C11.7471877,7.16994341 11.8616664,7.12798964 11.951961,7.05154023 L15.4576222,4.08341738 C15.6683723,3.90498251 15.6945689,3.58948575 15.5161341,3.37873564 C15.4982803,3.35764848 15.4787093,3.33807751 15.4576222,3.32022374 L11.951961,0.352100892 C11.7412109,0.173666017 11.4257142,0.199862688 11.2472793,0.410612793 C11.1708299,0.500907473 11.1288761,0.615386087 11.1288761,0.733697713 Z"
+                            fill="#000000"
+                            fill-rule="nonzero"
+                            transform="translate(11.959697, 3.661508) rotate(-270.000000) translate(-11.959697, -3.661508) "
+                          />
+                        </g></svg
+                      ><!--end::Svg Icon--></span
+                    >
+                  </div>
+                </div>
+                <!-- / .row -->
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row show" [ngClass]="{ 'none fadeOut': clientsListOpened }">
+          <div class="col-12 col-md-4">
+            <!-- Card -->
+            <div class="card stats-card-content">
+              <div class="card-body">
+                <div class="row align-items-center">
+                  <div class="col">
+                    <!-- Title -->
+                    <h6 class="text-uppercase text-muted mb-2">A valider</h6>
+
+                    <!-- Heading -->
+                    <span class="h2 stats-amount mb-0"> 80 </span>
+                  </div>
+                  <div class="col-auto">
+                    <!-- Icon -->
+                    <span class="svg-icon svg-icon-stats svg-icon-2x"
+                      ><svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        xmlns:xlink="http://www.w3.org/1999/xlink"
+                        width="24px"
+                        height="24px"
+                        viewBox="0 0 24 24"
+                        version="1.1"
+                      >
+                        <g
+                          stroke="none"
+                          stroke-width="1"
+                          fill="none"
+                          fill-rule="evenodd"
+                        >
+                          <rect x="0" y="0" width="24" height="24" />
+                          <path
+                            d="M8,3 L8,3.5 C8,4.32842712 8.67157288,5 9.5,5 L14.5,5 C15.3284271,5 16,4.32842712 16,3.5 L16,3 L18,3 C19.1045695,3 20,3.8954305 20,5 L20,21 C20,22.1045695 19.1045695,23 18,23 L6,23 C4.8954305,23 4,22.1045695 4,21 L4,5 C4,3.8954305 4.8954305,3 6,3 L8,3 Z"
+                            fill="#000000"
+                            opacity="0.3"
+                          />
+                          <path
+                            d="M10.875,15.75 C10.6354167,15.75 10.3958333,15.6541667 10.2041667,15.4625 L8.2875,13.5458333 C7.90416667,13.1625 7.90416667,12.5875 8.2875,12.2041667 C8.67083333,11.8208333 9.29375,11.8208333 9.62916667,12.2041667 L10.875,13.45 L14.0375,10.2875 C14.4208333,9.90416667 14.9958333,9.90416667 15.3791667,10.2875 C15.7625,10.6708333 15.7625,11.2458333 15.3791667,11.6291667 L11.5458333,15.4625 C11.3541667,15.6541667 11.1145833,15.75 10.875,15.75 Z"
+                            fill="#000000"
+                          />
+                          <path
+                            d="M11,2 C11,1.44771525 11.4477153,1 12,1 C12.5522847,1 13,1.44771525 13,2 L14.5,2 C14.7761424,2 15,2.22385763 15,2.5 L15,3.5 C15,3.77614237 14.7761424,4 14.5,4 L9.5,4 C9.22385763,4 9,3.77614237 9,3.5 L9,2.5 C9,2.22385763 9.22385763,2 9.5,2 L11,2 Z"
+                            fill="#000000"
+                          />
+                        </g></svg
+                      ><!--end::Svg Icon--></span
+                    >
+                  </div>
+                </div>
+                <!-- / .row -->
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-md-4">
+            <!-- Card -->
+            <div class="card stats-card-content">
+              <div class="card-body">
+                <div class="row align-items-center">
+                  <div class="col">
+                    <!-- Title -->
+                    <h6 class="text-uppercase text-muted mb-2">A préparer</h6>
+
+                    <!-- Heading -->
+                    <span class="h2 stats-amount mb-0"> 80 </span>
+                  </div>
+                  <div class="col-auto">
+                    <!-- Icon -->
+
+                    <span class="svg-icon svg-icon svg-icon-package svg-icon-2x"
+                      ><!--begin::Svg Icon | path:/var/www/preview.keenthemes.com/keen/releases/2021-04-21-040700/theme/demo5/dist/../src/media/svg/icons/Shopping/Box3.svg--><svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        xmlns:xlink="http://www.w3.org/1999/xlink"
+                        width="24px"
+                        height="24px"
+                        viewBox="0 0 24 24"
+                        version="1.1"
+                      >
+                        <g
+                          stroke="none"
+                          stroke-width="1"
+                          fill="none"
+                          fill-rule="evenodd"
+                        >
+                          <rect x="0" y="0" width="24" height="24" />
+                          <path
+                            d="M20.4061385,6.73606154 C20.7672665,6.89656288 21,7.25468437 21,7.64987309 L21,16.4115967 C21,16.7747638 20.8031081,17.1093844 20.4856429,17.2857539 L12.4856429,21.7301984 C12.1836204,21.8979887 11.8163796,21.8979887 11.5143571,21.7301984 L3.51435707,17.2857539 C3.19689188,17.1093844 3,16.7747638 3,16.4115967 L3,7.64987309 C3,7.25468437 3.23273352,6.89656288 3.59386153,6.73606154 L11.5938615,3.18050598 C11.8524269,3.06558805 12.1475731,3.06558805 12.4061385,3.18050598 L20.4061385,6.73606154 Z"
+                            fill="#000000"
+                            opacity="0.3"
+                          />
+                          <polygon
+                            fill="#000000"
+                            points="14.9671522 4.22441676 7.5999999 8.31727912 7.5999999 12.9056825 9.5999999 13.9056825 9.5999999 9.49408582 17.25507 5.24126912"
+                          />
+                        </g></svg
+                      ><!--end::Svg Icon--></span
+                    >
+                  </div>
+                </div>
+                <!-- / .row -->
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-md-4">
+            <!-- Card -->
+            <div class="card stats-card-content">
+              <div class="card-body">
+                <div class="row align-items-center">
+                  <div class="col">
+                    <!-- Title -->
+                    <h6 class="text-uppercase text-muted mb-2">
+                      Préparation partielle
+                    </h6>
+
+                    <!-- Heading -->
+                    <span class="h2 stats-amount mb-0"> 80 </span>
+                  </div>
+                  <div class="col-auto">
+                    <!-- Icon -->
+
+                    <span class="svg-icon package-part svg-icon-2x"
+                      ><!--begin::Svg Icon | path:/var/www/preview.keenthemes.com/keen/releases/2021-04-21-040700/theme/demo5/dist/../src/media/svg/icons/Shopping/Box2.svg--><svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        xmlns:xlink="http://www.w3.org/1999/xlink"
+                        width="24px"
+                        height="24px"
+                        viewBox="0 0 24 24"
+                        version="1.1"
+                      >
+                        <g
+                          stroke="none"
+                          stroke-width="1"
+                          fill="none"
+                          fill-rule="evenodd"
+                        >
+                          <rect x="0" y="0" width="24" height="24" />
+                          <path
+                            d="M4,9.67471899 L10.880262,13.6470401 C10.9543486,13.689814 11.0320333,13.7207107 11.1111111,13.740321 L11.1111111,21.4444444 L4.49070127,17.526473 C4.18655139,17.3464765 4,17.0193034 4,16.6658832 L4,9.67471899 Z M20,9.56911707 L20,16.6658832 C20,17.0193034 19.8134486,17.3464765 19.5092987,17.526473 L12.8888889,21.4444444 L12.8888889,13.6728275 C12.9050191,13.6647696 12.9210067,13.6561758 12.9368301,13.6470401 L20,9.56911707 Z"
+                            fill="#000000"
+                          />
+                          <path
+                            d="M4.21611835,7.74669402 C4.30015839,7.64056877 4.40623188,7.55087574 4.5299008,7.48500698 L11.5299008,3.75665466 C11.8237589,3.60013944 12.1762411,3.60013944 12.4700992,3.75665466 L19.4700992,7.48500698 C19.5654307,7.53578262 19.6503066,7.60071528 19.7226939,7.67641889 L12.0479413,12.1074394 C11.9974761,12.1365754 11.9509488,12.1699127 11.9085461,12.2067543 C11.8661433,12.1699127 11.819616,12.1365754 11.7691509,12.1074394 L4.21611835,7.74669402 Z"
+                            fill="#000000"
+                            opacity="0.3"
+                          />
+                        </g></svg
+                      ><!--end::Svg Icon--></span
+                    >
+                  </div>
+                </div>
+                <!-- / .row -->
+              </div>
+            </div>
+          </div>
+        </div>
+        <hr />
+        <!-- / .row -->
+        <br />
+      </div>
+
+      <div class="col-12 col-lg-10 premier-materiel col-xl-10">
+        <div class="header no-border mt-md-5">
+          <div class="header-body pt-0">
+            <div class="row align-items-center">
+              <div class="col">
+                <!-- Pretitle -->
+                <h6 class="header-pretitle">Overview</h6>
+                <!-- Title -->
+                <h1 class="header-title ">
+                  Produits finis & Matières premières
+                </h1>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-12 col-lg-6">
+            <div class="card pf">
+              <div class="card-body">
+                <!-- List -->
+                <ul
+                  class="list-group list-group-lg list-group-flush list my-n4"
+                >
+                  <li class="list-group-item">
+                    <div class="row align-items-center">
+                      <div class="col-auto">
+                        <i class="lab la-pagelines"></i>
+                      </div>
+                      <div class="col ms-n2">
+                        <!-- Title -->
+                        <h6 class="text-uppercase text-muted mb-2">
+                          Matières premières
+                        </h6>
+
+                        <!-- Heading -->
+                        <span class="h2 stats-amount mb-0"> 150 </span>
+                      </div>
+                    </div>
+                    <!-- / .row -->
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="card pf">
+              <div class="card-body">
+                <!-- List -->
+                <ul
+                  class="list-group list-group-lg list-group-flush list my-n4"
+                >
+                  <li class="list-group-item">
+                    <div class="row align-items-center">
+                      <div class="col-auto">
+                        <i class="las la-capsules"></i>
+                      </div>
+                      <div class="col ms-n2">
+                        <!-- Title -->
+                        <h6 class="text-uppercase text-muted mb-2">
+                          Produits finis
+                        </h6>
+
+                        <!-- Heading -->
+                        <span class="h2 stats-amount mb-0">200 </span>
+                      </div>
+                    </div>
+                    <!-- / .row -->
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="card pf">
+              <div class="card-body">
+                <!-- List -->
+                <ul
+                  class="list-group list-group-lg list-group-flush list my-n4"
+                >
+                  <li class="list-group-item">
+                    <div class="row align-items-center">
+                      <div class="col-auto">
+                        <i class="las la-box"></i>
+                      </div>
+                      <div class="col ms-n2">
+                        <!-- Title -->
+                        <h6 class="text-uppercase text-muted mb-2">
+                          produits rejetés
+                        </h6>
+
+                        <!-- Heading -->
+                        <span class="h2 stats-amount mb-0">75 </span>
+                      </div>
+                    </div>
+                    <!-- / .row -->
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-12 col-lg-6">
+            <!-- Card -->
+            <div class="card card-fill">
+              <div class="card-header">
+                <!-- Title -->
+                <h4 class="card-header-title">Produits finis & Matières premières</h4>
+
+                <!-- Tabs -->
+              </div>
+              <div class="card-body">
+                <!-- Chart -->
+                <div class="chartx d-flex justify-content-center position-relative">
+                  <canvas
+
+                    #trafficChart
+
+
+                  ></canvas>
+
+                </div>
+
+                <!-- Legend -->
+                <div id="trafficChartLegend" class="chart-legend">
+                  <div>
+                    <span class="chart-legend-item"
+                      ><span
+                        class="chart-legend-indicator"
+                        style="background-color: #2C7BE5"
+                      ></span
+                      >Matières premières</span
+                    ><span class="chart-legend-item"
+                      ><span
+                        class="chart-legend-indicator"
+                        style="background-color: #A6C5F7"
+                      ></span
+                      >Produits finis</span
+                    ><span class="chart-legend-item"
+                      ><span
+                        class="chart-legend-indicator"
+                        style="background-color: #D2DDEC"
+                      ></span
+                      >Produits rejetés</span
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- / .row -->
+  </div>
+</div>

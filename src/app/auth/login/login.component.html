@@ -1,0 +1,77 @@
+
+<div
+  class="
+    d-flex
+    align-items-center
+    min-vh-100
+    bg-auth
+    border-top border-top-2 border-primary
+  "
+>
+  <div class="container">
+    <div class="justify-content-center row">
+      <div class="my-5 col-xl-4 col-md-5 col-12">
+        <h1 class="display-4 text-center mb-3">S'identifier</h1>
+        <p class="text-muted text-center mb-5">bienvenue à kairos.</p>
+        <form [formGroup]="loginform">
+          <div class="form-group">
+            <label class="form-label">Adresse e-mail</label
+            ><input
+              formControlName="email"
+              name="email"
+              placeholder="name@address.com"
+              type="email"
+              class="form-control"
+            />
+          </div>
+          <div class="form-group">
+            <div class="row">
+              <div class="col">
+                <label class="form-label">Mot de passe</label>
+              </div>
+              <div class="col-auto">
+                <a
+                  routerLink="/authentication/forgetpsw"
+                  [routerLinkActive]="['router-link-active']"
+                  class="small text-muted form-text"
+                  >mot de passe oublié?</a
+                >
+              </div>
+            </div>
+            <div class="input-group-merge input-group">
+              <input
+                formControlName="password"
+                name="password"
+                placeholder="tapez votre mot de passe"
+                type="{{ showPassword ? 'password' : 'text' }}"
+                class="form-control"
+              /><span class="input-group-text">
+                <i
+                  class="las"
+                  [ngClass]="{
+                    'la-low-vision': showPassword,
+                    'la-eye': !showPassword
+                  }"
+                  style="cursor: pointer; font-size: 20px"
+                  (click)="onShowPassword()"
+                ></i>
+              </span>
+            </div>
+          </div>
+          <button
+            type="submit"
+            class="w-100 mb-3 btn btn-primary btn-lg"
+            (click)="onLogin()"
+            [disabled]="loading"
+          >
+            <span
+              *ngIf="loading"
+              class="spinner-border spinner-border-sm me-3"
+            ></span>
+            <span *ngIf="!loading"> connexion </span>
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

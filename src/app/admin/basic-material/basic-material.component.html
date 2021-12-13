@@ -1,0 +1,124 @@
+<div class="container-fluid">
+  <div class="row justify-content-center">
+    <div class="col-12 col-lg-10 col-xl-10">
+      <div class="header mt-md-5">
+        <div
+          class="
+            header-body
+            d-flex
+            justify-content-between
+            align-items-center
+            pt-0
+          "
+        >
+          <div class="row align-items-center">
+            <div class="col">
+              <h6 class="header-pretitle">Overview</h6>
+              <h1 class="header-title">Liste des Matiére basique</h1>
+            </div>
+          </div>
+          <div class="row align-items-center">
+            <a
+              [routerLink]="['/admin/basicMatter/add']"
+              class="
+                btn btn-primary
+                d-flex
+                justify-content-center
+                align-items-center
+                lift
+              "
+            >
+              <i class="las la-leaf add-icon"></i>
+
+              ajouter
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-2"></div>
+    </div>
+  </div>
+  <div class="row justify-content-center">
+    <div
+      class="
+        empty-log
+        d-flex
+        flex-column
+        align-items-center
+        justify-content-center
+      "
+    >
+      <p class="text-center">ajoutez pour commencer</p>
+      <i class="las la-leaf"></i>
+    </div>
+    <div class="col-xl-10">
+      <form class="mb-4">
+        <div class="input-group input-group-merge">
+          <input
+            class="form-control humain-search"
+            type="search"
+            placeholder="Rechercher"
+          />
+          <div class="input-group-text">
+            <i class="las la-search"></i>
+          </div>
+        </div>
+      </form>
+      <div class="card">
+        <div class="card-header">
+          <!-- Title -->
+          <h4 class="card-header-title d-flex align-items-center">
+            <i class="las la-leaf leaf"></i>
+            List des Matières basiques
+          </h4>
+        </div>
+        <div class="table-responsive mb-0">
+          <table
+            class="
+              table table-sm table-nowrap
+              card-table
+              table-hover
+              rh-table
+              overflow-visible
+            "
+          >
+            <thead>
+              <tr>
+                <th>N°</th>
+                <th>Matière</th>
+                <th class="text-center">Actions</th>
+              </tr>
+            </thead>
+            <tbody class="list">
+              <tr>
+                <td>1</td>
+                <td>Lot1</td>
+
+                <td class="text-center">
+                  <button
+                    pButton
+                    pRipple
+                    type="button"
+                    icon="pi pi-pencil"
+                    class="p-button-rounded p-button-text p-button-secondary"
+                  ></button>
+                  <button
+                    pButton
+                    pRipple
+                    type="button"
+                    icon="pi pi-trash"
+                    class="p-button-rounded p-button-danger p-button-text"
+                  ></button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

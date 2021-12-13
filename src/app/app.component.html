@@ -1,0 +1,6 @@
+<app-sidenav (sideNavOpened)="handleNavSlide($event)" *ngIf="currentUser"></app-sidenav>
+
+<div [ngClass]="{ 'main-content': slideRight }">
+<app-toast></app-toast>
+  <router-outlet></router-outlet>
+</div>

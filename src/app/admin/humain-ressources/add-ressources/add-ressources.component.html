@@ -1,0 +1,169 @@
+<div class="container-fluid">
+  <div class="row justify-content-center">
+    <div class="col-12 col-lg-10 col-xl-10">
+      <div class="header mt-md-5">
+        <div
+          class="
+            header-body
+            d-flex
+            justify-content-between
+            align-items-center
+            pt-0
+          "
+        >
+          <div class="row align-items-center">
+            <div class="col">
+              <h6 class="header-pretitle">Overview</h6>
+              <h1 class="header-title">Ajouter Ressources Humaines</h1>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container-lg container-fluid">
+    <div class="row justify-content-center">
+      <div class="col-12 col-lg-12 col-xl-12 form-label-custom">
+        <!-- Form -->
+        <form  class="py-6">
+          <div class="row">
+            <div class="col-6">
+              <h2 class="header-title">Profile :</h2>
+              <hr class="mb-5" />
+              <div class="row mb-3">
+                <div class="form-group col-4">
+                  <!-- Label -->
+                  <label class="form-label">Nom</label>
+
+                  <!-- Input -->
+                  <input type="text" class="form-control" required />
+                </div>
+                <div class="form-group col-4">
+                  <!-- Label -->
+                  <label class="form-label">Prénom</label>
+
+                  <!-- Input -->
+                  <input type="text" class="form-control" />
+                </div>
+              </div>
+              <div class="row mb-3">
+                <div class="form-group col-8">
+                  <!-- Label -->
+                  <label class="form-label">Profile</label>
+
+                  <!-- Input -->
+                  <input type="text" class="form-control" />
+                </div>
+              </div>
+              <div class="row mb-3">
+                <div class="form-group col-4">
+                  <!-- Label -->
+                  <label class="form-label">Nationalité</label>
+
+                  <!-- Input -->
+                  <input type="text" class="form-control" />
+                </div>
+                <div class="form-group col-4">
+                  <label class="form-label">Sexe</label>
+                  <div class="mb-3">
+                    <select class="form-select mb-3">
+                      <option>Dianna Smiley</option>
+                    </select>
+                  </div>
+                  <!-- Label -->
+                </div>
+              </div>
+              <div class="row mb-3">
+                <div class="form-group col-8">
+                  <!-- Label -->
+                  <label class="form-label">Email</label>
+
+                  <!-- Input -->
+                  <input type="text" class="form-control" />
+                </div>
+              </div>
+              <div class="row mb-3">
+                <div class="form-group col-4">
+                  <label class="form-label">Nom de l'entreprise</label>
+
+                  <!-- Input -->
+                  <input type="text" class="form-control" />
+                </div>
+                <div class="form-group col-4">
+                  <label class="form-label">Remarque</label>
+
+                  <!-- Input -->
+                  <input type="text" class="form-control" />
+                </div>
+              </div>
+            </div>
+
+            <div class="col-6">
+              <h2 class="header-title">Adresse :</h2>
+              <hr class="mb-5" />
+              <div class="row mb-3">
+                <div class="form-group col-4">
+                  <label class="form-label">N° D'Adresse </label>
+
+                  <!-- Input -->
+                  <input type="text" class="form-control" />
+                </div>
+                <div class="form-group col-4">
+                  <label class="form-label">Nom de rue</label>
+
+                  <!-- Input -->
+                  <input type="text" class="form-control" />
+                </div>
+              </div>
+              <div class="row mb-3">
+                <div class="form-group col-8">
+                  <label class="form-label">Code postal</label>
+                  <!-- Input -->
+                  <input type="text" class="form-control" />
+                </div>
+              </div>
+              <div class="row mb-3">
+                <div class="form-group col-4">
+                  <label class="form-label">Région</label>
+                  <div class="mb-3">
+                    <select class="form-select mb-3">
+                      <option>Dianna Smiley</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="form-group col-4">
+                  <label class="form-label">Ville</label>
+                  <div class="mb-3">
+                    <select class="form-select mb-3">
+                      <option>Dianna Smiley</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-10">
+              <div class="row align-items-center justify-content-end">
+                <div class="col-auto">
+                  <!-- Button -->
+                  <button class="btn btn-lg btn-white" type="reset">
+                    Cancel
+                  </button>
+                </div>
+
+                <div class="col-auto">
+                  <!-- Button -->
+                  <a
+                    class="btn btn-lg btn-primary"
+                    data-toggle="wizard"
+                    (click)="addRessource()"
+                    >Continue</a
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

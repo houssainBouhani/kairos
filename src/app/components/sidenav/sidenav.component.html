@@ -1,0 +1,601 @@
+<!--sidenav  navigation -->
+<nav
+  class="
+    navbar-vertical
+    fixed-start
+    navbar navbar-expand-md navbar-light
+    custom-sidenav
+  "
+  (mouseenter)="showNav()"
+  (mouseleave)="hideNav()"
+
+
+>
+  <div class="container-fluid">
+    <button
+      type="button"
+      aria-label="Toggle navigation"
+      class="navbar-toggler collapsed"
+      (click)="openMobileMenu()"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="navbar-user border-none d-none d-md-flex">
+      <a class="navbar-user-link" role="button" (click)="openNotificationMenu()"
+        ><div class="icon" [ngClass]="{ 'nav-label ': !mainMenuHoverd }">
+          <svg
+            width="17"
+            height="17"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="feather feather-bell shake-bottom"
+          >
+            <g>
+              <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+              <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+            </g>
+          </svg></div
+      ></a>
+      <div class="dropup">
+        <div
+          class="avatar avatar-sm avatar-online dropdown-toggle"
+          id="react-aria5016654841-33"
+          aria-expanded="false"
+          role="button"
+          (click)="openProfileMenu()"
+        >
+          <img
+            class="avatar-img rounded-circle"
+            src="../../../../../assets/images/avatar.jpg"
+            alt="..."
+          />
+        </div>
+        <div
+          aria-labelledby="react-aria5016654841-33"
+          data-bs-popper="static"
+          class="dropdown-menu profiledropup"
+          [ngClass]="{ show: profileMenuOpened }"
+        >
+          <a
+            href="/profile-posts"
+            data-rr-ui-dropdown-item=""
+            class="dropdown-item"
+            >Profile</a
+          ><a
+            href="/account-general"
+            data-rr-ui-dropdown-item=""
+            class="dropdown-item"
+            >Settings</a
+          >
+          <hr class="dropdown-divider" role="separator" />
+          <a href="/authentication" data-rr-ui-dropdown-item="" class="dropdown-item"  (click)="onLoggedout()"
+            >Logout</a
+          >
+        </div>
+      </div>
+      <a
+        class="navbar-user-link"
+        [ngClass]="{ 'nav-label': !mainMenuHoverd }"
+        role="button"
+        (click)="openSearchMenu()"
+        ><div class="icon">
+          <svg
+            width="17"
+            height="17"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="feather feather-search"
+          >
+            <g>
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </g>
+          </svg></div
+      ></a>
+    </div>
+
+    <div class="d-md-none dropdown">
+      <div
+        class="avatar avatar-sm avatar-online dropdown-toggle"
+        id="react-aria5016654841-32"
+        aria-expanded="false"
+        role="button"
+      >
+        <img
+          class="avatar-img rounded-circle"
+          src="../../../../../assets/images/avatar.jpg"
+          alt="..."
+          (click)="openProfileMenu()"
+        />
+      </div>
+      <div
+        aria-labelledby="react-aria5016654841-33"
+        data-bs-popper="static"
+        class="dropdown-menu position-absolute"
+        [ngClass]="{ 'nav-label': !mainMenuHoverd }"
+        style="left: -100px"
+        [ngClass]="{ show: profileMenuOpened }"
+      >
+        <a
+          href="/profile-posts"
+          data-rr-ui-dropdown-item=""
+          class="dropdown-item"
+          >Profile</a
+        ><a
+          href="/account-general"
+          data-rr-ui-dropdown-item=""
+          class="dropdown-item"
+          >Settings</a
+        >
+        <hr class="dropdown-divider" role="separator" />
+        <a href="/sign-in" data-rr-ui-dropdown-item="" class="dropdown-item"
+          >Logout</a
+        >
+      </div>
+    </div>
+    <div class="navbar-collapse collapse" [ngClass]="{ show: mobileMenu }">
+      <form class="mt-4 mb-3 d-md-none">
+        <div
+          class="
+            input-group-merge
+            input-group-reverse
+            input-group-rounded
+            input-group
+          "
+        >
+          <input
+            type="search"
+            placeholder="Search"
+            aria-label="Search"
+            class="form-control"
+          /><span class="input-group-text"
+            ><svg
+              width="15"
+              height="15"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="feather feather-search"
+            >
+              <g>
+                <circle cx="11" cy="11" r="8"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+              </g></svg
+          ></span>
+        </div>
+      </form>
+      <div class="mt-5">
+        <div class="navbar-nav icons-container">
+          <div class="nav-item">
+            <a routerLink="/admin" class="nav-link">
+              <i class="las la-tachometer-alt"></i>
+              <span
+                [ngClass]="{ 'nav-label': !mainMenuHoverd }"
+                class="text-nowrap"
+                >Tableau de bord</span
+              >
+            </a>
+          </div>
+          <div class="nav-item">
+            <a
+              routerLink="/admin/humainRessources"
+
+              class="nav-link"
+            >
+              <i class="las la-address-book"></i>
+              <span
+                [ngClass]="{ 'nav-label': !mainMenuHoverd }"
+                class="text-nowrap"
+              >
+                Ressource humaines</span
+              >
+            </a>
+          </div>
+
+          <div class="nav-item">
+            <a
+              routerLink="/admin/providers"
+
+              class="nav-link"
+            >
+              <i class="las la-shipping-fast"></i>
+              <span
+                [ngClass]="{ 'nav-label': !mainMenuHoverd }"
+                class="text-nowrap"
+              >
+                Fournisseurs</span
+              >
+            </a>
+          </div>
+          <div class="nav-item">
+            <a routerLink="/admin/clients"   class="nav-link">
+              <i class="las la-user-tag"></i>
+              <span
+                [ngClass]="{ 'nav-label': !mainMenuHoverd }"
+                class="text-nowrap"
+              >
+                Clients</span
+              >
+            </a>
+          </div>
+          <div class="nav-item">
+            <a routerLink="/admin/primaryMatter" class="nav-link">
+              <i class="lab la-pagelines"></i>
+              <span
+                [ngClass]="{ 'nav-label': !mainMenuHoverd }"
+                class="text-nowrap"
+              >
+                Matière premiére</span
+              >
+            </a>
+          </div>
+
+          <div class="nav-item">
+            <a routerLink="/admin/lots"    class="nav-link">
+              <i class="las la-dolly"></i>
+              <span [ngClass]="{ 'nav-label': !mainMenuHoverd }"> Lot</span>
+            </a>
+          </div>
+          <div class="nav-item">
+            <a routerLink="/admin/depot"  class="nav-link">
+              <i class="las la-clipboard"></i>
+              <span [ngClass]="{ 'nav-label': !mainMenuHoverd }"> Dépot</span>
+            </a>
+          </div>
+          <div class="nav-item">
+            <a routerLink="/admin/packaging"  class="nav-link">
+              <i class="las la-box-open"></i>
+              <span [ngClass]="{ 'nav-label': !mainMenuHoverd }"
+                >Emballage</span
+              >
+            </a>
+          </div>
+          <div class="nav-item">
+            <a routerLink="/admin/basicMatter"  class="nav-link">
+              <i class="las la-leaf"></i>
+              <span
+                [ngClass]="{ 'nav-label': !mainMenuHoverd }"
+                class="text-nowrap"
+                >Matiére basique</span
+              >
+            </a>
+          </div>
+          <div class="nav-item">
+            <a href="/widgets"   class="nav-link">
+              <i class="las la-flask"></i>
+              <span
+                [ngClass]="{ 'nav-label': !mainMenuHoverd }"
+                class="text-nowrap"
+              >
+                Transformation</span
+              >
+            </a>
+          </div>
+          <div class="nav-item">
+            <a href="/widgets"   class="nav-link">
+              <i class="las la-redo-alt"></i>
+
+              <span
+                [ngClass]="{ 'nav-label': !mainMenuHoverd }"
+                class="text-nowrap"
+                >Produits rejetés</span
+              >
+            </a>
+          </div>
+          <div class="nav-item">
+            <a href="/widgets"   class="nav-link">
+              <i class="las la-boxes"></i>
+              <span
+                [ngClass]="{ 'nav-label': !mainMenuHoverd }"
+                class="text-nowrap"
+              >
+                Quarantaine</span
+              >
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-auto mb-md-4"></div>
+    </div>
+  </div>
+</nav>
+<!--sidenav  navigation -->
+
+<div
+  [ngClass]="{ 'show fade search-backdrop': searchMenuOpened }"
+  (click)="hideSearchModal($event)"
+></div>
+<!--search modal-->
+<div
+  role="dialog"
+  aria-modal="true"
+  class="offcanvas offcanvas-start"
+  tabindex="-1"
+  style="visibility: visible"
+  [ngClass]="{ show: searchMenuOpened }"
+>
+  <div class="offcanvas-body">
+    <form class="mb-3">
+      <div
+        class="
+          input-group-merge input-group-rounded input-group-reverse input-group
+        "
+      >
+        <input placeholder="Search" type="search" class="form-control" /><span
+          class="input-group-text"
+          ><svg
+            width="1em"
+            height="1em"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="feather feather-search"
+          >
+            <g>
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </g></svg
+        ></span>
+      </div>
+    </form>
+    <div class="list-group-flush list-groupfocus list-group">
+      <a
+        href="/team-overview"
+        data-rr-ui-event-key="/team-overview"
+        class="list-group-item"
+        ><div class="align-items-center row">
+          <div class="col-auto">
+            <div class="avatar avatar-1by1">
+              <img
+                class="avatar-img rounded"
+                src="../../../../../assets/images/team.jpg"
+                alt="Airbnb"
+              />
+            </div>
+          </div>
+          <div class="ms-n2 col">
+            <h4 class="text-body text-focus mb-1">Airbnb</h4>
+            <p class="text-muted small mb-0">
+              <svg
+                width="1em"
+                height="1em"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="feather feather-clock"
+              >
+                <g>
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <polyline points="12 6 12 12 16 14"></polyline>
+                </g>
+              </svg>
+              <time datetime="2018-05-24" class="ms-2">Updated 2hr ago</time>
+            </p>
+          </div>
+        </div></a
+      >
+    </div>
+  </div>
+</div>
+<!--search modal-->
+
+<!--notifications modal-->
+<div
+  [ngClass]="{ 'show fade search-backdrop': notificationMenuOpened }"
+  (click)="hideNotifModal($event)"
+></div>
+<div
+  role="dialog"
+  aria-modal="true"
+  class="offcanvas offcanvas-start"
+  [ngClass]="{ show: notificationMenuOpened }"
+  tabindex="-1"
+  style="visibility: visible"
+>
+  <div class="offcanvas-header">
+    <h4 class="offcanvas-title">Notifications</h4>
+    <div class="modal-header-tabs nav-tabs-sm nav nav-tabs"></div>
+  </div>
+  <div class="offcanvas-body">
+    <div class="list-group-flush list-group-activity my-n3 list-group">
+      <a
+        href="/#!"
+        data-rr-ui-event-key="/#!"
+        class="text-reset list-group-item"
+        ><div class="row">
+          <div class="col-auto">
+            <div class="avatar avatar-sm">
+              <div
+                class="
+                  avatar-title
+                  fs-lg
+                  bg-primary-soft
+                  rounded-circle
+                  text-primary
+                "
+              >
+                <svg
+                  width="1em"
+                  height="1em"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="feather feather-mail"
+                >
+                  <g>
+                    <path
+                      d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"
+                    ></path>
+                    <polyline points="22,6 12,13 2,6"></polyline>
+                  </g>
+                </svg>
+              </div>
+            </div>
+          </div>
+          <div class="ms-n2 col">
+            <h5 class="mb-1">Launchday 1.4.0 update email sent</h5>
+            <p class="small text-gray-700 mb-0">
+              Sent to all 1,851 subscribers over a 24 hour period
+            </p>
+            <small class="text-muted">2m ago</small>
+          </div>
+        </div></a
+      ><a
+        href="/#!"
+        data-rr-ui-event-key="/#!"
+        class="text-reset list-group-item"
+        ><div class="row">
+          <div class="col-auto">
+            <div class="avatar avatar-sm">
+              <div
+                class="
+                  avatar-title
+                  fs-lg
+                  bg-primary-soft
+                  rounded-circle
+                  text-primary
+                "
+              >
+                <svg
+                  width="1em"
+                  height="1em"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="feather feather-archive"
+                >
+                  <g>
+                    <polyline points="21 8 21 21 3 21 3 8"></polyline>
+                    <rect x="1" y="3" width="22" height="5"></rect>
+                    <line x1="10" y1="12" x2="14" y2="12"></line>
+                  </g>
+                </svg>
+              </div>
+            </div>
+          </div>
+          <div class="ms-n2 col">
+            <h5 class="mb-1">New project "Goodkit" created</h5>
+            <p class="small text-gray-700 mb-0">
+              Looks like there might be a new theme soon.
+            </p>
+            <small class="text-muted">2m ago</small>
+          </div>
+        </div></a
+      ><a
+        href="/#!"
+        data-rr-ui-event-key="/#!"
+        class="text-reset list-group-item"
+        ><div class="row">
+          <div class="col-auto">
+            <div class="avatar avatar-sm">
+              <div
+                class="
+                  avatar-title
+                  fs-lg
+                  bg-primary-soft
+                  rounded-circle
+                  text-primary
+                "
+              >
+                <svg
+                  width="1em"
+                  height="1em"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="feather feather-code"
+                >
+                  <g>
+                    <polyline points="16 18 22 12 16 6"></polyline>
+                    <polyline points="8 6 2 12 8 18"></polyline>
+                  </g>
+                </svg>
+              </div>
+            </div>
+          </div>
+          <div class="ms-n2 col">
+            <h5 class="mb-1">Dashkit 1.5.0 was deployed.</h5>
+            <p class="small text-gray-700 mb-0">
+              A successful to deploy to production was executed.
+            </p>
+            <small class="text-muted">2m ago</small>
+          </div>
+        </div></a
+      ><a
+        href="/#!"
+        data-rr-ui-event-key="/#!"
+        class="text-reset list-group-item"
+        ><div class="row">
+          <div class="col-auto">
+            <div class="avatar avatar-sm">
+              <div
+                class="
+                  avatar-title
+                  fs-lg
+                  bg-primary-soft
+                  rounded-circle
+                  text-primary
+                "
+              >
+                <svg
+                  width="1em"
+                  height="1em"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="feather feather-git-branch"
+                >
+                  <g>
+                    <line x1="6" y1="3" x2="6" y2="15"></line>
+                    <circle cx="18" cy="6" r="3"></circle>
+                    <circle cx="6" cy="18" r="3"></circle>
+                    <path d="M18 9a9 9 0 0 1-9 9"></path>
+                  </g>
+                </svg>
+              </div>
+            </div>
+          </div>
+          <div class="ms-n2 col">
+            <h5 class="mb-1">"Update Dependencies" branch was created.</h5>
+            <p class="small text-gray-700 mb-0">
+              This branch was created off of the "master" branch.
+            </p>
+            <small class="text-muted">2m ago</small>
+          </div>
+        </div></a
+      >
+    </div>
+  </div>
+</div>
+<!--notifications modal-->
