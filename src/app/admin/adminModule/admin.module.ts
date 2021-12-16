@@ -1,4 +1,3 @@
-
 import { NgModule } from "@angular/core";
 import { AdminRoutingModule } from "./admin-routing.module";
 import { CommonModule } from "@angular/common";
@@ -22,22 +21,14 @@ import { PackagingComponent } from "../packaging/packaging.component";
 import { AddPackagesComponent } from "../packaging/add-packages/add-packages.component";
 import { BasicMaterialComponent } from "../basic-material/basic-material.component";
 import { AddBasicComponent } from "../basic-material/add-basic/add-basic.component";
-import { TransformationComponent } from './../transformation/transformation.component';
-
-
-
+import { TransformationComponent } from "./../transformation/transformation.component";
 
 //NG PRIME
 import { CalendarModule } from "primeng/calendar";
 import { ButtonModule } from "primeng/button";
 import { DialogModule } from "primeng/dialog";
-
-
-
-
-
-
-
+import { TooltipModule } from "primeng/tooltip";
+import { ConfirmDialogModule } from "primeng/confirmdialog";
 
 @NgModule({
   declarations: [
@@ -58,7 +49,7 @@ import { DialogModule } from "primeng/dialog";
     AddPackagesComponent,
     BasicMaterialComponent,
     AddBasicComponent,
-    TransformationComponent
+    TransformationComponent,
   ],
   imports: [
     CommonModule,
@@ -68,6 +59,8 @@ import { DialogModule } from "primeng/dialog";
     CalendarModule,
     ButtonModule,
     DialogModule,
+    TooltipModule,
+    ConfirmDialogModule,
   ],
 })
 export class AdminModule {}

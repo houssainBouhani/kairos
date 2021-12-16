@@ -1,4 +1,3 @@
-
 /* common css styles  */
 
 
@@ -176,6 +175,9 @@
 
 }
 
+
+/*detail dialog*/
+
 .custom-dialog .p-dialog-header {
     background-color: #f9fbfd !important;
     border-bottom: 1px solid #edf2f9 !important;
@@ -185,4 +187,97 @@
 .custom-dialog .p-dialog-header .p-dialog-title {
     color: #95aac9 !important;
     font-family: "Poppins-SemiBold";
+}
+
+.spinner-container {
+    position: absolute;
+    height: 100vh;
+    align-items: center;
+}
+
+
+
+.details-card h5 {
+    font-size: 16px;
+    font-family: "Poppins-Medium";
+    text-align: left;
+}
+
+.details-card .text-muted {
+    font-family: "Poppins-Regular";
+    color: #333 !important
+}
+
+
+/*tooltip*/
+.tooltip-custom {
+    font-size: 13px !important;
+    font-family: "Poppins-Medium" !important;
+
+
+
+}
+
+
+.p-tooltip.p-tooltip-top .p-tooltip-arrow {
+    border-top-color: #6e84a3 !important;
+}
+
+.tooltip-custom .p-tooltip-text {
+    background-color: #f9fbfd !important;
+    border: 2px solid #6e84a3;
+    color: #6e84a3 !important;
+}
+
+/*confirm dialog*/
+.custom-dialog-confirm .p-dialog .p-dialog-header {
+
+    color: #95aac9 !important;
+    font-family: "Poppins-SemiBold" !important;
+}
+
+
+.custom-dialog-confirm .p-dialog .p-dialog-header {
+    background-color: #f9fbfd !important;
+    border-bottom: 1px solid #edf2f9 !important;
+}
+
+
+.custom-dialog-confirm .p-dialog .pi-info-circle:before {
+
+    color: #607d8b !important;
+}
+
+.custom-dialog-confirm .p-confirm-dialog-message {
+    font-family: 'Poppins-Medium';
+    color: #607d8b !important;
+    font-size: 16px;
+
+}
+
+.custom-dialog-confirm .p-dialog-footer {
+    border: 0 !important;
+    padding: 0 20px 20px 20px !important;
+    border-bottom-right-radius: 4px !important;
+    border-bottom-left-radius: 4px !important;
+}
+
+.custom-dialog-confirm .p-dialog-content {
+    padding: 1.2rem !important;
+}
+
+.custom-dialog-confirm .las {
+    font-size: 17px;
+}
+
+
+/*hide archived*/
+
+.hide-archived {
+    opacity: 0.5;
+}
+
+.hide-archived:hover {
+    opacity: 1;
+    cursor: pointer;
 }

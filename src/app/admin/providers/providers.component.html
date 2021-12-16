@@ -28,7 +28,7 @@
                 lift
               "
             >
-            <i  class="las la-shipping-fast add-icon"></i>
+              <i class="las la-shipping-fast add-icon"></i>
               ajouter
             </a>
           </div>
@@ -50,11 +50,19 @@
         align-items-center
         justify-content-center
       "
+      *ngIf="!providers && !loading"
     >
       <p class="text-center">ajoutez pour commencer</p>
       <i class="las la-shipping-fast"></i>
     </div>
-    <div class="col-xl-10">
+    <div
+      *ngIf="loading"
+      class="d-flex justify-content-center spinner-container"
+    >
+      <span class="spinner-border spinner-border-sm me-3"></span>
+    </div>
+
+    <div class="col-xl-10" *ngIf="providers">
       <form class="mb-4">
         <div class="input-group input-group-merge">
           <input
@@ -109,42 +117,201 @@
                 <th>Nationalité</th>
                 <th>Email</th>
                 <th>Télephone</th>
-                <th class="text-center">Actions</th>
+                <th class="text-center" colspan="2">Actions</th>
               </tr>
             </thead>
             <tbody class="list">
-              <tr>
-                <td>Bouhani</td>
-                <td>Houssain</td>
-                <td>Homme</td>
-                <td>12/6/2021</td>
-                <td>DPC</td>
-                <td>Tunisienne</td>
-                <td>Housyn123@gmail.com</td>
-                <td>000 000 000</td>
-                <td class="text-center">
-                  <button
-                    pButton
-                    pRipple
-                    type="button"
-                    icon="pi pi-user"
-                    (click)="showPositionDialog('center')"
-                    class="p-button-rounded p-button-secondary p-button-text"
-                  ></button>
-                  <button
-                    pButton
-                    pRipple
-                    type="button"
-                    icon="pi pi-pencil"
-                    class="p-button-rounded p-button-text p-button-secondary"
-                  ></button>
-                  <button
-                    pButton
-                    pRipple
-                    type="button"
-                    icon="pi pi-trash"
-                    class="p-button-rounded p-button-danger p-button-text"
-                  ></button>
+              <tr
+                *ngFor="let provider of providers"
+                [ngClass]="{ 'hide-archived': provider.archiver }"
+              >
+                <td>{{ provider.contact.firstname }}</td>
+                <td>{{ provider.contact.lastname }}</td>
+                <td>{{ provider.contact.titleid === "1" ? "Mr" : "Mme" }}</td>
+                <td>{{ provider.contact.insertdate | date: "dd/MM/yyyy" }}</td>
+                <td>{{ provider.adresspresonnel.adressdes }}</td>
+                <td>{{ provider.contact.nationalno }}</td>
+                <td>{{ provider.contact.email }}</td>
+                <td>{{ provider.contact.telephone }}</td>
+                <td class="text-center" colspan="3">
+                  <div *ngIf="provider.archiver">
+                    <button
+                      pButton
+                      pRipple
+                      type="button"
+                      icon="pi pi-refresh"
+                      class="p-button-rounded p-button-secondary p-button-text"
+                      pTooltip="restaurer fournisseur"
+                      tooltipPosition="top"
+                      tooltipEvent="hover"
+                      tooltipStyleClass="tooltip-custom"
+                      (click)="
+                        RestoreProviderModal({
+                          id: provider.id,
+                          archived: true
+                        })
+                      "
+                    ></button>
+                  </div>
+                  <div *ngIf="!provider.archiver">
+                    <button
+                      pButton
+                      pRipple
+                      type="button"
+                      icon="pi pi-info-circle"
+                      (click)="showPositionDialog('center')"
+                      class="p-button-rounded p-button-secondary p-button-text"
+                      pTooltip="Voir plus"
+                      tooltipPosition="top"
+                      tooltipEvent="hover"
+                      tooltipStyleClass="tooltip-custom"
+                    ></button>
+                    <button
+                      pButton
+                      pRipple
+                      type="button"
+                      icon="pi pi-pencil"
+                      class="p-button-rounded p-button-text p-button-secondary"
+                      pTooltip="Modifier details Fournisseur "
+                      tooltipPosition="top"
+                      tooltipEvent="hover"
+                      tooltipStyleClass="tooltip-custom"
+                    ></button>
+                    <button
+                      pButton
+                      pRipple
+                      type="button"
+                      icon="pi pi-trash"
+                      class="p-button-rounded p-button-secondary p-button-text"
+                      pTooltip="Supprimer Fournisseur"
+                      tooltipPosition="top"
+                      tooltipEvent="hover"
+                      tooltipStyleClass="tooltip-custom"
+                      (click)="
+                        DeleteProviderModal({
+                          id: provider.id,
+                          archived: false
+                        })
+                      "
+                    ></button>
+                  </div>
+
+                  <div>
+                    <!-- dialog details-->
+                    <p-dialog
+                      header="Details"
+                      [(visible)]="displayPosition"
+                      [position]="position"
+                      [modal]="true"
+                      [style]="{ width: '50vw' }"
+                      [baseZIndex]="10000"
+                      [draggable]="false"
+                      [resizable]="false"
+                      class="custom-dialog"
+                    >
+                      <div class="card">
+                        <div class="card-body details-card">
+                          <!-- List group -->
+                          <div class="list-group list-group-flush my-n3">
+                            <div class="list-group-item">
+                              <div class="row align-items-center">
+                                <div class="col">
+                                  <!-- Title -->
+                                  <h5 class="mb-0">Adresse Homme</h5>
+                                </div>
+                                <div class="col-auto text-muted">
+                                  {{ provider.adresspresonnel.adressdes }}
+                                </div>
+                              </div>
+                              <!-- / .row -->
+                            </div>
+                            <div class="list-group-item">
+                              <div class="row align-items-center">
+                                <div class="col">
+                                  <!-- Title -->
+                                  <h5 class="mb-0">Adresse Détaillé</h5>
+                                </div>
+                                <div class="col-auto text-muted">
+                                  <!-- Time -->
+
+                                  {{ provider.adresspresonnel.adressdes }},
+                                  {{ provider.adresspresonnel.cityname }},
+                                  {{ provider.adresspresonnel.zip }}
+                                </div>
+                              </div>
+                              <!-- / .row -->
+                            </div>
+                            <div class="list-group-item">
+                              <div class="row align-items-center">
+                                <div class="col">
+                                  <!-- Title -->
+                                  <h5 class="mb-0">Raison social</h5>
+                                </div>
+                                <div class="col-auto text-muted">
+                                  <!-- Text -->
+                                  {{ provider.contact.raisonsocial }}
+                                </div>
+                              </div>
+                              <!-- / .row -->
+                            </div>
+                            <div class="list-group-item">
+                              <div class="row align-items-center">
+                                <div class="col">
+                                  <!-- Title -->
+                                  <h5 class="mb-0">Nom ville</h5>
+                                </div>
+                                <div class="col-auto text-muted">
+                                  {{ provider.adresspresonnel.cityname }}
+                                </div>
+                              </div>
+                              <!-- / .row -->
+                            </div>
+                            <div class="list-group-item">
+                              <div class="row align-items-center">
+                                <div class="col">
+                                  <!-- Title -->
+                                  <h5 class="mb-0">Rue</h5>
+                                </div>
+                                <div class="col-auto text-muted">
+                                  <!-- Link -->
+
+                                  {{ provider.adresspresonnel.streetname }}
+                                </div>
+                              </div>
+                              <!-- / .row -->
+                            </div>
+                            <div class="list-group-item">
+                              <div class="row align-items-center">
+                                <div class="col">
+                                  <!-- Title -->
+                                  <h5 class="mb-0">Code Postal</h5>
+                                </div>
+                                <div class="col-auto text-muted">
+                                  <!-- Link -->
+
+                                  {{ provider.adresspresonnel.zip }}
+                                </div>
+                              </div>
+                              <!-- / .row -->
+                            </div>
+                            <div class="list-group-item">
+                              <div class="row align-items-center">
+                                <div class="col">
+                                  <!-- Title -->
+                                  <h5 class="mb-0">Région</h5>
+                                </div>
+                                <div class="col-auto text-muted">
+                                  <!-- Link -->
+                                  {{ provider.adresspresonnel.regionname }}
+                                </div>
+                              </div>
+                              <!-- / .row -->
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </p-dialog>
+                  </div>
                 </td>
               </tr>
             </tbody>
@@ -155,119 +322,30 @@
   </div>
 </div>
 
-<p-dialog
-  header="Details"
-  [(visible)]="displayPosition"
-  [position]="position"
-  [modal]="true"
-  [style]="{ width: '50vw' }"
-  [baseZIndex]="10000"
-  [draggable]="false"
-  [resizable]="false"
-  class="custom-dialog"
->
-  <div class="card">
-    <div class="card-body">
-      <!-- List group -->
-      <div class="list-group list-group-flush my-n3">
-        <div class="list-group-item">
-          <div class="row align-items-center">
-            <div class="col">
-              <!-- Title -->
-              <h5 class="mb-0">Adresse Homme</h5>
-            </div>
-            <div class="col-auto text-muted">
-              <!-- Time -->
-
-              xxx xxx xxx
-            </div>
-          </div>
-          <!-- / .row -->
-        </div>
-        <div class="list-group-item">
-          <div class="row align-items-center">
-            <div class="col">
-              <!-- Title -->
-              <h5 class="mb-0">Adresse Détaillé</h5>
-            </div>
-            <div class="col-auto text-muted">
-              <!-- Time -->
-
-              s e
-            </div>
-          </div>
-          <!-- / .row -->
-        </div>
-        <div class="list-group-item">
-          <div class="row align-items-center">
-            <div class="col">
-              <!-- Title -->
-              <h5 class="mb-0">Raison social</h5>
-            </div>
-            <div class="col-auto">
-              <!-- Text -->
-              <small class="text-muted"> Raison 1 </small>
-            </div>
-          </div>
-          <!-- / .row -->
-        </div>
-        <div class="list-group-item">
-          <div class="row align-items-center">
-            <div class="col">
-              <!-- Title -->
-              <h5 class="mb-0">Nom ville</h5>
-            </div>
-            <div class="col-auto text-muted">
-              <!-- Link -->
-
-              ariana
-            </div>
-          </div>
-          <!-- / .row -->
-        </div>
-        <div class="list-group-item">
-          <div class="row align-items-center">
-            <div class="col">
-              <!-- Title -->
-              <h5 class="mb-0">Rue</h5>
-            </div>
-            <div class="col-auto text-muted">
-              <!-- Link -->
-
-              wcwc
-            </div>
-          </div>
-          <!-- / .row -->
-        </div>
-        <div class="list-group-item">
-          <div class="row align-items-center">
-            <div class="col">
-              <!-- Title -->
-              <h5 class="mb-0">Code Postal</h5>
-            </div>
-            <div class="col-auto text-muted">
-              <!-- Link -->
-
-              2083
-            </div>
-          </div>
-          <!-- / .row -->
-        </div>
-        <div class="list-group-item">
-          <div class="row align-items-center">
-            <div class="col">
-              <!-- Title -->
-              <h5 class="mb-0">Région</h5>
-            </div>
-            <div class="col-auto text-muted">
-              <!-- Link -->
-
-              tunis
-            </div>
-          </div>
-          <!-- / .row -->
-        </div>
-      </div>
-    </div>
-  </div>
-</p-dialog>
+<!-- dialog confirmation -->
+<p-confirmDialog class="custom-dialog-confirm" [style]="{ width: '50vw' }">
+  <ng-template pTemplate="footer">
+    <!-- Button -->
+    <button class="btn btn-lg btn-white" type="reset" (click)="cancel()">
+      <i class="las la-times-circle"></i>
+      Annuler
+    </button>
+    <!-- Button -->
+    <a
+      class="btn btn-lg btn-primary"
+      data-toggle="wizard"
+      (click)="onDeleteProvider()"
+      *ngIf="!provider.archived"
+    >
+      <i class="las la-trash-alt"></i> Supprimer</a
+    >
+    <a
+      class="btn btn-lg btn-primary"
+      data-toggle="wizard"
+      (click)="onRestoreProvider()"
+      *ngIf="provider.archived"
+    >
+      <i class="las la-trash-alt"></i> Restaurer</a
+    >
+  </ng-template>
+</p-confirmDialog>
