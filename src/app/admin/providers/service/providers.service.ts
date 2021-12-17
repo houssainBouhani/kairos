@@ -4,22 +4,30 @@ import { CONFIG } from "src/environments/environment";
 
 @Injectable({ providedIn: "root" })
 export class providers {
+  constructor(private http: HttpClient) {}
+
+  getAllProviders = () => {
+    return this.http.get(`${CONFIG.URL}api/Provider/afficherall`);
+  };
 
 
-  constructor(private http : HttpClient) {}
+  getProviderToEdit = (providerId) => {
+    return this.http.get(
+      `${CONFIG.URL}api/Provider/afficherbyid?id=${providerId}`
+    );
+  };
 
-    getAllProviders =  () => {
+  deleteProvider = (providerId) => {
+    return this.http.post(
+      `${CONFIG.URL}api/Provider/archiver?id=${providerId}`,
+      providerId
+    );
+  };
 
-        return this.http.get(`${CONFIG.URL}api/Provider/afficherall`);
-    }
-
-    deleteProvider = (providerId) => {
-      return this.http.post(`${CONFIG.URL}api/Provider/archiver?id=${providerId}`,providerId);
-    }
-
-
-    restoreProvider  = (providerId) => {
-      return this.http.post(`${CONFIG.URL}api/Provider/desarchiver?id=${providerId}`,providerId);
-    }
-
+  restoreProvider = (providerId) => {
+    return this.http.post(
+      `${CONFIG.URL}api/Provider/desarchiver?id=${providerId}`,
+      providerId
+    );
+  };
 }

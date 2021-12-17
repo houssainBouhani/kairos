@@ -22,6 +22,10 @@ import { AddPackagesComponent } from "../packaging/add-packages/add-packages.com
 import { BasicMaterialComponent } from "../basic-material/basic-material.component";
 import { AddBasicComponent } from "../basic-material/add-basic/add-basic.component";
 import { TransformationComponent } from "./../transformation/transformation.component";
+import { EditProviderComponent } from "../providers/edit-provider/edit-provider.component";
+
+//search pipe
+import { Ng2SearchPipeModule } from "ng2-search-filter";
 
 //NG PRIME
 import { CalendarModule } from "primeng/calendar";
@@ -50,6 +54,8 @@ import { ConfirmDialogModule } from "primeng/confirmdialog";
     BasicMaterialComponent,
     AddBasicComponent,
     TransformationComponent,
+    EditProviderComponent
+
   ],
   imports: [
     CommonModule,
@@ -61,6 +67,8 @@ import { ConfirmDialogModule } from "primeng/confirmdialog";
     DialogModule,
     TooltipModule,
     ConfirmDialogModule,
+    Ng2SearchPipeModule,
+    ReactiveFormsModule
   ],
 })
 export class AdminModule {}

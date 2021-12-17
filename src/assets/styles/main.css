@@ -281,3 +281,32 @@
     opacity: 1;
     cursor: pointer;
 }
+
+.step {
+    height: 30px;
+    width: 30px;
+    background: #6e8aa6;
+    border-radius: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-family: 'Poppins-Medium';
+    padding-top: 1px;
+    padding-right: 1px;
+}
+
+
+.step-done {
+    height: 30px;
+    width: 30px;
+    background: #28a745d1;
+    border-radius: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-family: 'Poppins-Medium';
+    padding-top: 1px;
+    padding-right: 1px;
+}
