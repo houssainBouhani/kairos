@@ -1,4 +1,3 @@
-
 import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
 
@@ -20,6 +19,7 @@ import { PackagingComponent } from "../packaging/packaging.component";
 import { AddPackagesComponent } from "../packaging/add-packages/add-packages.component";
 import { BasicMaterialComponent } from "../basic-material/basic-material.component";
 import { AddBasicComponent } from "../basic-material/add-basic/add-basic.component";
+import { EditProviderComponent } from "../providers/edit-provider/edit-provider.component";
 
 const routes: Routes = [
   { path: "", component: DashboardComponent }, // default route of the module
@@ -29,6 +29,7 @@ const routes: Routes = [
   { path: "humainRessources/add", component: AddRessourcesComponent },
   { path: "providers", component: ProvidersComponent },
   { path: "providers/add", component: AddProviderComponent },
+  { path: "providers/edit/:id", component: EditProviderComponent },
   { path: "clients", component: ClientsComponent },
   { path: "clients/add", component: AddClientsComponent },
   { path: "lots", component: LotsComponent },
@@ -38,7 +39,7 @@ const routes: Routes = [
   { path: "packaging", component: PackagingComponent },
   { path: "packaging/add", component: AddPackagesComponent },
   { path: "basicMatter", component: BasicMaterialComponent },
-  { path: "basicMatter/add", component: AddBasicComponent }
+  { path: "basicMatter/add", component: AddBasicComponent },
 ];
 
 @NgModule({

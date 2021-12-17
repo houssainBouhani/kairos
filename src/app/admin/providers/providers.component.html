@@ -69,6 +69,8 @@
             class="form-control humain-search"
             type="search"
             placeholder="Rechercher"
+            [(ngModel)]="searchTerm"
+            name="searchTerm"
           />
           <div class="input-group-text">
             <i class="las la-search"></i>
@@ -122,7 +124,7 @@
             </thead>
             <tbody class="list">
               <tr
-                *ngFor="let provider of providers"
+                *ngFor="let provider of providers | filter: searchTerm"
                 [ngClass]="{ 'hide-archived': provider.archiver }"
               >
                 <td>{{ provider.contact.firstname }}</td>
@@ -176,6 +178,7 @@
                       tooltipPosition="top"
                       tooltipEvent="hover"
                       tooltipStyleClass="tooltip-custom"
+                      [routerLink]="['/admin/providers/edit', provider.id]"
                     ></button>
                     <button
                       pButton

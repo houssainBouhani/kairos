@@ -25,6 +25,11 @@ export class ProvidersComponent implements OnInit {
 
   loading: boolean = false;
 
+
+  //search
+
+  searchTerm : string;
+
   // provider to be restored or deleted  Provider id , and archived status
 
   provider: { id: string; archived: boolean };

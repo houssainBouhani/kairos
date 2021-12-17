@@ -1,0 +1,269 @@
+<div class="container-fluid">
+  <div class="row justify-content-center">
+    <div class="col-12 col-lg-10 col-xl-10">
+      <div class="header mt-md-5">
+        <div
+          class="
+            header-body
+            d-flex
+            justify-content-between
+            align-items-center
+            pt-0
+          "
+        >
+          <div class="row align-items-center">
+            <div class="col">
+              <h6 class="header-pretitle">Overview</h6>
+              <h1 class="header-title">Modifer Fournisseur</h1>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container-lg container-fluid">
+    <div class="row justify-content-center">
+      <div class="col-12 col-lg-12 col-xl-12 form-label-custom">
+        <!-- Form -->
+
+        <div class="row">
+          <div class="col-xl-12">
+            <div class="d-flex justify-content-between">
+              <h2 class="header-title">
+                {{ formTitle }}
+              </h2>
+
+              <div class="d-flex">
+                <div class="pe-2">
+                  <div [ngClass]="!steps.step1 ? 'step' : 'step-done'">1</div>
+                </div>
+
+                <div class="pe-2">
+                  <div [ngClass]="!steps.step2 ? 'step' : 'step-done'">2</div>
+                </div>
+                <div class="pe-2">
+                  <div [ngClass]="!steps.step3 ? 'step' : 'step-done'">3</div>
+                </div>
+              </div>
+            </div>
+
+            <hr class="mb-5" />
+            <div
+              class="contact"
+              [ngClass]="currentForm === 1 ? 'd-block' : 'd-none'"
+            >
+              <form [formGroup]="contact">
+                <div class="row mb-3">
+                  <div class="form-group col-md-6 col-lg-3">
+                    <!-- Label -->
+                    <label class="form-label">Nom</label>
+
+                    <!-- Input -->
+                    <input
+                      type="text"
+                      class="form-control"
+                      formControlName="lastName"
+                    />
+                  </div>
+                  <div class="form-group col-md-6 col-lg-3">
+                    <!-- Label -->
+                    <label class="form-label">Prénom</label>
+
+                    <!-- Input -->
+                    <input
+                      type="text"
+                      class="form-control"
+                      formControlName="firstName"
+                    />
+                  </div>
+                </div>
+                <div class="row mb-3">
+                  <div class="form-group col-md-6 col-lg-3">
+                    <label class="form-label">Nationalité</label>
+                    <!-- Input -->
+                    <input
+                      type="text"
+                      class="form-control"
+                      formControlName="nationality"
+                    />
+                    <!-- Label -->
+                  </div>
+                  <div class="form-group col-md-6 col-lg-3">
+                    <label class="form-label">Sexe</label>
+                    <div class="mb-3">
+                      <select class="form-select mb-3" formControlName="sexe">
+                        <option>Mr</option>
+                        <option>Mme</option>
+                      </select>
+                    </div>
+                    <!-- Label -->
+                  </div>
+                </div>
+                <div class="row mb-3">
+                  <div class="form-groupcol-md-6 col-lg-3">
+                    <!-- Label -->
+                    <label class="form-label">Téléphone</label>
+
+                    <!-- Input -->
+                    <input
+                      type="text"
+                      class="form-control"
+                      formControlName="Telephone"
+                    />
+                  </div>
+                  <div class="form-group col-md-6 col-lg-3">
+                    <!-- Label -->
+                    <label class="form-label">Email</label>
+
+                    <!-- Input -->
+                    <input
+                      type="email"
+                      class="form-control"
+                      formControlName="email"
+                    />
+                  </div>
+                </div>
+                <div class="row mb-3">
+                  <div class="form-group col-md-6">
+                    <!-- Label -->
+                    <label class="form-label">Raison Social</label>
+
+                    <!-- Input -->
+                    <input
+                      type="email"
+                      class="form-control"
+                      formControlName="socialNum"
+                    />
+                  </div>
+                </div>
+              </form>
+            </div>
+
+            <div
+              class="work-adress"
+              [ngClass]="currentForm === 3 ? 'd-block' : 'd-none'"
+            >
+              <form [formGroup]="WorkAdresse">
+                <div class="row mb-3">
+                  <div class="form-group col-md-6 col-lg-3">
+                    <label class="form-label">Ville</label>
+                    <!-- Input -->
+                    <input type="email" class="form-control" formControlName="cityName" />
+                  </div>
+                  <div class="form-group col-md-6 col-lg-3">
+                    <label class="form-label">Région</label>
+                    <input type="email" class="form-control" formControlName="region" />
+                  </div>
+                </div>
+                <div class="row mb-3">
+                  <div class="form-group col-md-6 col-lg-3">
+                    <label class="form-label">Code postal</label>
+                    <!-- Input -->
+                    <input type="email" class="form-control"  formControlName="zip"/>
+                  </div>
+                  <div class="form-group col-md-6 col-lg-3">
+                    <label class="form-label"> Rue </label>
+
+                    <!-- Input -->
+
+                    <input class="form-control" formControlName="street" />
+                  </div>
+                </div>
+                <div class="row mb-3">
+                  <div class="form-group col-md-6 col-lg-3">
+                    <label class="form-label"> Rue Num</label>
+
+                    <!-- Input -->
+
+                    <input class="form-control" formControlName="streetNum" />
+                  </div>
+                  <div class="form-group col-md-6 col-lg-3">
+                    <label class="form-label">Adresse Détaillé</label>
+
+                    <!-- Input -->
+
+                    <input class="form-control"  formControlName="adressdes"/>
+                  </div>
+                </div>
+              </form>
+            </div>
+            <div
+              class="personal-adress"
+              [ngClass]="currentForm === 2 ? 'd-block' : 'd-none'"
+            >
+              <form [formGroup]="HomeAdresse">
+                <div class="row mb-3">
+                  <div class="form-group col-md-6 col-lg-3">
+                    <label class="form-label">Ville</label>
+                    <!-- Input -->
+                    <input type="email" class="form-control" formControlName="cityName" />
+                  </div>
+                  <div class="form-group col-md-6 col-lg-3">
+                    <label class="form-label">Région</label>
+                    <input type="email" class="form-control" formControlName="region" />
+                  </div>
+                </div>
+                <div class="row mb-3">
+                  <div class="form-group col-md-6 col-lg-3">
+                    <label class="form-label">Code postal</label>
+                    <!-- Input -->
+                    <input type="email" class="form-control"  formControlName="zip"/>
+                  </div>
+                  <div class="form-group col-md-6 col-lg-3">
+                    <label class="form-label"> Rue </label>
+
+                    <!-- Input -->
+
+                    <input class="form-control" formControlName="street" />
+                  </div>
+                </div>
+                <div class="row mb-3">
+                  <div class="form-group col-md-6 col-lg-3">
+                    <label class="form-label"> Rue Num</label>
+
+                    <!-- Input -->
+
+                    <input class="form-control" formControlName="streetNum" />
+                  </div>
+                  <div class="form-group col-md-6 col-lg-3">
+                    <label class="form-label">Adresse Détaillé</label>
+
+                    <!-- Input -->
+
+                    <input class="form-control"  formControlName="adressdes" />
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+          <div class="col-12 mt-5">
+            <div class="row align-items-center justify-content-end">
+              <div class="col-auto">
+                <!-- Button -->
+                <button
+                  class="btn btn-lg btn-white"
+                  type="reset"
+                  (click)="previous()"
+                  *ngIf="currentForm > 1"
+                >
+                  Retour
+                </button>
+              </div>
+
+              <div class="col-auto">
+                <button
+                  class="btn btn-lg btn-primary"
+                  data-toggle="wizard"
+                  [disabled]="!steps.step1"
+                  (click)="next()"
+                >
+                  {{ currentForm !== 3 ? "Suivant" : "Confirmer" }}
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
