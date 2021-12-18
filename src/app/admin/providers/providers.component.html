@@ -43,6 +43,12 @@
   </div>
   <div class="row justify-content-center">
     <div
+    *ngIf="loading"
+    class="d-flex justify-content-center spinner-container"
+  >
+    <span class="spinner-border spinner-border-sm me-3"></span>
+  </div>
+    <div
       class="
         empty-log
         d-flex
@@ -55,12 +61,7 @@
       <p class="text-center">ajoutez pour commencer</p>
       <i class="las la-shipping-fast"></i>
     </div>
-    <div
-      *ngIf="loading"
-      class="d-flex justify-content-center spinner-container"
-    >
-      <span class="spinner-border spinner-border-sm me-3"></span>
-    </div>
+
 
     <div class="col-xl-10" *ngIf="providers">
       <form class="mb-4">

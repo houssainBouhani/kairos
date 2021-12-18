@@ -21,9 +21,19 @@
       </div>
     </div>
   </div>
+
   <div class="container-lg container-fluid">
+    <div
+      *ngIf="loading"
+      class="d-flex justify-content-center spinner-container"
+    >
+      <span class="spinner-border spinner-border-sm me-3"></span>
+    </div>
     <div class="row justify-content-center">
-      <div class="col-12 col-lg-12 col-xl-12 form-label-custom">
+      <div
+        *ngIf="!loading"
+        class="col-12 col-lg-12 col-xl-12 form-label-custom"
+      >
         <!-- Form -->
 
         <div class="row">
@@ -48,11 +58,13 @@
             </div>
 
             <hr class="mb-5" />
-            <div
-              class="contact"
-              [ngClass]="currentForm === 1 ? 'd-block' : 'd-none'"
-            >
-              <form [formGroup]="contact">
+
+            <form [formGroup]="providerForm">
+              <div
+                class="contact"
+                [ngClass]="currentForm === 1 ? 'd-block' : 'd-none'"
+                formGroupName="contact"
+              >
                 <div class="row mb-3">
                   <div class="form-group col-md-6 col-lg-3">
                     <!-- Label -->
@@ -64,6 +76,15 @@
                       class="form-control"
                       formControlName="lastName"
                     />
+                    <div
+                      class="invalid-feedback d-block"
+                      *ngIf="
+                        providerForm.get('contact.lastName').touched &&
+                        !providerForm.get('contact.lastName').valid
+                      "
+                    >
+                      Veuillez saisir le Nom de votre fournisseur.
+                    </div>
                   </div>
                   <div class="form-group col-md-6 col-lg-3">
                     <!-- Label -->
@@ -75,6 +96,15 @@
                       class="form-control"
                       formControlName="firstName"
                     />
+                    <div
+                      class="invalid-feedback d-block"
+                      *ngIf="
+                        providerForm.get('contact.firstName').touched &&
+                        !providerForm.get('contact.firstName').valid
+                      "
+                    >
+                      Veuillez saisir le prénom de votre fournisseur.
+                    </div>
                   </div>
                 </div>
                 <div class="row mb-3">
@@ -86,7 +116,15 @@
                       class="form-control"
                       formControlName="nationality"
                     />
-                    <!-- Label -->
+                    <div
+                      class="invalid-feedback d-block"
+                      *ngIf="
+                        providerForm.get('contact.nationality').touched &&
+                        !providerForm.get('contact.nationality').valid
+                      "
+                    >
+                      Ceci est un champ obligatoire.
+                    </div>
                   </div>
                   <div class="form-group col-md-6 col-lg-3">
                     <label class="form-label">Sexe</label>
@@ -96,7 +134,15 @@
                         <option>Mme</option>
                       </select>
                     </div>
-                    <!-- Label -->
+                    <div
+                      class="invalid-feedback d-block"
+                      *ngIf="
+                        providerForm.get('contact.sexe').touched &&
+                        !providerForm.get('contact.sexe').valid
+                      "
+                    >
+                      Ceci est un champ obligatoire.
+                    </div>
                   </div>
                 </div>
                 <div class="row mb-3">
@@ -110,6 +156,15 @@
                       class="form-control"
                       formControlName="Telephone"
                     />
+                    <div
+                      class="invalid-feedback d-block"
+                      *ngIf="
+                        providerForm.get('contact.Telephone').touched &&
+                        !providerForm.get('contact.Telephone').valid
+                      "
+                    >
+                      veuillez entrer le numéro du fournisseur. (min 8 chiffres)
+                    </div>
                   </div>
                   <div class="form-group col-md-6 col-lg-3">
                     <!-- Label -->
@@ -121,6 +176,15 @@
                       class="form-control"
                       formControlName="email"
                     />
+                    <div
+                      class="invalid-feedback d-block"
+                      *ngIf="
+                        providerForm.get('contact.email').touched &&
+                        !providerForm.get('contact.email').valid
+                      "
+                    >
+                      veuillez Entrez une adresse mail valide
+                    </div>
                   </div>
                 </div>
                 <div class="row mb-3">
@@ -134,32 +198,80 @@
                       class="form-control"
                       formControlName="socialNum"
                     />
+                    <div
+                      class="invalid-feedback d-block"
+                      *ngIf="
+                        providerForm.get('contact.socialNum').touched &&
+                        !providerForm.get('contact.socialNum').valid
+                      "
+                    >
+                      veuillez entrer le numéro de Raison social de votre
+                      fournisseur
+                    </div>
                   </div>
                 </div>
-              </form>
-            </div>
+              </div>
 
-            <div
-              class="work-adress"
-              [ngClass]="currentForm === 3 ? 'd-block' : 'd-none'"
-            >
-              <form [formGroup]="WorkAdresse">
+              <div
+                class="personal-adress"
+                [ngClass]="currentForm === 2 ? 'd-block' : 'd-none'"
+                formGroupName="adresspresonnel"
+              >
                 <div class="row mb-3">
                   <div class="form-group col-md-6 col-lg-3">
                     <label class="form-label">Ville</label>
                     <!-- Input -->
-                    <input type="email" class="form-control" formControlName="cityName" />
+                    <input
+                      type="email"
+                      class="form-control"
+                      formControlName="cityName"
+                    />
+                    <div
+                      class="invalid-feedback d-block"
+                      *ngIf="
+                        providerForm.get('adresspresonnel.cityName').touched &&
+                        !providerForm.get('adresspresonnel.cityName').valid
+                      "
+                    >
+                      Ceci est un champ obligatoire.
+                    </div>
                   </div>
                   <div class="form-group col-md-6 col-lg-3">
                     <label class="form-label">Région</label>
-                    <input type="email" class="form-control" formControlName="region" />
+                    <input
+                      type="email"
+                      class="form-control"
+                      formControlName="region"
+                    />
+                    <div
+                      class="invalid-feedback d-block"
+                      *ngIf="
+                        providerForm.get('adresspresonnel.region').touched &&
+                        !providerForm.get('adresspresonnel.region').valid
+                      "
+                    >
+                      Ceci est un champ obligatoire.
+                    </div>
                   </div>
                 </div>
                 <div class="row mb-3">
                   <div class="form-group col-md-6 col-lg-3">
                     <label class="form-label">Code postal</label>
                     <!-- Input -->
-                    <input type="email" class="form-control"  formControlName="zip"/>
+                    <input
+                      type="text"
+                      class="form-control"
+                      formControlName="zip"
+                    />
+                    <div
+                      class="invalid-feedback d-block"
+                      *ngIf="
+                        providerForm.get('adresspresonnel.zip').touched &&
+                        !providerForm.get('adresspresonnel.zip').valid
+                      "
+                    >
+                      Ceci est un champ obligatoire.
+                    </div>
                   </div>
                   <div class="form-group col-md-6 col-lg-3">
                     <label class="form-label"> Rue </label>
@@ -167,6 +279,15 @@
                     <!-- Input -->
 
                     <input class="form-control" formControlName="street" />
+                    <div
+                      class="invalid-feedback d-block"
+                      *ngIf="
+                        providerForm.get('adresspresonnel.street').touched &&
+                        !providerForm.get('adresspresonnel.street').valid
+                      "
+                    >
+                      Ceci est un champ obligatoire.
+                    </div>
                   </div>
                 </div>
                 <div class="row mb-3">
@@ -176,38 +297,94 @@
                     <!-- Input -->
 
                     <input class="form-control" formControlName="streetNum" />
+                    <div
+                      class="invalid-feedback d-block"
+                      *ngIf="
+                        providerForm.get('adresspresonnel.streetNum').touched &&
+                        !providerForm.get('adresspresonnel.streetNum').valid
+                      "
+                    >
+                      Ceci est un champ obligatoire.
+                    </div>
                   </div>
                   <div class="form-group col-md-6 col-lg-3">
                     <label class="form-label">Adresse Détaillé</label>
 
                     <!-- Input -->
 
-                    <input class="form-control"  formControlName="adressdes"/>
+                    <input class="form-control" formControlName="adressdes" />
+                    <div
+                      class="invalid-feedback d-block"
+                      *ngIf="
+                        providerForm.get('adresspresonnel.adressdes').touched &&
+                        !providerForm.get('adresspresonnel.adressdes').valid
+                      "
+                    >
+                      Ceci est un champ obligatoire.
+                    </div>
                   </div>
                 </div>
-              </form>
-            </div>
-            <div
-              class="personal-adress"
-              [ngClass]="currentForm === 2 ? 'd-block' : 'd-none'"
-            >
-              <form [formGroup]="HomeAdresse">
+              </div>
+              <div
+                class="work-adress"
+                [ngClass]="currentForm === 3 ? 'd-block' : 'd-none'"
+                formGroupName="adressetravaille"
+              >
                 <div class="row mb-3">
                   <div class="form-group col-md-6 col-lg-3">
                     <label class="form-label">Ville</label>
                     <!-- Input -->
-                    <input type="email" class="form-control" formControlName="cityName" />
+                    <input
+                      type="email"
+                      class="form-control"
+                      formControlName="cityName"
+                    />
+                    <div
+                      class="invalid-feedback d-block"
+                      *ngIf="
+                        providerForm.get('adressetravaille.cityName').touched &&
+                        !providerForm.get('adressetravaille.cityName').valid
+                      "
+                    >
+                      Ceci est un champ obligatoire.
+                    </div>
                   </div>
                   <div class="form-group col-md-6 col-lg-3">
                     <label class="form-label">Région</label>
-                    <input type="email" class="form-control" formControlName="region" />
+                    <input
+                      type="email"
+                      class="form-control"
+                      formControlName="region"
+                    />
+                    <div
+                      class="invalid-feedback d-block"
+                      *ngIf="
+                        providerForm.get('adressetravaille.region').touched &&
+                        !providerForm.get('adressetravaille.region').valid
+                      "
+                    >
+                      Ceci est un champ obligatoire.
+                    </div>
                   </div>
                 </div>
                 <div class="row mb-3">
                   <div class="form-group col-md-6 col-lg-3">
                     <label class="form-label">Code postal</label>
                     <!-- Input -->
-                    <input type="email" class="form-control"  formControlName="zip"/>
+                    <input
+                      type="text"
+                      class="form-control"
+                      formControlName="zip"
+                    />
+                    <div
+                      class="invalid-feedback d-block"
+                      *ngIf="
+                        providerForm.get('adressetravaille.zip').touched &&
+                        !providerForm.get('adressetravaille.zip').valid
+                      "
+                    >
+                      Ceci est un champ obligatoire.
+                    </div>
                   </div>
                   <div class="form-group col-md-6 col-lg-3">
                     <label class="form-label"> Rue </label>
@@ -215,6 +392,15 @@
                     <!-- Input -->
 
                     <input class="form-control" formControlName="street" />
+                    <div
+                      class="invalid-feedback d-block"
+                      *ngIf="
+                        providerForm.get('adressetravaille.street').touched &&
+                        !providerForm.get('adressetravaille.street').valid
+                      "
+                    >
+                      Ceci est un champ obligatoire.
+                    </div>
                   </div>
                 </div>
                 <div class="row mb-3">
@@ -224,18 +410,39 @@
                     <!-- Input -->
 
                     <input class="form-control" formControlName="streetNum" />
+                    <div
+                      class="invalid-feedback d-block"
+                      *ngIf="
+                        providerForm.get('adressetravaille.streetNum')
+                          .touched &&
+                        !providerForm.get('adressetravaille.streetNum').valid
+                      "
+                    >
+                      Ceci est un champ obligatoire.
+                    </div>
                   </div>
                   <div class="form-group col-md-6 col-lg-3">
                     <label class="form-label">Adresse Détaillé</label>
 
                     <!-- Input -->
 
-                    <input class="form-control"  formControlName="adressdes" />
+                    <input class="form-control" formControlName="adressdes" />
+                    <div
+                      class="invalid-feedback d-block"
+                      *ngIf="
+                        providerForm.get('adressetravaille.adressdes')
+                          .touched &&
+                        !providerForm.get('adressetravaille.adressdes').valid
+                      "
+                    >
+                      Ceci est un champ obligatoire.
+                    </div>
                   </div>
                 </div>
-              </form>
-            </div>
+              </div>
+            </form>
           </div>
+
           <div class="col-12 mt-5">
             <div class="row align-items-center justify-content-end">
               <div class="col-auto">
