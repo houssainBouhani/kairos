@@ -14,7 +14,7 @@
           <div class="row align-items-center">
             <div class="col">
               <h6 class="header-pretitle">Overview</h6>
-              <h1 class="header-title">Modifer Fournisseur</h1>
+              <h1 class="header-title">Modifier Fournisseur</h1>
             </div>
           </div>
         </div>
@@ -23,17 +23,8 @@
   </div>
 
   <div class="container-lg container-fluid">
-    <div
-      *ngIf="loading"
-      class="d-flex justify-content-center spinner-container"
-    >
-      <span class="spinner-border spinner-border-sm me-3"></span>
-    </div>
     <div class="row justify-content-center">
-      <div
-        *ngIf="!loading"
-        class="col-12 col-lg-12 col-xl-12 form-label-custom"
-      >
+      <div class="col-12 col-lg-12 col-xl-12 form-label-custom">
         <!-- Form -->
 
         <div class="row">
@@ -44,15 +35,30 @@
               </h2>
 
               <div class="d-flex">
-                <div class="pe-2">
-                  <div [ngClass]="!steps.step1 ? 'step' : 'step-done'">1</div>
+                <div class="pe-2 d-flex flex-column align-items-center">
+                  <div [ngClass]="!steps.step1 ? 'step ' : 'step-done '">
+                    <span
+                      [innerHTML]="!steps.step1 ? 1 : null"
+                      [ngClass]="!steps.step1 ? null : 'las la-check'"
+                    ></span>
+                  </div>
                 </div>
 
                 <div class="pe-2">
-                  <div [ngClass]="!steps.step2 ? 'step' : 'step-done'">2</div>
+                  <div [ngClass]="!steps.step2 ? 'step' : 'step-done'">
+                    <span
+                      [innerHTML]="!steps.step2 ? 2 : null"
+                      [ngClass]="!steps.step2 ? null : 'las la-check'"
+                    ></span>
+                  </div>
                 </div>
                 <div class="pe-2">
-                  <div [ngClass]="!steps.step3 ? 'step' : 'step-done'">3</div>
+                  <div [ngClass]="!steps.step3 ? 'step' : 'step-done'">
+                    <span
+                      [innerHTML]="!steps.step3 ? 3 : null"
+                      [ngClass]="!steps.step3 ? null : 'las la-check'"
+                    ></span>
+                  </div>
                 </div>
               </div>
             </div>
@@ -74,13 +80,13 @@
                     <input
                       type="text"
                       class="form-control"
-                      formControlName="lastName"
+                      formControlName="lastname"
                     />
                     <div
                       class="invalid-feedback d-block"
                       *ngIf="
-                        providerForm.get('contact.lastName').touched &&
-                        !providerForm.get('contact.lastName').valid
+                        providerForm.get('contact.lastname').touched &&
+                        !providerForm.get('contact.lastname').valid
                       "
                     >
                       Veuillez saisir le Nom de votre fournisseur.
@@ -94,13 +100,13 @@
                     <input
                       type="text"
                       class="form-control"
-                      formControlName="firstName"
+                      formControlName="firstname"
                     />
                     <div
                       class="invalid-feedback d-block"
                       *ngIf="
-                        providerForm.get('contact.firstName').touched &&
-                        !providerForm.get('contact.firstName').valid
+                        providerForm.get('contact.firstname').touched &&
+                        !providerForm.get('contact.firstname').valid
                       "
                     >
                       Veuillez saisir le prénom de votre fournisseur.
@@ -114,13 +120,13 @@
                     <input
                       type="text"
                       class="form-control"
-                      formControlName="nationality"
+                      formControlName="nationalno"
                     />
                     <div
                       class="invalid-feedback d-block"
                       *ngIf="
-                        providerForm.get('contact.nationality').touched &&
-                        !providerForm.get('contact.nationality').valid
+                        providerForm.get('contact.nationalno').touched &&
+                        !providerForm.get('contact.nationalno').valid
                       "
                     >
                       Ceci est un champ obligatoire.
@@ -129,17 +135,29 @@
                   <div class="form-group col-md-6 col-lg-3">
                     <label class="form-label">Sexe</label>
                     <div class="mb-3">
-                      <select class="form-select mb-3" formControlName="sexe">
+                      <select
+                        class="form-select mb-3"
+                        formControlName="titleid"
+                      >
                         <option
-                          value="{{ providerForm.get('contact.sexe').value }}"
-                        >
-                          {{ providerForm.get("contact.sexe").value }}
-                        </option>
-                        <option
-
+                          value="{{
+                            providerForm.get('contact.titleid').value
+                          }}"
+                          selected
                         >
                           {{
-                            providerForm.get("contact.sexe").value === "Mr"
+                            providerForm.get("contact.titleid").value === 1
+                              ? "Mr"
+                              : "Mme"
+                          }}
+                        </option>
+                        <option
+                          value="{{
+                            providerForm.get('contact.titleid').value
+                          }}"
+                        >
+                          {{
+                            providerForm.get("contact.titleid").value === 1
                               ? "Mme"
                               : "Mr"
                           }}
@@ -149,8 +167,8 @@
                     <div
                       class="invalid-feedback d-block"
                       *ngIf="
-                        providerForm.get('contact.sexe').touched &&
-                        !providerForm.get('contact.sexe').valid
+                        providerForm.get('contact.titleid').touched &&
+                        !providerForm.get('contact.titleid').valid
                       "
                     >
                       Ceci est un champ obligatoire.
@@ -164,15 +182,15 @@
 
                     <!-- Input -->
                     <input
-                      type="text"
+                      type="number"
                       class="form-control"
-                      formControlName="Telephone"
+                      formControlName="telephone"
                     />
                     <div
                       class="invalid-feedback d-block"
                       *ngIf="
-                        providerForm.get('contact.Telephone').touched &&
-                        !providerForm.get('contact.Telephone').valid
+                        providerForm.get('contact.telephone').touched &&
+                        !providerForm.get('contact.telephone').valid
                       "
                     >
                       veuillez entrer le numéro du fournisseur. (min 8 chiffres)
@@ -200,7 +218,7 @@
                   </div>
                 </div>
                 <div class="row mb-3">
-                  <div class="form-group col-md-6">
+                  <div class="form-group col-md-6 col-lg-3">
                     <!-- Label -->
                     <label class="form-label">Raison Social</label>
 
@@ -208,18 +226,29 @@
                     <input
                       type="email"
                       class="form-control"
-                      formControlName="socialNum"
+                      formControlName="raisonsocial"
                     />
                     <div
                       class="invalid-feedback d-block"
                       *ngIf="
-                        providerForm.get('contact.socialNum').touched &&
-                        !providerForm.get('contact.socialNum').valid
+                        providerForm.get('contact.raisonsocial').touched &&
+                        !providerForm.get('contact.raisonsocial').valid
                       "
                     >
                       veuillez entrer le numéro de Raison social de votre
                       fournisseur
                     </div>
+                  </div>
+                  <div class="form-group col-md-6 col-lg-3">
+                    <!-- Label -->
+                    <label class="form-label">remarque</label>
+
+                    <!-- Input -->
+                    <input
+                      type="text"
+                      class="form-control"
+                      formControlName="remarque"
+                    />
                   </div>
                 </div>
               </div>
@@ -236,13 +265,13 @@
                     <input
                       type="email"
                       class="form-control"
-                      formControlName="cityName"
+                      formControlName="cityname"
                     />
                     <div
                       class="invalid-feedback d-block"
                       *ngIf="
-                        providerForm.get('adresspresonnel.cityName').touched &&
-                        !providerForm.get('adresspresonnel.cityName').valid
+                        providerForm.get('adresspresonnel.cityname').touched &&
+                        !providerForm.get('adresspresonnel.cityname').valid
                       "
                     >
                       Ceci est un champ obligatoire.
@@ -253,13 +282,14 @@
                     <input
                       type="email"
                       class="form-control"
-                      formControlName="region"
+                      formControlName="regionname"
                     />
                     <div
                       class="invalid-feedback d-block"
                       *ngIf="
-                        providerForm.get('adresspresonnel.region').touched &&
-                        !providerForm.get('adresspresonnel.region').valid
+                        providerForm.get('adresspresonnel.regionname')
+                          .touched &&
+                        !providerForm.get('adresspresonnel.regionname').valid
                       "
                     >
                       Ceci est un champ obligatoire.
@@ -271,7 +301,7 @@
                     <label class="form-label">Code postal</label>
                     <!-- Input -->
                     <input
-                      type="text"
+                      type="number"
                       class="form-control"
                       formControlName="zip"
                     />
@@ -290,12 +320,17 @@
 
                     <!-- Input -->
 
-                    <input class="form-control" formControlName="street" />
+                    <input
+                      class="form-control"
+                      type="text"
+                      formControlName="streetname"
+                    />
                     <div
                       class="invalid-feedback d-block"
                       *ngIf="
-                        providerForm.get('adresspresonnel.street').touched &&
-                        !providerForm.get('adresspresonnel.street').valid
+                        providerForm.get('adresspresonnel.streetname')
+                          .touched &&
+                        !providerForm.get('adresspresonnel.streetname').valid
                       "
                     >
                       Ceci est un champ obligatoire.
@@ -304,16 +339,20 @@
                 </div>
                 <div class="row mb-3">
                   <div class="form-group col-md-6 col-lg-3">
-                    <label class="form-label"> Rue Num</label>
+                    <label class="form-label"> Rue Numéro</label>
 
                     <!-- Input -->
 
-                    <input class="form-control" formControlName="streetNum" />
+                    <input
+                      class="form-control"
+                      type="number"
+                      formControlName="streetno"
+                    />
                     <div
                       class="invalid-feedback d-block"
                       *ngIf="
-                        providerForm.get('adresspresonnel.streetNum').touched &&
-                        !providerForm.get('adresspresonnel.streetNum').valid
+                        providerForm.get('adresspresonnel.streetno').touched &&
+                        !providerForm.get('adresspresonnel.streetno').valid
                       "
                     >
                       Ceci est un champ obligatoire.
@@ -349,13 +388,13 @@
                     <input
                       type="email"
                       class="form-control"
-                      formControlName="cityName"
+                      formControlName="cityname"
                     />
                     <div
                       class="invalid-feedback d-block"
                       *ngIf="
-                        providerForm.get('adressetravaille.cityName').touched &&
-                        !providerForm.get('adressetravaille.cityName').valid
+                        providerForm.get('adressetravaille.cityname').touched &&
+                        !providerForm.get('adressetravaille.cityname').valid
                       "
                     >
                       Ceci est un champ obligatoire.
@@ -366,13 +405,14 @@
                     <input
                       type="email"
                       class="form-control"
-                      formControlName="region"
+                      formControlName="regionname"
                     />
                     <div
                       class="invalid-feedback d-block"
                       *ngIf="
-                        providerForm.get('adressetravaille.region').touched &&
-                        !providerForm.get('adressetravaille.region').valid
+                        providerForm.get('adressetravaille.regionname')
+                          .touched &&
+                        !providerForm.get('adressetravaille.regionname').valid
                       "
                     >
                       Ceci est un champ obligatoire.
@@ -384,7 +424,7 @@
                     <label class="form-label">Code postal</label>
                     <!-- Input -->
                     <input
-                      type="text"
+                      type="number"
                       class="form-control"
                       formControlName="zip"
                     />
@@ -403,12 +443,13 @@
 
                     <!-- Input -->
 
-                    <input class="form-control" formControlName="street" />
+                    <input class="form-control" formControlName="streetname" />
                     <div
                       class="invalid-feedback d-block"
                       *ngIf="
-                        providerForm.get('adressetravaille.street').touched &&
-                        !providerForm.get('adressetravaille.street').valid
+                        providerForm.get('adressetravaille.streetname')
+                          .touched &&
+                        !providerForm.get('adressetravaille.streetname').valid
                       "
                     >
                       Ceci est un champ obligatoire.
@@ -417,17 +458,20 @@
                 </div>
                 <div class="row mb-3">
                   <div class="form-group col-md-6 col-lg-3">
-                    <label class="form-label"> Rue Num</label>
+                    <label class="form-label"> Rue Numéro</label>
 
                     <!-- Input -->
 
-                    <input class="form-control" formControlName="streetNum" />
+                    <input
+                      class="form-control"
+                      type="number"
+                      formControlName="streetno"
+                    />
                     <div
                       class="invalid-feedback d-block"
                       *ngIf="
-                        providerForm.get('adressetravaille.streetNum')
-                          .touched &&
-                        !providerForm.get('adressetravaille.streetNum').valid
+                        providerForm.get('adressetravaille.streetno').touched &&
+                        !providerForm.get('adressetravaille.streetno').valid
                       "
                     >
                       Ceci est un champ obligatoire.
@@ -463,7 +507,6 @@
                   class="btn btn-lg btn-white"
                   type="reset"
                   (click)="previous()"
-                  *ngIf="currentForm > 1"
                 >
                   Retour
                 </button>
@@ -471,22 +514,27 @@
 
               <div class="col-auto">
                 <button
-                *ngIf="currentForm !== 3"
+                  *ngIf="currentForm !== 3"
                   class="btn btn-lg btn-primary"
                   data-toggle="wizard"
                   (click)="next()"
                 >
-              Suivant
+                  Suivant
                 </button>
                 <button
-                *ngIf="(currentForm === 3 )"
-                class="btn btn-lg btn-primary"
-               [disabled]="(providerForm.untouched ) || !providerForm.valid"
-                data-toggle="wizard"
-                (click)="Onedit()"
-              >
-              Modifier
-              </button>
+                  *ngIf="currentForm === 3"
+                  class="btn btn-lg btn-primary"
+                  [disabled]="providerForm.untouched || !providerForm.valid ||  loading"
+                  data-toggle="wizard"
+                  (click)="onEditProvider()"
+
+                >
+                  <span
+                    *ngIf="loading"
+                    class="spinner-border spinner-border-sm me-3"
+                  ></span>
+                  Modifier
+                </button>
               </div>
             </div>
           </div>

@@ -30,13 +30,11 @@ export class providers {
     );
   };
 
-  editProvider = (providerId, editedProvider) => {
-    return this.http.put(
-      `${CONFIG.URL}api/Provider/update?id=${providerId}`,
-      editedProvider
-    );
-  };
   addProvider = (provider) => {
     return this.http.post(`${CONFIG.URL}api/Provider/add`, provider);
+  };
+
+  editProvider = (editedProvider) => {
+    return this.http.put(`${CONFIG.URL}api/Provider/update`, editedProvider);
   };
 }
