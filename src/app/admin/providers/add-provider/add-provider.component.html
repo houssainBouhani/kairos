@@ -503,10 +503,10 @@
                 <button
                   *ngIf="currentForm === 3"
                   class="btn btn-lg btn-primary"
-                  [disabled]="providerForm.untouched || !providerForm.valid"
+                  [disabled]="providerForm.untouched || !providerForm.valid || loading"
                   data-toggle="wizard"
                   (click)="onAddProvider()"
-                  [disabled]="loading"
+
                 >
                     <span
                       *ngIf="loading"

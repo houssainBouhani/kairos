@@ -1,6 +1,6 @@
 import { Provider } from "./../model/provider";
 import { Component, OnInit } from "@angular/core";
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 import { providers } from "../service/providers.service";
 import {
   FormBuilder,
@@ -8,6 +8,7 @@ import {
   FormGroup,
   Validators,
 } from "@angular/forms";
+import { Toast } from "src/app/shared/services/toast.service";
 
 @Component({
   selector: "app-edit-provider",
@@ -19,6 +20,9 @@ export class EditProviderComponent implements OnInit {
 
   providerForm: FormGroup;
   providerId: string;
+  provider: Provider;
+
+  providerUpdated;
 
   //loading ui
   loading: boolean = false;
@@ -39,7 +43,9 @@ export class EditProviderComponent implements OnInit {
   constructor(
     private providerService: providers,
     private route: ActivatedRoute,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private router: Router,
+    private toast: Toast
   ) {}
 
   ngOnInit(): void {
@@ -47,33 +53,34 @@ export class EditProviderComponent implements OnInit {
     this.getProviderById(this.providerId);
 
     let contact = this.fb.group({
-      lastName: new FormControl("", [Validators.required]),
-      firstName: new FormControl("", [Validators.required]),
-      nationality: new FormControl("", [Validators.required]),
-      sexe: new FormControl("", [Validators.required]),
-      Telephone: new FormControl("", [
+      lastname: new FormControl("", [Validators.required]),
+      firstname: new FormControl("", [Validators.required]),
+      nationalno: new FormControl("", [Validators.required]),
+      titleid: new FormControl("", [Validators.required]),
+      telephone: new FormControl("", [
         Validators.required,
         Validators.minLength(8),
       ]),
       email: new FormControl("", [Validators.required, Validators.email]),
-      socialNum: new FormControl("", [Validators.required]),
+      raisonsocial: new FormControl("", [Validators.required]),
+      remarque: new FormControl(""),
     });
 
     let adresspresonnel = this.fb.group({
-      cityName: new FormControl("", [Validators.required]),
-      region: new FormControl("", [Validators.required]),
+      cityname: new FormControl("", [Validators.required]),
+      regionname: new FormControl("", [Validators.required]),
       zip: new FormControl("", [Validators.required]),
-      street: new FormControl("", [Validators.required]),
-      streetNum: new FormControl("", [Validators.required]),
+      streetname: new FormControl("", [Validators.required]),
+      streetno: new FormControl("", [Validators.required]),
       adressdes: new FormControl("", [Validators.required]),
     });
 
     let adressetravaille = this.fb.group({
-      cityName: new FormControl("", [Validators.required]),
-      region: new FormControl("", [Validators.required]),
+      cityname: new FormControl("", [Validators.required]),
+      regionname: new FormControl("", [Validators.required]),
       zip: new FormControl("", [Validators.required]),
-      street: new FormControl("", [Validators.required]),
-      streetNum: new FormControl("", [Validators.required]),
+      streetname: new FormControl("", [Validators.required]),
+      streetno: new FormControl("", [Validators.required]),
       adressdes: new FormControl("", [Validators.required]),
     });
 
@@ -84,8 +91,6 @@ export class EditProviderComponent implements OnInit {
     });
 
     this.providerForm.valueChanges.subscribe((value: Provider) => {
-
-
       if (
         this.providerForm.get("contact").valid &&
         !this.providerForm.get("contact").pristine
@@ -120,32 +125,34 @@ export class EditProviderComponent implements OnInit {
       (provider: Provider) => {
         this.providerForm.patchValue({
           contact: {
-            lastName: provider.contact.lastname,
-            firstName: provider.contact.firstname,
-            nationality: provider.contact.nationalno,
-            sexe: provider.contact.titleid === 1 ? "Mme" : "Mr",
-            Telephone: provider.contact.telephone,
+            lastname: provider.contact.lastname,
+            firstname: provider.contact.firstname,
+            nationalno: provider.contact.nationalno,
+            titleid: provider.contact.titleid,
+            telephone: provider.contact.telephone,
             email: provider.contact.email,
-            socialNum: provider.contact.raisonsocial,
+            raisonsocial: provider.contact.raisonsocial,
+            remarque: provider.contact.remarque,
           },
           adresspresonnel: {
-            cityName: provider.adresspresonnel.cityname,
-            region: provider.adresspresonnel.regionname,
+            cityname: provider.adresspresonnel.cityname,
+            regionname: provider.adresspresonnel.regionname,
             zip: provider.adresspresonnel.zip,
-            street: provider.adresspresonnel.streetname,
-            streetNum: provider.adresspresonnel.streetno,
+            streetname: provider.adresspresonnel.streetname,
+            streetno: provider.adresspresonnel.streetno,
             adressdes: provider.adresspresonnel.adressdes,
           },
           adressetravaille: {
-            cityName: provider.adressetravaille.cityname,
-            region: provider.adressetravaille.regionname,
+            cityname: provider.adressetravaille.cityname,
+            regionname: provider.adressetravaille.regionname,
             zip: provider.adressetravaille.zip,
-            street: provider.adressetravaille.streetname,
-            streetNum: provider.adressetravaille.streetno,
+            streetname: provider.adressetravaille.streetname,
+            streetno: provider.adressetravaille.streetno,
             adressdes: provider.adressetravaille.adressdes,
           },
         });
 
+        this.provider = provider;
         this.loading = false;
       },
       (error) => console.log(error)
@@ -170,13 +177,33 @@ export class EditProviderComponent implements OnInit {
     this.setFormTitle();
   };
 
-  Onedit = () => {
-    console.log(this.providerForm.value)
-   this.providerService.editProvider(this.providerId,this.providerForm.value).subscribe((msg)=>{
-      console.log(msg);
-    },(e)=>{
-      console.log(e)
-    })
+  onEditProvider = () => {
+    const updatedProvider = {
+      id: this.provider.id,
+      contact: {
+        id: this.provider.contact.id,
+        ...this.providerForm.get("contact").value,
+      },
+      adresspresonnel: {
+        id: this.provider.adresspresonnel.id,
+        ...this.providerForm.get("adresspresonnel").value,
+      },
+      adressetravaille: {
+        id: this.provider.adressetravaille.id,
+        ...this.providerForm.get("adressetravaille").value,
+      },
+    };
+
+    this.providerUpdated = updatedProvider;
+
+    this.providerService.editProvider(updatedProvider).subscribe(
+      (response) => {
+        console.log(response);
+      },
+      (e) => {
+        console.log(e);
+      }
+    );
   };
 
   // set form title dynamically depends on step number
