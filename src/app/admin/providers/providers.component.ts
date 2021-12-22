@@ -1,4 +1,4 @@
-import {Component, OnInit } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 
 //model
 import { Provider } from "./model/provider";
@@ -15,8 +15,6 @@ import { Toast } from "src/app/shared/services/toast.service";
   providers: [ConfirmationService],
 })
 export class ProvidersComponent implements OnInit {
-
-
   //modal related position config
   position: string;
   displayPosition: boolean;
@@ -25,10 +23,9 @@ export class ProvidersComponent implements OnInit {
 
   loading: boolean = false;
 
-
   //search
 
-  searchTerm : string;
+  searchTerm: string;
 
   // provider to be restored or deleted  Provider id , and archived status
 
@@ -54,6 +51,7 @@ export class ProvidersComponent implements OnInit {
     this.providerService.getAllProviders().subscribe(
       (data: Provider) => {
         this.providers = data;
+        console.log(this.providers);
         this.loading = false;
       },
       (error) => console.log(error)
@@ -62,10 +60,12 @@ export class ProvidersComponent implements OnInit {
 
   //delete provider
   onDeleteProvider = () => {
+    this.loading = true;
     this.providerService
       .deleteProvider(this.provider.id)
       .subscribe((response) => {
         this.Toast.success("fournisseur supprimé avec succès");
+        this.loading = false;
         this.onGetAllProviders();
         this.ConfirmationService.close();
       });
@@ -73,20 +73,16 @@ export class ProvidersComponent implements OnInit {
 
   // restore provider
   onRestoreProvider = () => {
+    this.loading = true;
     this.providerService
       .restoreProvider(this.provider.id)
       .subscribe((response) => {
         this.Toast.success("fournisseur restaurer avec succès");
+        this.loading = false;
         this.onGetAllProviders();
         this.ConfirmationService.close();
       });
   };
-
-  //MODAL details position
-  showPositionDialog(position: string) {
-    this.position = position;
-    this.displayPosition = true;
-  }
 
   //open DELETE Modal
   DeleteProviderModal = ({ id, archived }) => {
@@ -109,6 +105,12 @@ export class ProvidersComponent implements OnInit {
     // provider to be deleted
     this.provider = { id, archived };
   };
+
+  //MODAL details position
+  showPositionDialog(position: string) {
+    this.position = position;
+    this.displayPosition = true;
+  }
 
   //CANCEL close modal
   cancel = () => {

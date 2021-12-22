@@ -130,8 +130,20 @@
                     <label class="form-label">Sexe</label>
                     <div class="mb-3">
                       <select class="form-select mb-3" formControlName="sexe">
-                        <option>Mr</option>
-                        <option>Mme</option>
+                        <option
+                          value="{{ providerForm.get('contact.sexe').value }}"
+                        >
+                          {{ providerForm.get("contact.sexe").value }}
+                        </option>
+                        <option
+
+                        >
+                          {{
+                            providerForm.get("contact.sexe").value === "Mr"
+                              ? "Mme"
+                              : "Mr"
+                          }}
+                        </option>
                       </select>
                     </div>
                     <div
@@ -459,13 +471,22 @@
 
               <div class="col-auto">
                 <button
+                *ngIf="currentForm !== 3"
                   class="btn btn-lg btn-primary"
                   data-toggle="wizard"
-                  [disabled]="!steps.step1"
                   (click)="next()"
                 >
-                  {{ currentForm !== 3 ? "Suivant" : "Confirmer" }}
+              Suivant
                 </button>
+                <button
+                *ngIf="(currentForm === 3 )"
+                class="btn btn-lg btn-primary"
+               [disabled]="(providerForm.untouched ) || !providerForm.valid"
+                data-toggle="wizard"
+                (click)="Onedit()"
+              >
+              Modifier
+              </button>
               </div>
             </div>
           </div>

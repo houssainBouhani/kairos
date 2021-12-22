@@ -43,11 +43,11 @@
   </div>
   <div class="row justify-content-center">
     <div
-    *ngIf="loading"
-    class="d-flex justify-content-center spinner-container"
-  >
-    <span class="spinner-border spinner-border-sm me-3"></span>
-  </div>
+      *ngIf="loading"
+      class="d-flex justify-content-center spinner-container"
+    >
+      <span class="spinner-border spinner-border-sm me-3"></span>
+    </div>
     <div
       class="
         empty-log
@@ -61,7 +61,6 @@
       <p class="text-center">ajoutez pour commencer</p>
       <i class="las la-shipping-fast"></i>
     </div>
-
 
     <div class="col-xl-10" *ngIf="providers">
       <form class="mb-4">
@@ -116,8 +115,8 @@
                 <th>Prénom</th>
                 <th>Sexe</th>
                 <th>Date inscri</th>
-                <th>Adresse</th>
                 <th>Nationalité</th>
+                <th>Raison social</th>
                 <th>Email</th>
                 <th>Télephone</th>
                 <th class="text-center" colspan="2">Actions</th>
@@ -130,11 +129,12 @@
               >
                 <td>{{ provider.contact.firstname }}</td>
                 <td>{{ provider.contact.lastname }}</td>
-                <td>{{ provider.contact.titleid === "1" ? "Mr" : "Mme" }}</td>
+                <td>{{ provider.contact.titleid === 1 ? "Mr" : "Mme" }}</td>
                 <td>{{ provider.contact.insertdate | date: "dd/MM/yyyy" }}</td>
-                <td>{{ provider.adresspresonnel.adressdes }}</td>
                 <td>{{ provider.contact.nationalno }}</td>
+                <td>{{ provider.contact.raisonsocial }}</td>
                 <td>{{ provider.contact.email }}</td>
+
                 <td>{{ provider.contact.telephone }}</td>
                 <td class="text-center" colspan="3">
                   <div *ngIf="provider.archiver">
@@ -161,10 +161,10 @@
                       pButton
                       pRipple
                       type="button"
-                      icon="pi pi-info-circle"
+                      icon="las la-map-marked-alt"
                       (click)="showPositionDialog('center')"
                       class="p-button-rounded p-button-secondary p-button-text"
-                      pTooltip="Voir plus"
+                      pTooltip="Adresses"
                       tooltipPosition="top"
                       tooltipEvent="hover"
                       tooltipStyleClass="tooltip-custom"
@@ -221,7 +221,7 @@
                               <div class="row align-items-center">
                                 <div class="col">
                                   <!-- Title -->
-                                  <h5 class="mb-0">Adresse Homme</h5>
+                                  <h5 class="mb-0">adresse personnelle</h5>
                                 </div>
                                 <div class="col-auto text-muted">
                                   {{ provider.adresspresonnel.adressdes }}
@@ -233,80 +233,10 @@
                               <div class="row align-items-center">
                                 <div class="col">
                                   <!-- Title -->
-                                  <h5 class="mb-0">Adresse Détaillé</h5>
+                                  <h5 class="mb-0">adresse de travail</h5>
                                 </div>
                                 <div class="col-auto text-muted">
-                                  <!-- Time -->
-
-                                  {{ provider.adresspresonnel.adressdes }},
-                                  {{ provider.adresspresonnel.cityname }},
-                                  {{ provider.adresspresonnel.zip }}
-                                </div>
-                              </div>
-                              <!-- / .row -->
-                            </div>
-                            <div class="list-group-item">
-                              <div class="row align-items-center">
-                                <div class="col">
-                                  <!-- Title -->
-                                  <h5 class="mb-0">Raison social</h5>
-                                </div>
-                                <div class="col-auto text-muted">
-                                  <!-- Text -->
-                                  {{ provider.contact.raisonsocial }}
-                                </div>
-                              </div>
-                              <!-- / .row -->
-                            </div>
-                            <div class="list-group-item">
-                              <div class="row align-items-center">
-                                <div class="col">
-                                  <!-- Title -->
-                                  <h5 class="mb-0">Nom ville</h5>
-                                </div>
-                                <div class="col-auto text-muted">
-                                  {{ provider.adresspresonnel.cityname }}
-                                </div>
-                              </div>
-                              <!-- / .row -->
-                            </div>
-                            <div class="list-group-item">
-                              <div class="row align-items-center">
-                                <div class="col">
-                                  <!-- Title -->
-                                  <h5 class="mb-0">Rue</h5>
-                                </div>
-                                <div class="col-auto text-muted">
-                                  <!-- Link -->
-
-                                  {{ provider.adresspresonnel.streetname }}
-                                </div>
-                              </div>
-                              <!-- / .row -->
-                            </div>
-                            <div class="list-group-item">
-                              <div class="row align-items-center">
-                                <div class="col">
-                                  <!-- Title -->
-                                  <h5 class="mb-0">Code Postal</h5>
-                                </div>
-                                <div class="col-auto text-muted">
-                                  <!-- Link -->
-
-                                  {{ provider.adresspresonnel.zip }}
-                                </div>
-                              </div>
-                              <!-- / .row -->
-                            </div>
-                            <div class="list-group-item">
-                              <div class="row align-items-center">
-                                <div class="col">
-                                  <!-- Title -->
-                                  <h5 class="mb-0">Région</h5>
-                                </div>
-                                <div class="col-auto text-muted">
-                                  <!-- Link -->
-                                  {{ provider.adresspresonnel.regionname }}
+                                  {{ provider.adressetravaille.adressdes }}
                                 </div>
                               </div>
                               <!-- / .row -->
@@ -335,21 +265,31 @@
       Annuler
     </button>
     <!-- Button -->
-    <a
+    <button
       class="btn btn-lg btn-primary"
       data-toggle="wizard"
       (click)="onDeleteProvider()"
       *ngIf="!provider.archived"
+      [disabled]="loading"
     >
-      <i class="las la-trash-alt"></i> Supprimer</a
-    >
-    <a
+      <span
+        *ngIf="loading"
+        class="spinner-border spinner-border-sm me-3"
+      ></span>
+      <i class="las la-trash-alt"></i> Supprimer
+    </button>
+    <button
       class="btn btn-lg btn-primary"
       data-toggle="wizard"
       (click)="onRestoreProvider()"
       *ngIf="provider.archived"
+      [disabled]="loading"
     >
-      <i class="las la-trash-alt"></i> Restaurer</a
-    >
+      <span
+        *ngIf="loading"
+        class="spinner-border spinner-border-sm me-3"
+      ></span>
+      <i class="las la-trash-alt"></i> Restaurer
+    </button>
   </ng-template>
 </p-confirmDialog>

@@ -8,5 +8,5 @@ export const environment = {
 
 export const CONFIG = {
   production: true,
-  URL: "http://207.180.211.159:8080/Kairosback-0.0.1-SNAPSHOT/",
+  URL: "http://localhost:8080/api/",
 };

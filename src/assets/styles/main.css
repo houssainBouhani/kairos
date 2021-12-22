@@ -19,6 +19,8 @@
 
 .nav-link {
     cursor: pointer;
+
+
 }
 
 .main-content {
@@ -309,4 +311,9 @@
     font-family: 'Poppins-Medium';
     padding-top: 1px;
     padding-right: 1px;
+}
+
+
+.la-map-marked-alt {
+    font-size: 25px;
 }
