@@ -24,7 +24,7 @@ export class EditProviderComponent implements OnInit {
   loading: boolean = false;
   // forms steps
   steps = {
-    step1: true,
+    step1: false,
     step2: false,
     step3: false,
   };
@@ -83,11 +83,35 @@ export class EditProviderComponent implements OnInit {
       adresspresonnel,
     });
 
-    this.providerForm.valueChanges.subscribe((value: Provider) =>
-      console.log(this.providerForm.status)
-    );
+    this.providerForm.valueChanges.subscribe((value: Provider) => {
 
-    console.log(this.providerForm.status);
+
+      if (
+        this.providerForm.get("contact").valid &&
+        !this.providerForm.get("contact").pristine
+      ) {
+        this.steps.step1 = true;
+      } else {
+        this.steps.step1 = false;
+      }
+
+      if (
+        this.providerForm.get("adresspresonnel").valid &&
+        !this.providerForm.get("adresspresonnel").pristine
+      ) {
+        this.steps.step2 = true;
+      } else {
+        this.steps.step2 = false;
+      }
+      if (
+        this.providerForm.get("adressetravaille").valid &&
+        !this.providerForm.get("adressetravaille").pristine
+      ) {
+        this.steps.step3 = true;
+      } else {
+        this.steps.step3 = false;
+      }
+    });
   }
 
   getProviderById = (Providerid: string) => {
@@ -99,7 +123,7 @@ export class EditProviderComponent implements OnInit {
             lastName: provider.contact.lastname,
             firstName: provider.contact.firstname,
             nationality: provider.contact.nationalno,
-            sexe: provider.contact.titleid,
+            sexe: provider.contact.titleid === 1 ? "Mme" : "Mr",
             Telephone: provider.contact.telephone,
             email: provider.contact.email,
             socialNum: provider.contact.raisonsocial,
@@ -135,7 +159,6 @@ export class EditProviderComponent implements OnInit {
       this.currentForm = 3;
     }
     this.setFormTitle();
-    console.log(this.providerForm.value);
   };
 
   // go back to previous step
@@ -145,6 +168,15 @@ export class EditProviderComponent implements OnInit {
       this.currentForm = 1;
     }
     this.setFormTitle();
+  };
+
+  Onedit = () => {
+    console.log(this.providerForm.value)
+   this.providerService.editProvider(this.providerId,this.providerForm.value).subscribe((msg)=>{
+      console.log(msg);
+    },(e)=>{
+      console.log(e)
+    })
   };
 
   // set form title dynamically depends on step number
