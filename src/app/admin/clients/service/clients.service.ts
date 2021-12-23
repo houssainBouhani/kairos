@@ -23,4 +23,20 @@ export class clients {
       clientId
     );
   };
+
+  getClientToEdit = (clientId) => {
+    return this.http.get(
+      `${CONFIG.URL}api/Customer/afficherbyid?id=${clientId}`
+    );
+  };
+
+
+  addClient = (provider) => {
+    return this.http.post(`${CONFIG.URL}api/Customer/add`, provider);
+  };
+
+  editClient = (editedClient) => {
+    return this.http.put(`${CONFIG.URL}api/Customer/updateCustomer`, editedClient);
+  };
+
 }
