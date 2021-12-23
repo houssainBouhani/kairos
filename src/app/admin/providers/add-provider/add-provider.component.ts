@@ -16,7 +16,7 @@ import { Toast } from "src/app/shared/services/toast.service";
   styleUrls: ["./add-provider.component.css"],
 })
 export class AddProviderComponent implements OnInit {
-  //edit form
+  //add form
 
   providerForm: FormGroup;
   providerId: string;
@@ -135,7 +135,6 @@ export class AddProviderComponent implements OnInit {
 
   onAddProvider = () => {
     this.loading = true;
-console.log(this.providerForm.value)
     this.providerService.addProvider(this.providerForm.value).subscribe(
       (response) => {
         if (response) {

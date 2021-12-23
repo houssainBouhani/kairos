@@ -29,13 +29,13 @@
 
         <div class="row">
           <div class="col-xl-12">
-            <div class="d-flex justify-content-between">
-              <h2 class="header-title">
-                {{ formTitle }}
+            <div class="d-flex justify-content-between  align-items-center card-header">
+              <h2 class="header-title form-title">
+                {{ formTitle  }}
               </h2>
 
-              <div class="d-flex">
-                <div class="pe-2 d-flex flex-column align-items-center">
+              <div class="d-flex steps-border">
+                <div class="pe-3 d-flex flex-column align-items-center">
                   <div [ngClass]="!steps.step1 ? 'step ' : 'step-done '">
                     <span
                       [innerHTML]="!steps.step1 ? 1 : null"
@@ -44,7 +44,7 @@
                   </div>
                 </div>
 
-                <div class="pe-2">
+                <div class="pe-3">
                   <div [ngClass]="!steps.step2 ? 'step' : 'step-done'">
                     <span
                       [innerHTML]="!steps.step2 ? 2 : null"
@@ -52,7 +52,7 @@
                     ></span>
                   </div>
                 </div>
-                <div class="pe-2">
+                <div>
                   <div [ngClass]="!steps.step3 ? 'step' : 'step-done'">
                     <span
                       [innerHTML]="!steps.step3 ? 3 : null"
@@ -63,7 +63,7 @@
               </div>
             </div>
 
-            <hr class="mb-5" />
+
 
             <form [formGroup]="providerForm">
               <div
@@ -72,7 +72,7 @@
                 formGroupName="contact"
               >
                 <div class="row mb-3">
-                  <div class="form-group col-md-6 col-lg-3">
+                  <div class="form-group col-md-6  col-lg-6">
                     <!-- Label -->
                     <label class="form-label">Nom</label>
 
@@ -92,7 +92,7 @@
                       Veuillez saisir le Nom de votre fournisseur.
                     </div>
                   </div>
-                  <div class="form-group col-md-6 col-lg-3">
+                  <div class="form-group col-md-6  col-lg-6">
                     <!-- Label -->
                     <label class="form-label">Prénom</label>
 
@@ -114,7 +114,7 @@
                   </div>
                 </div>
                 <div class="row mb-3">
-                  <div class="form-group col-md-6 col-lg-3">
+                  <div class="form-group col-md-6  col-lg-6">
                     <label class="form-label">Nationalité</label>
                     <!-- Input -->
                     <input
@@ -132,7 +132,7 @@
                       Ceci est un champ obligatoire.
                     </div>
                   </div>
-                  <div class="form-group col-md-6 col-lg-3">
+                  <div class="form-group col-md-6  col-lg-6">
                     <label class="form-label">Sexe</label>
                     <div class="mb-3">
                       <select
@@ -155,7 +155,7 @@
                   </div>
                 </div>
                 <div class="row mb-3">
-                  <div class="form-groupcol-md-6 col-lg-3">
+                  <div class="form-groupcol-md-6  col-lg-6">
                     <!-- Label -->
                     <label class="form-label">Téléphone</label>
 
@@ -175,7 +175,7 @@
                       veuillez entrer le numéro du fournisseur. (min 8 chiffres)
                     </div>
                   </div>
-                  <div class="form-group col-md-6 col-lg-3">
+                  <div class="form-group col-md-6  col-lg-6">
                     <!-- Label -->
                     <label class="form-label">Email</label>
 
@@ -197,7 +197,7 @@
                   </div>
                 </div>
                 <div class="row mb-3">
-                  <div class="form-group col-md-6 col-lg-3">
+                  <div class="form-group col-md-6  col-lg-6">
                     <!-- Label -->
                     <label class="form-label">Raison Social</label>
 
@@ -218,7 +218,7 @@
                       fournisseur
                     </div>
                   </div>
-                  <div class="form-group col-md-6 col-lg-3">
+                  <div class="form-group col-md-6  col-lg-6">
                     <!-- Label -->
                     <label class="form-label">remarque</label>
 
@@ -238,7 +238,7 @@
                 formGroupName="adresspresonnel"
               >
                 <div class="row mb-3">
-                  <div class="form-group col-md-6 col-lg-3">
+                  <div class="form-group col-md-6  col-lg-6">
                     <label class="form-label">Ville</label>
                     <!-- Input -->
                     <input
@@ -256,7 +256,7 @@
                       Ceci est un champ obligatoire.
                     </div>
                   </div>
-                  <div class="form-group col-md-6 col-lg-3">
+                  <div class="form-group col-md-6  col-lg-6">
                     <label class="form-label">Région</label>
                     <input
                       type="email"
@@ -276,7 +276,7 @@
                   </div>
                 </div>
                 <div class="row mb-3">
-                  <div class="form-group col-md-6 col-lg-3">
+                  <div class="form-group col-md-6  col-lg-6">
                     <label class="form-label">Code postal</label>
                     <!-- Input -->
                     <input
@@ -294,7 +294,7 @@
                       Ceci est un champ obligatoire.
                     </div>
                   </div>
-                  <div class="form-group col-md-6 col-lg-3">
+                  <div class="form-group col-md-6  col-lg-6">
                     <label class="form-label"> Rue </label>
 
                     <!-- Input -->
@@ -317,7 +317,7 @@
                   </div>
                 </div>
                 <div class="row mb-3">
-                  <div class="form-group col-md-6 col-lg-3">
+                  <div class="form-group col-md-6  col-lg-6">
                     <label class="form-label"> Rue Numéro</label>
 
                     <!-- Input -->
@@ -337,7 +337,7 @@
                       Ceci est un champ obligatoire.
                     </div>
                   </div>
-                  <div class="form-group col-md-6 col-lg-3">
+                  <div class="form-group col-md-6  col-lg-6">
                     <label class="form-label">Adresse Détaillé</label>
 
                     <!-- Input -->
@@ -361,7 +361,7 @@
                 formGroupName="adressetravaille"
               >
                 <div class="row mb-3">
-                  <div class="form-group col-md-6 col-lg-3">
+                  <div class="form-group col-md-6  col-lg-6">
                     <label class="form-label">Ville</label>
                     <!-- Input -->
                     <input
@@ -379,7 +379,7 @@
                       Ceci est un champ obligatoire.
                     </div>
                   </div>
-                  <div class="form-group col-md-6 col-lg-3">
+                  <div class="form-group col-md-6  col-lg-6">
                     <label class="form-label">Région</label>
                     <input
                       type="email"
@@ -399,7 +399,7 @@
                   </div>
                 </div>
                 <div class="row mb-3">
-                  <div class="form-group col-md-6 col-lg-3">
+                  <div class="form-group col-md-6  col-lg-6">
                     <label class="form-label">Code postal</label>
                     <!-- Input -->
                     <input
@@ -417,7 +417,7 @@
                       Ceci est un champ obligatoire.
                     </div>
                   </div>
-                  <div class="form-group col-md-6 col-lg-3">
+                  <div class="form-group col-md-6  col-lg-6">
                     <label class="form-label"> Rue </label>
 
                     <!-- Input -->
@@ -436,7 +436,7 @@
                   </div>
                 </div>
                 <div class="row mb-3">
-                  <div class="form-group col-md-6 col-lg-3">
+                  <div class="form-group col-md-6  col-lg-6">
                     <label class="form-label"> Rue Numéro</label>
 
                     <!-- Input -->
@@ -456,7 +456,7 @@
                       Ceci est un champ obligatoire.
                     </div>
                   </div>
-                  <div class="form-group col-md-6 col-lg-3">
+                  <div class="form-group col-md-6  col-lg-6">
                     <label class="form-label">Adresse Détaillé</label>
 
                     <!-- Input -->
@@ -478,7 +478,8 @@
             </form>
           </div>
 
-          <div class="col-12 mt-5">
+          <div class="col-12 mt-10">
+            <hr class="mt-5">
             <div class="row align-items-center justify-content-end">
               <div class="col-auto">
                 <!-- Button -->
@@ -503,16 +504,17 @@
                 <button
                   *ngIf="currentForm === 3"
                   class="btn btn-lg btn-primary"
-                  [disabled]="providerForm.untouched || !providerForm.valid || loading"
-                  data-toggle="wizard"
-                  (click)="onAddProvider()"
+                  [disabled]="
+                    providerForm.untouched || !providerForm.valid || loading
+                  "
 
+                  (click)="onAddProvider()"
                 >
-                    <span
-                      *ngIf="loading"
-                      class="spinner-border spinner-border-sm me-3"
-                    ></span>
-            ajouter
+                  <span
+                    *ngIf="loading"
+                    class="spinner-border spinner-border-sm me-3"
+                  ></span>
+                  ajouter
                 </button>
               </div>
             </div>
