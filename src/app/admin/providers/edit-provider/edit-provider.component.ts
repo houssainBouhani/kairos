@@ -22,8 +22,6 @@ export class EditProviderComponent implements OnInit {
   providerId: string;
   provider: Provider;
 
-  providerUpdated;
-
   //loading ui
   loading: boolean = false;
   // forms steps
@@ -171,18 +169,21 @@ export class EditProviderComponent implements OnInit {
   // go back to previous step
   previous = () => {
     this.currentForm--;
-    if (this.currentForm <= 1) {
-      this.currentForm = 1;
+    if (this.currentForm < 1) {
+      this.router.navigate(["admin/providers"]);
     }
     this.setFormTitle();
   };
 
   onEditProvider = () => {
     const updatedProvider = {
-      id: this.provider.id,
       contact: {
         id: this.provider.contact.id,
         ...this.providerForm.get("contact").value,
+        password: null,
+        activeFlag: this.provider.contact.activeFlag,
+        profile: this.provider.contact.profil,
+        insertdate: this.provider.contact.insertdate,
       },
       adresspresonnel: {
         id: this.provider.adresspresonnel.id,
@@ -194,14 +195,18 @@ export class EditProviderComponent implements OnInit {
       },
     };
 
-    this.providerUpdated = updatedProvider;
-
+    this.loading = true;
     this.providerService.editProvider(updatedProvider).subscribe(
       (response) => {
-        console.log(response);
+        if (response) {
+          this.loading = false;
+          this.toast.success("fournisseur supprimé avec succès");
+          this.router.navigate(["/admin/providers"]);
+        }
       },
       (e) => {
-        console.log(e);
+        this.loading = false;
+        this.toast.error("Une erreur s'est produite. Veuillez réessayer");
       }
     );
   };
