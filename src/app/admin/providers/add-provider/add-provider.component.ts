@@ -55,7 +55,7 @@ export class AddProviderComponent implements OnInit {
       titleid: new FormControl("", [Validators.required]),
       telephone: new FormControl("", [
         Validators.required,
-        Validators.minLength(8),
+        Validators.min(8),
       ]),
       email: new FormControl("", [Validators.required, Validators.email]),
       raisonsocial: new FormControl("", [Validators.required]),

@@ -55,10 +55,7 @@ export class EditProviderComponent implements OnInit {
       firstname: new FormControl("", [Validators.required]),
       nationalno: new FormControl("", [Validators.required]),
       titleid: new FormControl("", [Validators.required]),
-      telephone: new FormControl("", [
-        Validators.required,
-        Validators.minLength(8),
-      ]),
+      telephone: new FormControl("", [Validators.required, Validators.min(8)]),
       email: new FormControl("", [Validators.required, Validators.email]),
       raisonsocial: new FormControl("", [Validators.required]),
       remarque: new FormControl(""),
