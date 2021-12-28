@@ -34,6 +34,7 @@ import { ButtonModule } from "primeng/button";
 import { DialogModule } from "primeng/dialog";
 import { TooltipModule } from "primeng/tooltip";
 import { ConfirmDialogModule } from "primeng/confirmdialog";
+import { EditRessourcesComponent } from "../humain-ressources/edit-ressources/edit-ressources.component";
 
 
 @NgModule({
@@ -58,6 +59,7 @@ import { ConfirmDialogModule } from "primeng/confirmdialog";
     TransformationComponent,
     EditProviderComponent,
     EditClientComponent,
+    EditRessourcesComponent
 
 
   ],

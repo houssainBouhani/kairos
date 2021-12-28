@@ -21,7 +21,7 @@ import { AddPackagesComponent } from "../packaging/add-packages/add-packages.com
 import { BasicMaterialComponent } from "../basic-material/basic-material.component";
 import { AddBasicComponent } from "../basic-material/add-basic/add-basic.component";
 import { EditProviderComponent } from "../providers/edit-provider/edit-provider.component";
-
+import { EditRessourcesComponent } from "../humain-ressources/edit-ressources/edit-ressources.component";
 
 const routes: Routes = [
   { path: "", component: DashboardComponent }, // default route of the module
@@ -29,6 +29,7 @@ const routes: Routes = [
   { path: "primaryMatter/add", component: AddMaterialComponent },
   { path: "humainRessources", component: HumainRessourcesComponent },
   { path: "humainRessources/add", component: AddRessourcesComponent },
+  { path: "humainRessources/edit/:id", component: EditRessourcesComponent },
   { path: "providers", component: ProvidersComponent },
   { path: "providers/add", component: AddProviderComponent },
   { path: "providers/edit/:id", component: EditProviderComponent },

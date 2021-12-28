@@ -1,0 +1,535 @@
+<div class="container-fluid">
+    <div class="row justify-content-center">
+      <div class="col-12 col-lg-10 col-xl-10">
+        <div class="header mt-md-5">
+          <div
+            class="
+              header-body
+              d-flex
+              justify-content-between
+              align-items-center
+              pt-0
+            "
+          >
+            <div class="row align-items-center">
+              <div class="col">
+                <h6 class="header-pretitle">Overview</h6>
+                <h1 class="header-title">modifier les données Ressources Humaines</h1>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container-lg container-fluid">
+      <div class="row justify-content-center">
+        <div
+          *ngIf="loading"
+          class="d-flex justify-content-center spinner-container"
+        >
+          <span class="spinner-border spinner-border-sm me-3"></span>
+        </div>
+        <div
+          class="col-12 col-lg-12 col-xl-12 form-label-custom"
+          *ngIf="!loading && hr"
+        >
+          <!-- Form -->
+
+          <div class="row">
+            <div class="col-xl-12">
+              <div
+                class="
+                  d-flex
+                  justify-content-between
+                  align-items-center
+                  card-header
+                "
+              >
+                <h2 class="header-title form-title">
+                  {{ formTitle }}
+                </h2>
+
+                <div class="d-flex steps-border">
+                  <div class="pe-3 d-flex flex-column align-items-center">
+                    <div [ngClass]="!steps.step1 ? 'step ' : 'step-done '">
+                      <span
+                        [innerHTML]="!steps.step1 ? 1 : null"
+                        [ngClass]="!steps.step1 ? null : 'las la-check'"
+                      ></span>
+                    </div>
+                  </div>
+
+                  <div class="pe-3">
+                    <div [ngClass]="!steps.step2 ? 'step' : 'step-done'">
+                      <span
+                        [innerHTML]="!steps.step2 ? 2 : null"
+                        [ngClass]="!steps.step2 ? null : 'las la-check'"
+                      ></span>
+                    </div>
+                  </div>
+                  <div>
+                    <div [ngClass]="!steps.step3 ? 'step' : 'step-done'">
+                      <span
+                        [innerHTML]="!steps.step3 ? 3 : null"
+                        [ngClass]="!steps.step3 ? null : 'las la-check'"
+                      ></span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <form [formGroup]="hrForm">
+                <div
+                  class="contact"
+                  [ngClass]="currentForm === 1 ? 'd-block' : 'd-none'"
+                  formGroupName="contact"
+                >
+                  <div class="row mb-3">
+                    <div class="form-group col-md-6 col-lg-6">
+                      <!-- Label -->
+                      <label class="form-label">Nom</label>
+
+                      <!-- Input -->
+                      <input
+                        type="text"
+                        class="form-control"
+                        formControlName="lastname"
+                      />
+                      <div
+                        class="invalid-feedback d-block"
+                        *ngIf="
+                          hrForm.get('contact.lastname').touched &&
+                          !hrForm.get('contact.lastname').valid
+                        "
+                      >
+                        Veuillez saisir le Nom de votre ressource Humaine.
+                      </div>
+                    </div>
+                    <div class="form-group col-md-6 col-lg-6">
+                      <!-- Label -->
+                      <label class="form-label">Prénom</label>
+
+                      <!-- Input -->
+                      <input
+                        type="text"
+                        class="form-control"
+                        formControlName="firstname"
+                      />
+                      <div
+                        class="invalid-feedback d-block"
+                        *ngIf="
+                          hrForm.get('contact.firstname').touched &&
+                          !hrForm.get('contact.firstname').valid
+                        "
+                      >
+                        Veuillez saisir le prénom de votre ressource Humaine.
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row mb-3">
+                    <div class="form-group col-md-6 col-lg-6">
+                      <label class="form-label">Nationalité</label>
+                      <!-- Input -->
+                      <input
+                        type="text"
+                        class="form-control"
+                        formControlName="nationalno"
+                      />
+                      <div
+                        class="invalid-feedback d-block"
+                        *ngIf="
+                          hrForm.get('contact.nationalno').touched &&
+                          !hrForm.get('contact.nationalno').valid
+                        "
+                      >
+                        Ceci est un champ obligatoire.
+                      </div>
+                    </div>
+                    <div class="form-group col-md-6 col-lg-6">
+                      <label class="form-label">Sexe</label>
+                      <div class="mb-3">
+                        <select
+                          class="form-select mb-3"
+                          formControlName="titleid"
+                        >
+                          <option value="1" selected>Mr</option>
+                          <option value="0">Mme</option>
+                        </select>
+                      </div>
+                      <div
+                        class="invalid-feedback d-block"
+                        *ngIf="
+                          hrForm.get('contact.titleid').touched &&
+                          !hrForm.get('contact.titleid').valid
+                        "
+                      >
+                        Ceci est un champ obligatoire.
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row mb-3">
+                    <div class="form-group col-md-6 col-lg-6">
+                      <!-- Label -->
+                      <label class="form-label">Téléphone</label>
+
+                      <!-- Input -->
+                      <input
+                        type="number"
+                        class="form-control"
+                        formControlName="telephone"
+                      />
+                      <div
+                        class="invalid-feedback d-block"
+                        *ngIf="
+                          hrForm.get('contact.telephone').touched &&
+                          !hrForm.get('contact.telephone').valid
+                        "
+                      >
+                        veuillez entrer le numéro du hr. (min 8 chiffres)
+                      </div>
+                    </div>
+                    <div class="form-group col-md-6 col-lg-6">
+                      <!-- Label -->
+                      <label class="form-label">Email</label>
+
+                      <!-- Input -->
+                      <input
+                        type="email"
+                        class="form-control"
+                        formControlName="email"
+                        readonly
+                      />
+                      <div
+                        class="invalid-feedback d-block"
+                        *ngIf="
+                          hrForm.get('contact.email').touched &&
+                          !hrForm.get('contact.email').valid
+                        "
+                      >
+                        veuillez Entrez une adresse mail valide
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row mb-3">
+                    <div class="form-group col-md-6 col-lg-6">
+                      <!-- Label -->
+                      <label class="form-label">Raison Social</label>
+
+                      <!-- Input -->
+                      <input
+                        type="email"
+                        class="form-control"
+                        formControlName="raisonsocial"
+                      />
+                      <div
+                        class="invalid-feedback d-block"
+                        *ngIf="
+                          hrForm.get('contact.raisonsocial').touched &&
+                          !hrForm.get('contact.raisonsocial').valid
+                        "
+                      >
+                        veuillez entrer le numéro de Raison social de votre ressource Humaine
+                      </div>
+                    </div>
+                    <div class="form-group col-md-6 col-lg-6">
+                      <!-- Label -->
+                      <label class="form-label">remarque</label>
+
+                      <!-- Input -->
+                      <input
+                        type="text"
+                        class="form-control"
+                        formControlName="remarque"
+                      />
+                    </div>
+                  </div>
+                </div>
+
+                <div
+                  class="personal-adress"
+                  [ngClass]="currentForm === 2 ? 'd-block' : 'd-none'"
+                  formGroupName="adresspresonnel"
+                >
+                  <div class="row mb-3">
+                    <div class="form-group col-md-6 col-lg-6">
+                      <label class="form-label">Ville</label>
+                      <!-- Input -->
+                      <input
+                        type="email"
+                        class="form-control"
+                        formControlName="cityname"
+                      />
+                      <div
+                        class="invalid-feedback d-block"
+                        *ngIf="
+                          hrForm.get('adresspresonnel.cityname').touched &&
+                          !hrForm.get('adresspresonnel.cityname').valid
+                        "
+                      >
+                        Ceci est un champ obligatoire.
+                      </div>
+                    </div>
+                    <div class="form-group col-md-6 col-lg-6">
+                      <label class="form-label">Région</label>
+                      <input
+                        type="email"
+                        class="form-control"
+                        formControlName="regionname"
+                      />
+                      <div
+                        class="invalid-feedback d-block"
+                        *ngIf="
+                          hrForm.get('adresspresonnel.regionname').touched &&
+                          !hrForm.get('adresspresonnel.regionname').valid
+                        "
+                      >
+                        Ceci est un champ obligatoire.
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row mb-3">
+                    <div class="form-group col-md-6 col-lg-6">
+                      <label class="form-label">Code postal</label>
+                      <!-- Input -->
+                      <input
+                        type="number"
+                        class="form-control"
+                        formControlName="zip"
+                      />
+                      <div
+                        class="invalid-feedback d-block"
+                        *ngIf="
+                          hrForm.get('adresspresonnel.zip').touched &&
+                          !hrForm.get('adresspresonnel.zip').valid
+                        "
+                      >
+                        Ceci est un champ obligatoire.
+                      </div>
+                    </div>
+                    <div class="form-group col-md-6 col-lg-6">
+                      <label class="form-label"> Rue </label>
+
+                      <!-- Input -->
+
+                      <input
+                        class="form-control"
+                        type="text"
+                        formControlName="streetname"
+                      />
+                      <div
+                        class="invalid-feedback d-block"
+                        *ngIf="
+                          hrForm.get('adresspresonnel.streetname').touched &&
+                          !hrForm.get('adresspresonnel.streetname').valid
+                        "
+                      >
+                        Ceci est un champ obligatoire.
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row mb-3">
+                    <div class="form-group col-md-6 col-lg-6">
+                      <label class="form-label"> Rue Numéro</label>
+
+                      <!-- Input -->
+
+                      <input
+                        class="form-control"
+                        type="number"
+                        formControlName="streetno"
+                      />
+                      <div
+                        class="invalid-feedback d-block"
+                        *ngIf="
+                          hrForm.get('adresspresonnel.streetno').touched &&
+                          !hrForm.get('adresspresonnel.streetno').valid
+                        "
+                      >
+                        Ceci est un champ obligatoire.
+                      </div>
+                    </div>
+                    <div class="form-group col-md-6 col-lg-6">
+                      <label class="form-label">Adresse Détaillé</label>
+
+                      <!-- Input -->
+
+                      <input class="form-control" formControlName="adressdes" />
+                      <div
+                        class="invalid-feedback d-block"
+                        *ngIf="
+                          hrForm.get('adresspresonnel.adressdes').touched &&
+                          !hrForm.get('adresspresonnel.adressdes').valid
+                        "
+                      >
+                        Ceci est un champ obligatoire.
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="work-adress"
+                  [ngClass]="currentForm === 3 ? 'd-block' : 'd-none'"
+                  formGroupName="adressetravaille"
+                >
+                  <div class="row mb-3">
+                    <div class="form-group col-md-6 col-lg-6">
+                      <label class="form-label">Ville</label>
+                      <!-- Input -->
+                      <input
+                        type="email"
+                        class="form-control"
+                        formControlName="cityname"
+                      />
+                      <div
+                        class="invalid-feedback d-block"
+                        *ngIf="
+                          hrForm.get('adressetravaille.cityname').touched &&
+                          !hrForm.get('adressetravaille.cityname').valid
+                        "
+                      >
+                        Ceci est un champ obligatoire.
+                      </div>
+                    </div>
+                    <div class="form-group col-md-6 col-lg-6">
+                      <label class="form-label">Région</label>
+                      <input
+                        type="email"
+                        class="form-control"
+                        formControlName="regionname"
+                      />
+                      <div
+                        class="invalid-feedback d-block"
+                        *ngIf="
+                          hrForm.get('adressetravaille.regionname').touched &&
+                          !hrForm.get('adressetravaille.regionname').valid
+                        "
+                      >
+                        Ceci est un champ obligatoire.
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row mb-3">
+                    <div class="form-group col-md-6 col-lg-6">
+                      <label class="form-label">Code postal</label>
+                      <!-- Input -->
+                      <input
+                        type="number"
+                        class="form-control"
+                        formControlName="zip"
+                      />
+                      <div
+                        class="invalid-feedback d-block"
+                        *ngIf="
+                          hrForm.get('adressetravaille.zip').touched &&
+                          !hrForm.get('adressetravaille.zip').valid
+                        "
+                      >
+                        Ceci est un champ obligatoire.
+                      </div>
+                    </div>
+                    <div class="form-group col-md-6 col-lg-6">
+                      <label class="form-label"> Rue </label>
+
+                      <!-- Input -->
+
+                      <input class="form-control" formControlName="streetname" />
+                      <div
+                        class="invalid-feedback d-block"
+                        *ngIf="
+                          hrForm.get('adressetravaille.streetname').touched &&
+                          !hrForm.get('adressetravaille.streetname').valid
+                        "
+                      >
+                        Ceci est un champ obligatoire.
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row mb-3">
+                    <div class="form-group col-md-6 col-lg-6">
+                      <label class="form-label"> Rue Numéro</label>
+
+                      <!-- Input -->
+
+                      <input
+                        class="form-control"
+                        type="number"
+                        formControlName="streetno"
+                      />
+                      <div
+                        class="invalid-feedback d-block"
+                        *ngIf="
+                          hrForm.get('adressetravaille.streetno').touched &&
+                          !hrForm.get('adressetravaille.streetno').valid
+                        "
+                      >
+                        Ceci est un champ obligatoire.
+                      </div>
+                    </div>
+                    <div class="form-group col-md-6 col-lg-6">
+                      <label class="form-label">Adresse Détaillé</label>
+
+                      <!-- Input -->
+
+                      <input class="form-control" formControlName="adressdes" />
+                      <div
+                        class="invalid-feedback d-block"
+                        *ngIf="
+                          hrForm.get('adressetravaille.adressdes').touched &&
+                          !hrForm.get('adressetravaille.adressdes').valid
+                        "
+                      >
+                        Ceci est un champ obligatoire.
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+
+            <div class="col-12 mt-10">
+              <hr class="mt-5" />
+              <div class="row align-items-center justify-content-end">
+                <div class="col-auto">
+                  <!-- Button -->
+                  <button
+                    class="btn btn-lg btn-white"
+                    type="reset"
+                    (click)="previous()"
+                  >
+                    Retour
+                  </button>
+                </div>
+
+                <div class="col-auto">
+                  <button
+                    *ngIf="currentForm !== 3"
+                    class="btn btn-lg btn-primary"
+                    data-toggle="wizard"
+                    (click)="next()"
+                  >
+                    Suivant
+                  </button>
+                  <button
+                    *ngIf="currentForm === 3"
+                    class="btn btn-lg btn-primary"
+                    [disabled]="
+                      hrForm.untouched || !hrForm.valid || loading
+                    "
+                    (click)="onEditHr()"
+                  >
+                    <span
+                      *ngIf="loading"
+                      class="spinner-border spinner-border-sm me-3"
+                    ></span>
+                    modifier
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
