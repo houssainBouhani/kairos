@@ -91,57 +91,129 @@
             </a>
           </div>
           <div class="table-responsive mb-0">
-            <table
-              class="
-                table table-sm table-nowrap
-                card-table
-                table-hover
-                rh-table
-                overflow-visible
-              "
-            >
-              <thead>
-                <tr>
-                  <th>Nom</th>
-                  <th>Prénom</th>
-                  <th>Email</th>
-                  <th>Nationalité</th>
-                  <th>Entreprise</th>
-                  <th>Sexe</th>
-                  <th>Remarque</th>
-                  <th>Région</th>
-                  <th>Ville</th>
-                  <th>Code postal</th>
-                  <th class="text-center">Actions</th>
-                </tr>
-              </thead>
-              <tbody class="list">
-                <tr>
-                  <td>Bouhani</td>
-                  <td>Houssain</td>
-                  <td>Housyn123@gmail.com</td>
-                  <td>Tun</td>
-                  <td>DPC</td>
-                  <td>Homme</td>
-                  <td>bien</td>
-                  <td>ariana</td>
-                  <td>ghazella</td>
-                  <td>2083</td>
-                  <td class="text-center">
-                    <button
-                      pButton
-                      pRipple
-                      type="button"
-                      icon="pi pi-pencil"
-                      class="p-button-rounded p-button-text p-button-secondary"
-                    ></button>
-                    <button
-                      pButton
-                      pRipple
-                      type="button"
-                      icon="pi pi-trash"
-                      class="p-button-rounded p-button-danger p-button-text"
-                    ></button>
+            <tbody class="list">
+              <tr
+                *ngFor="let ressource of ressources | filter: searchTerm"
+                [ngClass]="{ 'hide-archived': ressource.archiver }"
+              >
+                <td>{{ ressource.contact.firstname }}</td>
+                <td>{{ ressource.contact.lastname }}</td>
+                <td>{{ ressource.contact.titleid === 1 ? "Mr" : "Mme" }}</td>
+                <td>{{ ressource.contact.insertdate | date: "dd/MM/yyyy" }}</td>
+                <td>{{ ressource.contact.nationalno }}</td>
+                <td>{{ ressource.contact.raisonsocial }}</td>
+                <td>{{ ressource.contact.email }}</td>
+                <td>{{ ressource.contact.telephone }}</td>
+                  <td class="text-center" colspan="3">
+                    <div *ngIf="ressource.archiver">
+                      <button
+                        pButton
+                        pRipple
+                        type="button"
+                        icon="pi pi-refresh"
+                        class="p-button-rounded p-button-secondary p-button-text"
+                        pTooltip="restaurer fournisseur"
+                        tooltipPosition="top"
+                        tooltipEvent="hover"
+                        tooltipStyleClass="tooltip-custom"
+                        (click)="
+                          RestoreressourceModal({
+                            id: ressource.id,
+                            archived: true
+                          })
+                        "
+                      ></button>
+                    </div>
+                    <div *ngIf="!ressource.archiver">
+                      <button
+                        pButton
+                        pRipple
+                        type="button"
+                        icon="las la-map-marked-alt"
+                        (click)="showPositionDialog('center')"
+                        class="p-button-rounded p-button-secondary p-button-text"
+                        pTooltip="Adresses"
+                        tooltipPosition="top"
+                        tooltipEvent="hover"
+                        tooltipStyleClass="tooltip-custom"
+                      ></button>
+                      <button
+                        pButton
+                        pRipple
+                        type="button"
+                        icon="pi pi-pencil"
+                        class="p-button-rounded p-button-text p-button-secondary"
+                        pTooltip="Modifier details Fournisseur "
+                        tooltipPosition="top"
+                        tooltipEvent="hover"
+                        tooltipStyleClass="tooltip-custom"
+                        [routerLink]="['/admin/ressources/edit', ressource.id]"
+                      ></button>
+                      <button
+                        pButton
+                        pRipple
+                        type="button"
+                        icon="pi pi-trash"
+                        class="p-button-rounded p-button-secondary p-button-text"
+                        pTooltip="Supprimer Fournisseur"
+                        tooltipPosition="top"
+                        tooltipEvent="hover"
+                        tooltipStyleClass="tooltip-custom"
+                        (click)="
+                          DeleteressourceModal({
+                            id: ressource.id,
+                            archived: false
+                          })
+                        "
+                      ></button>
+                    </div>
+
+                    <div>
+                      <!-- dialog details-->
+                      <p-dialog
+                        header="Details"
+                        [(visible)]="displayPosition"
+                        [position]="position"
+                        [modal]="true"
+                        [style]="{ width: '50vw' }"
+                        [baseZIndex]="10000"
+                        [draggable]="false"
+                        [resizable]="false"
+                        class="custom-dialog"
+                      >
+                        <div class="card">
+                          <div class="card-body details-card">
+                            <!-- List group -->
+                            <div class="list-group list-group-flush my-n3">
+                              <div class="list-group-item">
+                                <div class="row align-items-center">
+                                  <div class="col">
+                                    <!-- Title -->
+                                    <h5 class="mb-0">adresse personnelle</h5>
+                                  </div>
+                                  <div class="col-auto text-muted">
+                                    {{ ressource.adresspresonnel.adressdes }}
+                                  </div>
+                                </div>
+                                <!-- / .row -->
+                              </div>
+                              <div class="list-group-item">
+                                <div class="row align-items-center">
+                                  <div class="col">
+                                    <!-- Title -->
+                                    <h5 class="mb-0">adresse de travail</h5>
+                                  </div>
+                                  <div class="col-auto text-muted">
+                                    {{ ressource.adressetravaille.adressdes }}
+                                  </div>
+                                </div>
+                                <!-- / .row -->
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </p-dialog>
+                    </div>
                   </td>
                 </tr>
               </tbody>
