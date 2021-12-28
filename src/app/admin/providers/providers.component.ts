@@ -19,7 +19,7 @@ export class ProvidersComponent implements OnInit {
   position: string;
   displayPosition: boolean;
 
-  providers: Provider;
+  providers: Provider[];
 
   loading: boolean = false;
 
@@ -30,6 +30,10 @@ export class ProvidersComponent implements OnInit {
   // provider to be restored or deleted  Provider id , and archived status
 
   provider: { id: string; archived: boolean };
+
+
+  adressHome;
+  adressWork;
 
   constructor(
     private primengConfig: PrimeNGConfig,
@@ -49,9 +53,9 @@ export class ProvidersComponent implements OnInit {
   onGetAllProviders = () => {
     this.loading = true;
     this.providerService.getAllProviders().subscribe(
-      (data: Provider) => {
+      (data: Provider[]) => {
         this.providers = data;
-        console.log(this.providers);
+
         this.loading = false;
       },
       (error) => console.log(error)
@@ -107,9 +111,22 @@ export class ProvidersComponent implements OnInit {
   };
 
   //MODAL details position
-  showPositionDialog(position: string) {
+  showPositionDialog(position: string,idprovider) {
     this.position = position;
     this.displayPosition = true;
+
+
+    let providersAdress;
+    providersAdress = this.providers.filter((provider) =>
+      provider.id === idprovider ? provider : null
+    );
+
+    let [provider] = providersAdress;
+
+    let { adresspresonnel, adressetravaille } = provider;
+
+    this.adressHome = adresspresonnel;
+    this.adressWork = adressetravaille;
   }
 
   //CANCEL close modal

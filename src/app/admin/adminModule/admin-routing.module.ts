@@ -4,6 +4,7 @@ import { Routes, RouterModule } from "@angular/router";
 //Components
 import { AddClientsComponent } from "../clients/add-clients/add-clients.component";
 import { ClientsComponent } from "../clients/clients.component";
+import { EditClientComponent } from "../clients/edit-client/edit-client.component";
 import { DashboardComponent } from "../dashboard/dashboard.component";
 import { AddRessourcesComponent } from "../humain-ressources/add-ressources/add-ressources.component";
 import { HumainRessourcesComponent } from "../humain-ressources/humain-ressources.component";
@@ -21,6 +22,7 @@ import { BasicMaterialComponent } from "../basic-material/basic-material.compone
 import { AddBasicComponent } from "../basic-material/add-basic/add-basic.component";
 import { EditProviderComponent } from "../providers/edit-provider/edit-provider.component";
 
+
 const routes: Routes = [
   { path: "", component: DashboardComponent }, // default route of the module
   { path: "primaryMatter", component: PrimaryMaterialComponent },
@@ -32,6 +34,7 @@ const routes: Routes = [
   { path: "providers/edit/:id", component: EditProviderComponent },
   { path: "clients", component: ClientsComponent },
   { path: "clients/add", component: AddClientsComponent },
+  { path: "clients/edit/:id", component: EditClientComponent },
   { path: "lots", component: LotsComponent },
   { path: "lots/add", component: AddLotsComponent },
   { path: "depot", component: DepotComponent },

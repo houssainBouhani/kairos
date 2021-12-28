@@ -153,29 +153,8 @@
                         class="form-select mb-3"
                         formControlName="titleid"
                       >
-                        <option
-                          value="{{
-                            providerForm.get('contact.titleid').value
-                          }}"
-                          selected
-                        >
-                          {{
-                            providerForm.get("contact.titleid").value === 1
-                              ? "Mr"
-                              : "Mme"
-                          }}
-                        </option>
-                        <option
-                          value="{{
-                            providerForm.get('contact.titleid').value
-                          }}"
-                        >
-                          {{
-                            providerForm.get("contact.titleid").value === 1
-                              ? "Mme"
-                              : "Mr"
-                          }}
-                        </option>
+                        <option value="1" selected>Mr</option>
+                        <option value="0">Mme</option>
                       </select>
                     </div>
                     <div
@@ -219,6 +198,7 @@
                       type="email"
                       class="form-control"
                       formControlName="email"
+                      readonly
                     />
                     <div
                       class="invalid-feedback d-block"

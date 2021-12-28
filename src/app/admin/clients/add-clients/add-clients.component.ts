@@ -2,7 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import { clients } from "../service/clients.service";
 import { Client } from "./../model/client";
-
+import { ValidationForm } from "./../../../shared/helpers/validationsForm";
 import {
   FormBuilder,
   FormControl,
@@ -44,7 +44,8 @@ export class AddClientsComponent implements OnInit {
    private route: ActivatedRoute,
    private fb: FormBuilder,
    private router: Router,
-   private toast: Toast
+   private toast: Toast,
+   private ValidationFormService: ValidationForm
  ) {}
 
  ngOnInit(): void {
@@ -57,7 +58,7 @@ export class AddClientsComponent implements OnInit {
      titleid: new FormControl("", [Validators.required]),
      telephone: new FormControl("", [
        Validators.required,
-       Validators.min(8),
+       this.ValidationFormService.validateNumber,
      ]),
      email: new FormControl("", [Validators.required, Validators.email]),
      password: new FormControl("", [Validators.required, Validators.pattern('^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$')]),

@@ -1,27 +1,27 @@
-import { Provider } from "./../model/provider";
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
-import { providers } from "../service/providers.service";
+import { clients } from "../service/clients.service";
+import { Client } from "./../model/client";
+import { Toast } from "src/app/shared/services/toast.service";
+import { ValidationForm } from "./../../../shared/helpers/validationsForm";
 import {
   FormBuilder,
   FormControl,
   FormGroup,
   Validators,
 } from "@angular/forms";
-import { Toast } from "src/app/shared/services/toast.service";
-import { ValidationForm } from "./../../../shared/helpers/validationsForm";
 
 @Component({
-  selector: "app-edit-provider",
-  templateUrl: "./edit-provider.component.html",
-  styleUrls: ["./edit-provider.component.css"],
+  selector: "app-edit-client",
+  templateUrl: "./edit-client.component.html",
+  styleUrls: ["./edit-client.component.css"],
 })
-export class EditProviderComponent implements OnInit {
+export class EditClientComponent implements OnInit {
   //edit form
 
-  providerForm: FormGroup;
-  providerId: string;
-  provider: Provider;
+  clientForm: FormGroup;
+  clientId: string;
+  client: Client;
 
   //loading ui
   loading: boolean = false;
@@ -40,7 +40,7 @@ export class EditProviderComponent implements OnInit {
   formTitle: string = "Contact";
 
   constructor(
-    private providerService: providers,
+    private clientService: clients,
     private route: ActivatedRoute,
     private fb: FormBuilder,
     private router: Router,
@@ -49,8 +49,8 @@ export class EditProviderComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.providerId = this.route.snapshot.paramMap.get("id");
-    this.getProviderById(this.providerId);
+    this.clientId = this.route.snapshot.paramMap.get("id");
+    this.getClientById(this.clientId);
     let contact = this.fb.group({
       lastname: new FormControl("", [Validators.required]),
       firstname: new FormControl("", [Validators.required]),
@@ -83,16 +83,16 @@ export class EditProviderComponent implements OnInit {
       adressdes: new FormControl("", [Validators.required]),
     });
 
-    this.providerForm = this.fb.group({
+    this.clientForm = this.fb.group({
       contact,
       adressetravaille,
       adresspresonnel,
     });
 
-    this.providerForm.valueChanges.subscribe((value: Provider) => {
+    this.clientForm.valueChanges.subscribe((value: Client) => {
       if (
-        this.providerForm.get("contact").valid &&
-        !this.providerForm.get("contact").pristine
+        this.clientForm.get("contact").valid &&
+        !this.clientForm.get("contact").pristine
       ) {
         this.steps.step1 = true;
       } else {
@@ -100,16 +100,16 @@ export class EditProviderComponent implements OnInit {
       }
 
       if (
-        this.providerForm.get("adresspresonnel").valid &&
-        !this.providerForm.get("adresspresonnel").pristine
+        this.clientForm.get("adresspresonnel").valid &&
+        !this.clientForm.get("adresspresonnel").pristine
       ) {
         this.steps.step2 = true;
       } else {
         this.steps.step2 = false;
       }
       if (
-        this.providerForm.get("adressetravaille").valid &&
-        !this.providerForm.get("adressetravaille").pristine
+        this.clientForm.get("adressetravaille").valid &&
+        !this.clientForm.get("adressetravaille").pristine
       ) {
         this.steps.step3 = true;
       } else {
@@ -117,47 +117,6 @@ export class EditProviderComponent implements OnInit {
       }
     });
   }
-
-  getProviderById = (Providerid: string) => {
-    this.loading = true;
-    this.providerService.getProviderToEdit(Providerid).subscribe(
-      (provider: Provider) => {
-        this.providerForm.patchValue({
-          contact: {
-            lastname: provider.contact.lastname,
-            firstname: provider.contact.firstname,
-            nationalno: provider.contact.nationalno,
-            titleid: provider.contact.titleid,
-            telephone: provider.contact.telephone,
-            email: provider.contact.email,
-            raisonsocial: provider.contact.raisonsocial,
-            remarque: provider.contact.remarque,
-          },
-          adresspresonnel: {
-            cityname: provider.adresspresonnel.cityname,
-            regionname: provider.adresspresonnel.regionname,
-            zip: provider.adresspresonnel.zip,
-            streetname: provider.adresspresonnel.streetname,
-            streetno: provider.adresspresonnel.streetno,
-            adressdes: provider.adresspresonnel.adressdes,
-          },
-          adressetravaille: {
-            cityname: provider.adressetravaille.cityname,
-            regionname: provider.adressetravaille.regionname,
-            zip: provider.adressetravaille.zip,
-            streetname: provider.adressetravaille.streetname,
-            streetno: provider.adressetravaille.streetno,
-            adressdes: provider.adressetravaille.adressdes,
-          },
-        });
-
-        this.provider = provider;
-
-        this.loading = false;
-      },
-      (error) => console.log(error)
-    );
-  };
 
   // move to next step
   next = () => {
@@ -172,38 +131,81 @@ export class EditProviderComponent implements OnInit {
   previous = () => {
     this.currentForm--;
     if (this.currentForm < 1) {
-      this.router.navigate(["admin/providers"]);
+      this.router.navigate(["admin/clients"]);
     }
     this.setFormTitle();
   };
 
-  onEditProvider = () => {
-    const updatedProvider = {
+  getClientById = (Clientid: string) => {
+    this.loading = true;
+    this.clientService.getClientToEdit(Clientid).subscribe(
+      (client: Client) => {
+        this.clientForm.patchValue({
+          contact: {
+            lastname: client.contact.lastname,
+            firstname: client.contact.firstname,
+            nationalno: client.contact.nationalno,
+            titleid: client.contact.titleid,
+            telephone: client.contact.telephone,
+            email: client.contact.email,
+            password: client.contact.password,
+            raisonsocial: client.contact.raisonsocial,
+            remarque: client.contact.remarque,
+          },
+          adresspresonnel: {
+            cityname: client.adresspresonnel.cityname,
+            regionname: client.adresspresonnel.regionname,
+            zip: client.adresspresonnel.zip,
+            streetname: client.adresspresonnel.streetname,
+            streetno: client.adresspresonnel.streetno,
+            adressdes: client.adresspresonnel.adressdes,
+          },
+          adressetravaille: {
+            cityname: client.adressetravaille.cityname,
+            regionname: client.adressetravaille.regionname,
+            zip: client.adressetravaille.zip,
+            streetname: client.adressetravaille.streetname,
+            streetno: client.adressetravaille.streetno,
+            adressdes: client.adressetravaille.adressdes,
+          },
+        });
+
+        this.client = client;
+
+        this.loading = false;
+      },
+      (error) => console.log(error)
+    );
+  };
+
+  onEditClient = () => {
+    const updatedClient = {
       contact: {
-        id: this.provider.contact.id,
-        ...this.providerForm.get("contact").value,
-        password: null,
-        activeFlag: this.provider.contact.activeFlag,
-        profile: this.provider.contact.profil,
-        insertdate: this.provider.contact.insertdate,
+        id: this.client.contact.id,
+        ...this.clientForm.get("contact").value,
+        password: this.client.contact.password,
+        activeFlag: this.client.contact.activeFlag,
+        profile: this.client.contact.profil,
+        insertdate: this.client.contact.insertdate,
       },
       adresspresonnel: {
-        id: this.provider.adresspresonnel.id,
-        ...this.providerForm.get("adresspresonnel").value,
+        id: this.client.adresspresonnel.id,
+        ...this.clientForm.get("adresspresonnel").value,
       },
       adressetravaille: {
-        id: this.provider.adressetravaille.id,
-        ...this.providerForm.get("adressetravaille").value,
+        id: this.client.adressetravaille.id,
+        ...this.clientForm.get("adressetravaille").value,
       },
     };
 
     this.loading = true;
-    this.providerService.editProvider(updatedProvider).subscribe(
+
+    this.clientService.editClient(updatedClient).subscribe(
       (response) => {
         if (response) {
           this.loading = false;
-          this.toast.success("fournisseur modifié avec succès");
-          this.router.navigate(["/admin/providers"]);
+          this.toast.success("client  modifié avec succès");
+          this.router.navigate(["/admin/clients"]);
         }
       },
       (e) => {

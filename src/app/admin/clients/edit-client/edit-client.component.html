@@ -14,7 +14,7 @@
           <div class="row align-items-center">
             <div class="col">
               <h6 class="header-pretitle">Overview</h6>
-              <h1 class="header-title">Ajouter Clients</h1>
+              <h1 class="header-title">modifier les données client</h1>
             </div>
           </div>
         </div>
@@ -24,7 +24,16 @@
 
   <div class="container-lg container-fluid">
     <div class="row justify-content-center">
-      <div class="col-12 col-lg-12 col-xl-12 form-label-custom">
+      <div
+        *ngIf="loading"
+        class="d-flex justify-content-center spinner-container"
+      >
+        <span class="spinner-border spinner-border-sm me-3"></span>
+      </div>
+      <div
+        class="col-12 col-lg-12 col-xl-12 form-label-custom"
+        *ngIf="!loading && client"
+      >
         <!-- Form -->
 
         <div class="row">
@@ -160,7 +169,7 @@
                   </div>
                 </div>
                 <div class="row mb-3">
-                  <div class="form-group col-md-4 col-lg-4">
+                  <div class="form-group col-md-6 col-lg-6">
                     <!-- Label -->
                     <label class="form-label">Téléphone</label>
 
@@ -180,7 +189,7 @@
                       veuillez entrer le numéro du client. (min 8 chiffres)
                     </div>
                   </div>
-                  <div class="form-group col-md-4 col-lg-4">
+                  <div class="form-group col-md-6 col-lg-6">
                     <!-- Label -->
                     <label class="form-label">Email</label>
 
@@ -189,6 +198,7 @@
                       type="email"
                       class="form-control"
                       formControlName="email"
+                      readonly
                     />
                     <div
                       class="invalid-feedback d-block"
@@ -200,28 +210,8 @@
                       veuillez Entrez une adresse mail valide
                     </div>
                   </div>
-                  <div class="form-group col-md-4 col-lg-4">
-                    <!-- Label -->
-                    <label class="form-label">mot de passe</label>
-
-                    <!-- Input -->
-                    <input
-                      type="password"
-                      class="form-control"
-                      formControlName="password"
-                    />
-                    <div
-                      class="invalid-feedback d-block"
-                      *ngIf="
-                        clientForm.get('contact.password').touched &&
-                        !clientForm.get('contact.password').valid
-                      "
-                    >
-                      mot de passe faible assurez-vous de combiner les lettres
-                      minuscules et majuscules, les symboles et les chiffres
-                    </div>
-                  </div>
                 </div>
+
                 <div class="row mb-3">
                   <div class="form-group col-md-6 col-lg-6">
                     <!-- Label -->
@@ -527,13 +517,13 @@
                   [disabled]="
                     clientForm.untouched || !clientForm.valid || loading
                   "
-                  (click)="onAddclient()"
+                  (click)="onEditClient()"
                 >
                   <span
                     *ngIf="loading"
                     class="spinner-border spinner-border-sm me-3"
                   ></span>
-                  ajouter
+                  modifier
                 </button>
               </div>
             </div>

@@ -56,13 +56,13 @@
         align-items-center
         justify-content-center
       "
-      *ngIf="!providers && !loading"
+      *ngIf="providers && providers.length === 0"
     >
       <p class="text-center">ajoutez pour commencer</p>
       <i class="las la-shipping-fast"></i>
     </div>
 
-    <div class="col-xl-10" *ngIf="providers">
+    <div class="col-xl-10"  *ngIf="providers && providers.length > 0">
       <form class="mb-4">
         <div class="input-group input-group-merge">
           <input
@@ -134,8 +134,8 @@
                 <td>{{ provider.contact.nationalno }}</td>
                 <td>{{ provider.contact.raisonsocial }}</td>
                 <td>{{ provider.contact.email }}</td>
-
                 <td>{{ provider.contact.telephone }}</td>
+
                 <td class="text-center" colspan="3">
                   <div *ngIf="provider.archiver">
                     <button
@@ -162,7 +162,7 @@
                       pRipple
                       type="button"
                       icon="las la-map-marked-alt"
-                      (click)="showPositionDialog('center')"
+                      (click)="showPositionDialog('center', provider.id)"
                       class="p-button-rounded p-button-secondary p-button-text"
                       pTooltip="Adresses"
                       tooltipPosition="top"
@@ -212,6 +212,7 @@
                       [draggable]="false"
                       [resizable]="false"
                       class="custom-dialog"
+                      *ngIf="adressHome && adressWork"
                     >
                       <div class="card">
                         <div class="card-body details-card">
@@ -224,7 +225,7 @@
                                   <h5 class="mb-0">adresse personnelle</h5>
                                 </div>
                                 <div class="col-auto text-muted">
-                                  {{ provider.adresspresonnel.adressdes }}
+                                  {{ adressHome.adressdes }}
                                 </div>
                               </div>
                               <!-- / .row -->
@@ -236,7 +237,7 @@
                                   <h5 class="mb-0">adresse de travail</h5>
                                 </div>
                                 <div class="col-auto text-muted">
-                                  {{ provider.adressetravaille.adressdes }}
+                                  {{ adressWork.adressdes }}
                                 </div>
                               </div>
                               <!-- / .row -->
