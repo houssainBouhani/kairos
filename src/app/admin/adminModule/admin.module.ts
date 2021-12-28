@@ -12,6 +12,7 @@ import { AddRessourcesComponent } from "../humain-ressources/add-ressources/add-
 import { ProvidersComponent } from "../providers/providers.component";
 import { AddProviderComponent } from "../providers/add-provider/add-provider.component";
 import { ClientsComponent } from "./../clients/clients.component";
+import { EditClientComponent } from "../clients/edit-client/edit-client.component";
 import { AddClientsComponent } from "../clients/add-clients/add-clients.component";
 import { LotsComponent } from "../lots/lots.component";
 import { AddLotsComponent } from "../lots/add-lots/add-lots.component";
@@ -34,6 +35,7 @@ import { DialogModule } from "primeng/dialog";
 import { TooltipModule } from "primeng/tooltip";
 import { ConfirmDialogModule } from "primeng/confirmdialog";
 
+
 @NgModule({
   declarations: [
     DashboardComponent,
@@ -54,7 +56,9 @@ import { ConfirmDialogModule } from "primeng/confirmdialog";
     BasicMaterialComponent,
     AddBasicComponent,
     TransformationComponent,
-    EditProviderComponent
+    EditProviderComponent,
+    EditClientComponent,
+
 
   ],
   imports: [

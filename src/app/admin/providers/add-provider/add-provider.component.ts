@@ -9,6 +9,8 @@ import {
   Validators,
 } from "@angular/forms";
 import { Toast } from "src/app/shared/services/toast.service";
+import { ValidationForm } from "./../../../shared/helpers/validationsForm";
+
 
 @Component({
   selector: "app-add-provider",
@@ -42,7 +44,8 @@ export class AddProviderComponent implements OnInit {
     private route: ActivatedRoute,
     private fb: FormBuilder,
     private router: Router,
-    private toast: Toast
+    private toast: Toast,
+    private ValidationFormService: ValidationForm
   ) {}
 
   ngOnInit(): void {
@@ -55,7 +58,7 @@ export class AddProviderComponent implements OnInit {
       titleid: new FormControl("", [Validators.required]),
       telephone: new FormControl("", [
         Validators.required,
-        Validators.min(8),
+        this.ValidationFormService.validateNumber,
       ]),
       email: new FormControl("", [Validators.required, Validators.email]),
       raisonsocial: new FormControl("", [Validators.required]),

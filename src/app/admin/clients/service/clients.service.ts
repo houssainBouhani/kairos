@@ -26,7 +26,7 @@ export class clients {
 
   getClientToEdit = (clientId) => {
     return this.http.get(
-      `${CONFIG.URL}api/Customer/afficherbyid?id=${clientId}`
+      `${CONFIG.URL}api/Customer/getCustomerbyid?id=${clientId}`
     );
   };
 

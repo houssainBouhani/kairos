@@ -43,11 +43,11 @@
   </div>
   <div class="row justify-content-center">
     <div
-    *ngIf="loading"
-    class="d-flex justify-content-center spinner-container"
-  >
-    <span class="spinner-border spinner-border-sm me-3"></span>
-  </div>
+      *ngIf="loading"
+      class="d-flex justify-content-center spinner-container"
+    >
+      <span class="spinner-border spinner-border-sm me-3"></span>
+    </div>
     <div
       class="
         empty-log
@@ -56,20 +56,20 @@
         align-items-center
         justify-content-center
       "
-      *ngIf="!clients && !loading"
+      *ngIf="clients && clients.length === 0"
     >
       <p class="text-center">ajoutez pour commencer</p>
       <i class="las la-user-tag"></i>
     </div>
-    <div class="col-xl-10">
+    <div class="col-xl-10"       *ngIf="clients && clients.length > 0">
       <form class="mb-4">
         <div class="input-group input-group-merge">
           <input
-          class="form-control humain-search"
-          type="search"
-          placeholder="Rechercher"
-          [(ngModel)]="searchTerm"
-          name="searchTerm"
+            class="form-control humain-search"
+            type="search"
+            placeholder="Rechercher"
+            [(ngModel)]="searchTerm"
+            name="searchTerm"
           />
           <div class="input-group-text">
             <i class="las la-search"></i>
@@ -110,7 +110,6 @@
           >
             <thead>
               <tr>
-
                 <th>Nom</th>
                 <th>Prénom</th>
                 <th>Sexe</th>
@@ -124,129 +123,130 @@
             </thead>
             <tbody class="list">
               <tr
-              *ngFor="let client of clients | filter: searchTerm"
-              [ngClass]="{ 'hide-archived': client.archiver }"
-            >
-            <td>{{ client.contact.firstname }}</td>
-            <td>{{ client.contact.lastname }}</td>
-            <td>{{ client.contact.titleid === 1 ? "Mr" : "Mme" }}</td>
-            <td>{{ client.contact.insertdate | date: "dd/MM/yyyy" }}</td>
-            <td>{{ client.contact.nationalno }}</td>
-            <td>{{ client.contact.raisonsocial }}</td>
-            <td>{{ client.contact.email }}</td>
-            <td>{{ client.contact.telephone }}</td>
+                *ngFor="let client of clients | filter: searchTerm"
+                [ngClass]="{ 'hide-archived': client.archiver }"
+              >
+                <td>{{ client.contact.firstname }}</td>
+                <td>{{ client.contact.lastname }}</td>
+                <td>{{ client.contact.titleid === 1 ? "Mr" : "Mme" }}</td>
+                <td>{{ client.contact.insertdate | date: "dd/MM/yyyy" }}</td>
+                <td>{{ client.contact.nationalno }}</td>
+                <td>{{ client.contact.raisonsocial }}</td>
+                <td>{{ client.contact.email }}</td>
+                <td>{{ client.contact.telephone }}</td>
 
-            <td class="text-center" colspan="3">
-              <div *ngIf="client.archiver">
-                <button
-                  pButton
-                  pRipple
-                  type="button"
-                  icon="pi pi-refresh"
-                  class="p-button-rounded p-button-secondary p-button-text"
-                  pTooltip="restaurer client"
-                  tooltipPosition="top"
-                  tooltipEvent="hover"
-                  tooltipStyleClass="tooltip-custom"
-                  (click)="
-                    RestoreClientModal({
-                      id: client.id,
-                      archived: true
-                    })
-                  "
-                ></button>
-              </div>
-              <div *ngIf="!client.archiver">
-                <button
-                  pButton
-                  pRipple
-                  type="button"
-                  icon="las la-map-marked-alt"
-                  (click)="showPositionDialog('center')"
-                  class="p-button-rounded p-button-secondary p-button-text"
-                  pTooltip="Adresses"
-                  tooltipPosition="top"
-                  tooltipEvent="hover"
-                  tooltipStyleClass="tooltip-custom"
-                ></button>
-                <button
-                  pButton
-                  pRipple
-                  type="button"
-                  icon="pi pi-pencil"
-                  class="p-button-rounded p-button-text p-button-secondary"
-                  pTooltip="Modifier details client "
-                  tooltipPosition="top"
-                  tooltipEvent="hover"
-                  tooltipStyleClass="tooltip-custom"
-                  [routerLink]="['/admin/client/edit', client.id]"
-                ></button>
-                <button
-                  pButton
-                  pRipple
-                  type="button"
-                  icon="pi pi-trash"
-                  class="p-button-rounded p-button-secondary p-button-text"
-                  pTooltip="Supprimer client"
-                  tooltipPosition="top"
-                  tooltipEvent="hover"
-                  tooltipStyleClass="tooltip-custom"
-                  (click)="
-                    DeleteClientModal({
-                      id: client.id,
-                      archived: false
-                    })
-                  "
-                ></button>
-              </div>
+                <td class="text-center" colspan="3">
+                  <div *ngIf="client.archiver">
+                    <button
+                      pButton
+                      pRipple
+                      type="button"
+                      icon="pi pi-refresh"
+                      class="p-button-rounded p-button-secondary p-button-text"
+                      pTooltip="restaurer client"
+                      tooltipPosition="top"
+                      tooltipEvent="hover"
+                      tooltipStyleClass="tooltip-custom"
+                      (click)="
+                        RestoreClientModal({
+                          id: client.id,
+                          archived: true
+                        })
+                      "
+                    ></button>
+                  </div>
+                  <div *ngIf="!client.archiver">
+                    <button
+                      pButton
+                      pRipple
+                      type="button"
+                      icon="las la-map-marked-alt"
+                      (click)="showPositionDialog('center', client.id)"
+                      class="p-button-rounded p-button-secondary p-button-text"
+                      pTooltip="Adresses"
+                      tooltipPosition="top"
+                      tooltipEvent="hover"
+                      tooltipStyleClass="tooltip-custom"
+                    ></button>
+                    <button
+                      pButton
+                      pRipple
+                      type="button"
+                      icon="pi pi-pencil"
+                      class="p-button-rounded p-button-text p-button-secondary"
+                      pTooltip="Modifier details client "
+                      tooltipPosition="top"
+                      tooltipEvent="hover"
+                      tooltipStyleClass="tooltip-custom"
+                      [routerLink]="['/admin/clients/edit', client.id]"
+                    ></button>
+                    <button
+                      pButton
+                      pRipple
+                      type="button"
+                      icon="pi pi-trash"
+                      class="p-button-rounded p-button-secondary p-button-text"
+                      pTooltip="Supprimer client"
+                      tooltipPosition="top"
+                      tooltipEvent="hover"
+                      tooltipStyleClass="tooltip-custom"
+                      (click)="
+                        DeleteClientModal({
+                          id: client.id,
+                          archived: false
+                        })
+                      "
+                    ></button>
+                  </div>
 
-              <div>
-                <!-- dialog details-->
-                <p-dialog
-                  header="Details"
-                  [(visible)]="displayPosition"
-                  [position]="position"
-                  [modal]="true"
-                  [style]="{ width: '50vw' }"
-                  [baseZIndex]="10000"
-                  [draggable]="false"
-                  [resizable]="false"
-                  class="custom-dialog"
-                >
-                  <div class="card">
-                    <div class="card-body details-card">
-                      <!-- List group -->
-                      <div class="list-group list-group-flush my-n3">
-                        <div class="list-group-item">
-                          <div class="row align-items-center">
-                            <div class="col">
-                              <!-- Title -->
-                              <h5 class="mb-0">adresse personnelle</h5>
+                  <div>
+                    <!-- dialog details-->
+                    <p-dialog
+                      header="Details"
+                      [(visible)]="displayPosition"
+                      [position]="position"
+                      [modal]="true"
+                      [style]="{ width: '50vw' }"
+                      [baseZIndex]="10000"
+                      [draggable]="false"
+                      [resizable]="false"
+                      class="custom-dialog"
+                      *ngIf="adressHome && adressWork"
+                    >
+                      <div class="card">
+                        <div class="card-body details-card">
+                          <!-- List group -->
+                          <div class="list-group list-group-flush my-n3">
+                            <div class="list-group-item">
+                              <div class="row align-items-center">
+                                <div class="col">
+                                  <!-- Title -->
+                                  <h5 class="mb-0">adresse personnelle</h5>
+                                </div>
+                                <div class="col-auto text-muted">
+                                  {{ adressHome.adressdes }}
+                                </div>
+                              </div>
+                              <!-- / .row -->
                             </div>
-                            <div class="col-auto text-muted">
-                              {{ client.adresspresonnel.adressdes }}
+                            <div class="list-group-item">
+                              <div class="row align-items-center">
+                                <div class="col">
+                                  <!-- Title -->
+                                  <h5 class="mb-0">adresse de travail</h5>
+                                </div>
+                                <div class="col-auto text-muted">
+                                  {{ adressWork.adressdes }}
+                                </div>
+                              </div>
+                              <!-- / .row -->
                             </div>
                           </div>
-                          <!-- / .row -->
-                        </div>
-                        <div class="list-group-item">
-                          <div class="row align-items-center">
-                            <div class="col">
-                              <!-- Title -->
-                              <h5 class="mb-0">adresse de travail</h5>
-                            </div>
-                            <div class="col-auto text-muted">
-                              {{ client.adressetravaille.adressdes }}
-                            </div>
-                          </div>
-                          <!-- / .row -->
                         </div>
                       </div>
-                    </div>
+                    </p-dialog>
                   </div>
-                </p-dialog>
-              </div>
-            </td>
+                </td>
               </tr>
             </tbody>
           </table>
@@ -255,8 +255,6 @@
     </div>
   </div>
 </div>
-
-
 
 <!-- dialog confirmation -->
 <p-confirmDialog class="custom-dialog-confirm" [style]="{ width: '50vw' }">

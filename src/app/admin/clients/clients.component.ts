@@ -19,12 +19,15 @@ export class ClientsComponent implements OnInit {
   //modal related position config
   position: string;
   displayPosition: boolean;
-  clients: Client;
+  clients: Client[];
   loading: boolean = false;
   //search
   searchTerm: string;
   // client to be restored or deleted  client id , and archived status
   client: { id: string; archived: boolean };
+
+  adressHome;
+  adressWork;
 
   constructor(
     private clientService: clients,
@@ -42,9 +45,8 @@ export class ClientsComponent implements OnInit {
   onGetAllClients = () => {
     this.loading = true;
     this.clientService.getAllClients().subscribe(
-      (data: Client) => {
+      (data: Client[]) => {
         this.clients = data;
-        console.log(this.clients);
         this.loading = false;
       },
       (error) => console.log(error)
@@ -55,8 +57,8 @@ export class ClientsComponent implements OnInit {
   onDeleteClient = () => {
     this.loading = true;
     this.clientService.deleteClient(this.client.id).subscribe((response) => {
-      this.Toast.success("fournisseur supprimé avec succès");
       this.loading = false;
+      this.Toast.success("client est supprimé avec succès");
       this.onGetAllClients();
       this.ConfirmationService.close();
     });
@@ -66,7 +68,7 @@ export class ClientsComponent implements OnInit {
   onRestoreClient = () => {
     this.loading = true;
     this.clientService.restoreClient(this.client.id).subscribe((response) => {
-      this.Toast.success("fournisseur restaurer avec succès");
+      this.Toast.success("client restaurer avec succès");
       this.loading = false;
       this.onGetAllClients();
       this.ConfirmationService.close();
@@ -82,7 +84,6 @@ export class ClientsComponent implements OnInit {
     });
     // client to be archived
     this.client = { id, archived };
-
   };
 
   //open RESTORE Modal
@@ -97,9 +98,21 @@ export class ClientsComponent implements OnInit {
   };
 
   //MODAL details position
-  showPositionDialog(position: string) {
+  showPositionDialog(position: string, idClient) {
     this.position = position;
     this.displayPosition = true;
+
+    let clientsAdress;
+    clientsAdress = this.clients.filter((client) =>
+      client.id === idClient ? client : null
+    );
+
+    let [client] = clientsAdress;
+
+    let { adresspresonnel, adressetravaille } = client;
+
+    this.adressHome = adresspresonnel;
+    this.adressWork = adressetravaille;
   }
 
   //CANCEL close modal
