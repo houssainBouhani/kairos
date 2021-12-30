@@ -1,32 +1,22 @@
-import { FormControl } from '@angular/forms';
-import { Injectable } from '@angular/core';
-
-
-
-
+import { FormControl } from "@angular/forms";
+import { Injectable } from "@angular/core";
 
 @Injectable({
-    providedIn:'root'
+  providedIn: "root",
 })
-
-
 export class ValidationForm {
+  constructor() {}
 
-
-    constructor() {}
-
-
-    validateNumber(number: FormControl) {
-        if (number.value) {
-         let numberNum  =  number.value.toString();
-          return numberNum.length >= 8
-            ? null
-            : {
-                validateNum: {
-                  valid: false,
-                },
-              };
-        }
-      }
-
+  validateNumber(number: FormControl) {
+    if (number.value) {
+      let numberNum = number.value.toString();
+      return numberNum.length >= 8
+        ? null
+        : {
+            validateNum: {
+              valid: false,
+            },
+          };
+    }
+  }
 }

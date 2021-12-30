@@ -7,6 +7,7 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { HumainRessourcesComponent } from "../humain-ressources/humain-ressources.component";
 import { DashboardComponent } from "../dashboard/dashboard.component";
 import { PrimaryMaterialComponent } from "../primary-material/primary-material.component";
+import { EditMaterialComponent } from "../primary-material/edit-material/edit-material.component";
 import { AddMaterialComponent } from "../primary-material/add-material/add-material.component";
 import { AddRessourcesComponent } from "../humain-ressources/add-ressources/add-ressources.component";
 import { ProvidersComponent } from "../providers/providers.component";
@@ -24,7 +25,7 @@ import { BasicMaterialComponent } from "../basic-material/basic-material.compone
 import { AddBasicComponent } from "../basic-material/add-basic/add-basic.component";
 import { TransformationComponent } from "./../transformation/transformation.component";
 import { EditProviderComponent } from "../providers/edit-provider/edit-provider.component";
-
+import { EditRessourcesComponent } from "../humain-ressources/edit-ressources/edit-ressources.component";
 //search pipe
 import { Ng2SearchPipeModule } from "ng2-search-filter";
 
@@ -34,8 +35,6 @@ import { ButtonModule } from "primeng/button";
 import { DialogModule } from "primeng/dialog";
 import { TooltipModule } from "primeng/tooltip";
 import { ConfirmDialogModule } from "primeng/confirmdialog";
-import { EditRessourcesComponent } from "../humain-ressources/edit-ressources/edit-ressources.component";
-
 
 @NgModule({
   declarations: [
@@ -59,9 +58,8 @@ import { EditRessourcesComponent } from "../humain-ressources/edit-ressources/ed
     TransformationComponent,
     EditProviderComponent,
     EditClientComponent,
-    EditRessourcesComponent
-
-
+    EditRessourcesComponent,
+    EditMaterialComponent,
   ],
   imports: [
     CommonModule,
@@ -74,7 +72,7 @@ import { EditRessourcesComponent } from "../humain-ressources/edit-ressources/ed
     TooltipModule,
     ConfirmDialogModule,
     Ng2SearchPipeModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
 })
 export class AdminModule {}

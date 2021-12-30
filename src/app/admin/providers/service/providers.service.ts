@@ -10,7 +10,6 @@ export class providers {
     return this.http.get(`${CONFIG.URL}api/Provider/afficherall`);
   };
 
-
   deleteProvider = (providerId) => {
     return this.http.post(
       `${CONFIG.URL}api/Provider/archiver?id=${providerId}`,
@@ -25,7 +24,6 @@ export class providers {
     );
   };
 
-
   getProviderToEdit = (providerId) => {
     return this.http.get(
       `${CONFIG.URL}api/Provider/afficherbyid?id=${providerId}`
@@ -38,6 +36,5 @@ export class providers {
 
   editProvider = (editedProvider) => {
     return this.http.put(`${CONFIG.URL}api/Provider/update`, editedProvider);
-  }
-
+  };
 }

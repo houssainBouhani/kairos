@@ -43,185 +43,226 @@
   </div>
   <div class="row justify-content-center">
     <div
-      class="
-        empty-log
-        d-flex
-        flex-column
-        align-items-center
-        justify-content-center
-      "
+      *ngIf="loading"
+      class="d-flex justify-content-center spinner-container"
     >
-      <p class="text-center">
-        votre Matière premiére stock est vide <br />
-        ajoutez pour commencer
-      </p>
-      <i class="lab la-pagelines"></i>
+      <span class="spinner-border spinner-border-sm me-3"></span>
     </div>
-    <div class="col-xl-10">
-      <form class="mb-4">
-        <div class="input-group input-group-merge">
-          <input
-            class="form-control product-search"
-            type="search"
-            placeholder="Rechercher Matière premiére"
-          />
-          <div class="input-group-text">
-            <i class="las la-search"></i>
+    <div class="row justify-content-center">
+      <div
+        class="
+          empty-log
+          d-flex
+          flex-column
+          align-items-center
+          justify-content-center
+        "
+        *ngIf="primaryMatterList && primaryMatterList.length === 0"
+      >
+        <p class="text-center">
+          votre Matière premiére stock est vide <br />
+          ajoutez pour commencer
+        </p>
+        <i class="lab la-pagelines"></i>
+      </div>
+      <div
+        class="col-xl-10"
+        *ngIf="primaryMatterList && primaryMatterList.length > 0"
+      >
+        <form class="mb-4">
+          <div class="input-group input-group-merge">
+            <input
+              class="form-control product-search"
+              type="search"
+              placeholder="Rechercher Matière premiére"
+              [(ngModel)]="searchTerm"
+              name="searchTerm"
+            />
+            <div class="input-group-text">
+              <i class="las la-search"></i>
+            </div>
           </div>
-        </div>
-      </form>
-      <div class="card">
-        <div class="card-header">
-          <!-- Title -->
-          <h4 class="card-header-title d-flex align-items-center">
-            <i class="lab la-pagelines leaf"></i> List Matière premiére
-          </h4>
+        </form>
+        <div class="card">
+          <div class="card-header">
+            <!-- Title -->
+            <h4 class="card-header-title d-flex align-items-center">
+              <i class="lab la-pagelines leaf"></i> List Matière premiére
+            </h4>
 
-          <!-- Button -->
-          <a
-            href="#!"
-            class="
-              btn btn-sm btn-white
-              d-flex
-              export-button
-              justify-content-center
-              align-items-center
-            "
-          >
-            Export <i class="lar la-file-pdf export-pdf"></i>
-          </a>
-        </div>
-        <div class="table-responsive mb-0">
-          <table
-            class="table table-sm table-nowrap card-table table-hover mp-table"
-          >
-            <thead>
-              <tr>
-                <th>Libellé</th>
-                <th class="intial-quantity">Quantité initiale</th>
-                <th>Quantité reste</th>
-                <th>Unité</th>
-                <th>Code à barre</th>
-                <th>Date insérer</th>
-                <th>Date Experation</th>
-                <th>Fourinsseur</th>
-                <th>Lot</th>
-                <th>Matières de base</th>
-                <th colspan="2">Dépot</th>
-              </tr>
-            </thead>
-            <tbody class="list">
-              <tr>
-                <td class="label">huile</td>
-                <td class="intial-quantity">450</td>
-                <td class="rest-quantity">
-                  <div class="badge bg-primary-soft">170</div>
-                </td>
-                <td class="unite">kg</td>
-                <td>oi-ee87</td>
-                <td>07/30/18</td>
-                <td>05/30/20</td>
-                <td>Launchday Cover</td>
-                <td>Lot 25</td>
-                <td>Plante</td>
-                <td>dépot 2</td>
-                <td class="text-end">
-                  <!-- Dropdown -->
-                  <div class="dropdown action-td">
-                    <a
-                      href="#"
-                      class="dropdown-ellipses dropdown-toggle"
-                      (click)="openActionMenu()"
-                    >
-                      <i class="las la-ellipsis-v ver-menu"></i>
-                    </a>
+            <!-- Button -->
+            <a
+              href="#!"
+              class="
+                btn btn-sm btn-white
+                d-flex
+                export-button
+                justify-content-center
+                align-items-center
+              "
+            >
+              Export <i class="lar la-file-pdf export-pdf"></i>
+            </a>
+          </div>
+          <div class="table-responsive mb-0">
+            <table
+              class="
+                table table-sm table-nowrap
+                card-table
+                table-hover
+                mp-table
+              "
+            >
+              <thead>
+                <tr>
+                  <th>Libellé</th>
+                  <th class="intial-quantity">Quantité initiale</th>
+                  <th>Quantité reste</th>
+                  <th>Unité</th>
+                  <th>Code à barre</th>
+                  <th>Date insérer</th>
+                  <th>Date Experation</th>
+                  <th>Fourinsseur</th>
+                  <th>Lot</th>
+                  <th>Matières de base</th>
+                  <th>Dépot</th>
+                  <th class="text-center" colspan="2">Actions</th>
+                </tr>
+              </thead>
+              <tbody class="list">
+                <tr
+                  *ngFor="
+                    let primaryMatter of primaryMatterList | filter: searchTerm
+                  "
+                  [ngClass]="{ 'hide-archived': primaryMatter.archiver }"
+                >
+                  <td class="label">{{ primaryMatter.description }}</td>
+                  <td class="intial-quantity">
+                    {{ primaryMatter.initialQuantity }}
+                  </td>
+                  <td class="rest-quantity">
                     <div
-                      class="dropdown-menu dropdown-menu-end"
-                      [ngClass]="{ 'show ': actionMenuTable }"
+                      class="badge"
+                      [ngClass]="
+                        primaryMatter.openQuantity >= 50
+                          ? 'bg-primary-soft'
+                          : 'bg-danger-soft'
+                      "
                     >
-                      <a href="#!" class="dropdown-item">
-                        <i class="las la-edit"></i>
-                        Modifier
-                      </a>
-                      <a href="#!" class="dropdown-item">
-                        <i class="las la-trash"></i>
-                        Supprimer
-                      </a>
+                      {{ primaryMatter.openQuantity }}
                     </div>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td class="label">Kaliptus</td>
-                <td class="intial-quantity">824</td>
-                <td class="rest-quantity">
-                  <div class="badge bg-danger-soft">87</div>
-                </td>
-                <td class="unite">kg</td>
-                <td>el-578</td>
-                <td>04/21/20</td>
-                <td>01/05/20</td>
-                <td>Swell Bottle</td>
-                <td>Lot 30</td>
-                <td>Plante</td>
-                <td>dépot 5</td>
-                <td class="text-end">
-                  <!-- Dropdown -->
-                  <div class="dropdown action-td">
-                    <a href="#" class="dropdown-ellipses dropdown-toggle">
-                      <i class="las la-ellipsis-v ver-menu"></i>
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-end">
-                      <a href="#!" class="dropdown-item"> Action </a>
-                      <a href="#!" class="dropdown-item"> Another action </a>
-                      <a href="#!" class="dropdown-item">
-                        Something else here
-                      </a>
+                  </td>
+                  <td class="unite">{{ primaryMatter.quantityUnit }}</td>
+                  <td>{{ primaryMatter.barcode }}</td>
+                  <td>{{ primaryMatter.insertDate | date: "dd/MM/yyyy" }}</td>
+                  <td>{{ primaryMatter.dateExp | date: "dd/MM/yyyy" }}</td>
+                  <td>{{ primaryMatter.lot.provider?.contact.firstname }} {{primaryMatter.lot.provider?.contact.lastname  }}</td>
+                  <td>{{ primaryMatter.lot?.description }}</td>
+                  <td>{{ primaryMatter.basic?.basicdes }}</td>
+                  <td>{{ primaryMatter.lot.reposit?.description }}</td>
+                  <td class="text-center" colspan="3">
+                    <div *ngIf="primaryMatter.archiver">
+                      <button
+                        pButton
+                        pRipple
+                        type="button"
+                        icon="pi pi-refresh"
+                        class="
+                          p-button-rounded p-button-secondary p-button-text
+                        "
+                        pTooltip="restaurer Matière premiére"
+                        tooltipPosition="top"
+                        tooltipEvent="hover"
+                        tooltipStyleClass="tooltip-custom"
+                        (click)="
+                          RestorePmModal({
+                            id: primaryMatter.id,
+                            archived: true
+                          })
+                        "
+                      ></button>
                     </div>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td class="label">elxams</td>
-                <td class="intial-quantity">475</td>
-                <td class="rest-quantity">
-                  <div class="badge bg-warning-soft">150</div>
-                </td>
-                <td class="unite">kg</td>
-                <td>el-457</td>
-                <td>01/14/19</td>
-                <td>04/03/20</td>
-                <td>json and soft</td>
-                <td>Lot 10</td>
-                <td>Plante</td>
-                <td>dépot 4</td>
-                <td class="text-end">
-                  <!-- Dropdown -->
-                  <div class="dropdown action-td">
-                    <a
-                      href="#"
-                      class="dropdown-ellipses dropdown-toggle"
-                      role="button"
-                      data-bs-toggle="dropdown"
-                      aria-haspopup="true"
-                      aria-expanded="false"
-                    >
-                      <i class="las la-ellipsis-v ver-menu"></i>
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-end">
-                      <a href="#!" class="dropdown-item"> Action </a>
-                      <a href="#!" class="dropdown-item"> Another action </a>
-                      <a href="#!" class="dropdown-item">
-                        Something else here
-                      </a>
+                    <div *ngIf="!primaryMatter.archiver">
+                      <button
+                        pButton
+                        pRipple
+                        type="button"
+                        icon="pi pi-pencil"
+                        class="
+                          p-button-rounded p-button-text p-button-secondary
+                        "
+                        pTooltip="Modifier details Matière premiére "
+                        tooltipPosition="top"
+                        tooltipEvent="hover"
+                        tooltipStyleClass="tooltip-custom"
+                        [routerLink]="[
+                          '/admin/primaryMatter/edit',primaryMatter.id]"
+                      ></button>
+                      <button
+                        pButton
+                        pRipple
+                        type="button"
+                        icon="pi pi-trash"
+                        class="
+                          p-button-rounded p-button-secondary p-button-text
+                        "
+                        pTooltip="Supprimer Matière premiére"
+                        tooltipPosition="top"
+                        tooltipEvent="hover"
+                        tooltipStyleClass="tooltip-custom"
+                        (click)="
+                          DeletePmModal({
+                            id: primaryMatter.id,
+                            archived: false
+                          })
+                        "
+                      ></button>
                     </div>
-                  </div>
-                </td>
-              </tr>
-            </tbody>
-          </table>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
     </div>
   </div>
 </div>
+
+<!-- dialog confirmation -->
+<p-confirmDialog class="custom-dialog-confirm" [style]="{ width: '50vw' }">
+  <ng-template pTemplate="footer">
+    <!-- Button -->
+    <button class="btn btn-lg btn-white" type="reset" (click)="cancel()">
+      <i class="las la-times-circle"></i>
+      Annuler
+    </button>
+    <!-- Button -->
+    <button
+      class="btn btn-lg btn-primary"
+      data-toggle="wizard"
+      (click)="onDeletePm()"
+      *ngIf="!primaryMatter.archived"
+      [disabled]="loading"
+    >
+      <span
+        *ngIf="loading"
+        class="spinner-border spinner-border-sm me-3"
+      ></span>
+      <i class="las la-trash-alt"></i> Supprimer
+    </button>
+    <button
+      class="btn btn-lg btn-primary"
+      data-toggle="wizard"
+      (click)="onRestorePm()"
+      *ngIf="primaryMatter.archived"
+      [disabled]="loading"
+    >
+      <span
+        *ngIf="loading"
+        class="spinner-border spinner-border-sm me-3"
+      ></span>
+      <i class="las la-trash-alt"></i> Restaurer
+    </button>
+  </ng-template>
+</p-confirmDialog>
