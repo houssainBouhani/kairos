@@ -14,7 +14,7 @@
           <div class="row align-items-center">
             <div class="col">
               <h6 class="header-pretitle">Overview</h6>
-              <h1 class="header-title">Ajouter Matière premiére</h1>
+              <h1 class="header-title">Modifier Matière premiére</h1>
             </div>
           </div>
         </div>
@@ -60,7 +60,7 @@
                         !PrimaryMatterForm.get('barcode').valid
                       "
                     >
-                    Ceci est un champ obligatoire.
+                      Veuillez saisir le Nom de votre client.
                     </div>
                   </div>
                   <div class="form-group col-md-6 col-lg-6">
@@ -92,14 +92,12 @@
                       class="form-select mb-3"
                       formControlName="fournisseur"
                     >
-                      <option value="" disabled selected>
-                        selectionner fournisseur
-                      </option>
                       <option
-                        *ngFor="let provider of providers"
-                        value="{{ provider.contact.email }}"
+                        value="{{ PrimaryMatterForm.get('fournisseur').value }}"
+                        selected
+                        disabled
                       >
-                        {{ provider.contact.email }}
+                        {{ PrimaryMatterForm.get("fournisseur").value }}
                       </option>
                     </select>
                   </div>
@@ -108,27 +106,33 @@
 
                     <!-- Input -->
                     <select class="form-select mb-3" formControlName="lot">
-                      <option value="" disabled selected>
-                        selectionner lot
-                      </option>
                       <option
-                        *ngFor="let lot of lots"
-                        value="{{ lot.description }}"
+                        value="{{ PrimaryMatterForm.get('lot').value }}"
+                        selected disabled
                       >
-                        {{ lot.description }}
+                        {{ PrimaryMatterForm.get("lot").value }}
                       </option>
+
                     </select>
                   </div>
                   <div class="form-group col-md-4 col-lg-4">
                     <label class="form-label">Matière de base</label>
                     <!-- Input -->
                     <select class="form-select mb-3" formControlName="basic">
-                      <option value="" disabled selected>
-                        selectionner Materiel basic
+                      <option
+                        value="{{ PrimaryMatterForm.get('basic').value }}"
+                        selected
+                      >
+                        {{ PrimaryMatterForm.get("basic").value }}
                       </option>
+
                       <option
                         *ngFor="let bm of basicMaterials"
                         value="{{ bm.basicdes }}"
+                        [ngClass]="{
+                          'd-none':
+                            bm.basicdes === PrimaryMatterForm.get('basic').value
+                        }"
                       >
                         {{ bm.basicdes }}
                       </option>
@@ -187,7 +191,7 @@
                       class="form-select mb-3"
                       formControlName="quantityUnit"
                     >
-                      <option value="KG" selected>KG</option>
+                      <option value="KG">KG</option>
                       <option value="Tonne">Tonne</option>
                       <option value="G">G</option>
                     </select>
@@ -212,6 +216,7 @@
                       showIcon="true"
                       inputId="basic"
                       formControlName="dateExp"
+                      dateFormat="dd/mm/yy"
                     ></p-calendar>
                     <div
                       class="invalid-feedback d-block"
@@ -220,7 +225,7 @@
                         !PrimaryMatterForm.get('dateExp').valid
                       "
                     >
-                    Ceci est un champ obligatoire.
+                      veuillez entrer le numéro de Raison social de votre client
                     </div>
                   </div>
                 </div>
@@ -232,17 +237,14 @@
             <div class="row align-items-center justify-content-end">
               <div class="col-auto">
                 <!-- Button -->
-                <button class="btn btn-lg btn-white" type="reset" (click)="goBack()">
+                <button class="btn btn-lg btn-white" type="reset">
                   Retour
                 </button>
               </div>
 
               <div class="col-auto">
-                <button
-                  class="btn btn-lg btn-primary"
-                  (click)="addPrimaryMatter()"
-                >
-                  ajouter
+                <button class="btn btn-lg btn-primary" (click)="onUpdateMp()">
+                  Modifier
                 </button>
               </div>
             </div>

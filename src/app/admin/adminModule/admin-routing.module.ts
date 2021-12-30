@@ -22,11 +22,13 @@ import { BasicMaterialComponent } from "../basic-material/basic-material.compone
 import { AddBasicComponent } from "../basic-material/add-basic/add-basic.component";
 import { EditProviderComponent } from "../providers/edit-provider/edit-provider.component";
 import { EditRessourcesComponent } from "../humain-ressources/edit-ressources/edit-ressources.component";
+import { EditMaterialComponent } from "../primary-material/edit-material/edit-material.component";
 
 const routes: Routes = [
   { path: "", component: DashboardComponent }, // default route of the module
   { path: "primaryMatter", component: PrimaryMaterialComponent },
   { path: "primaryMatter/add", component: AddMaterialComponent },
+  { path: "primaryMatter/edit/:id", component: EditMaterialComponent },
   { path: "humainRessources", component: HumainRessourcesComponent },
   { path: "humainRessources/add", component: AddRessourcesComponent },
   { path: "humainRessources/edit/:id", component: EditRessourcesComponent },
