@@ -43,12 +43,8 @@ export class EditMaterialComponent implements OnInit {
     this.PrimaryMatterForm = this.fb.group({
       barcode: new FormControl("", [Validators.required]),
       description: new FormControl("", [Validators.required]),
-      initialQuantity: new FormControl("", [
-        Validators.required,
-      ]),
-      quantityUnit: new FormControl("", [
-        Validators.required,
-      ]),
+      initialQuantity: new FormControl("", [Validators.required]),
+      quantityUnit: new FormControl("", [Validators.required]),
       openQuantity: new FormControl("", [Validators.required]),
       dateExp: new FormControl("", [Validators.required]),
       fournisseur: new FormControl("", [Validators.required]),
@@ -85,7 +81,7 @@ export class EditMaterialComponent implements OnInit {
           basic: pm.basic.basicdes,
         });
         this.primaryMatter = pm;
-        console.log(this.primaryMatter)
+        console.log(this.primaryMatter);
       },
       (error) => console.log(error)
     );
@@ -107,15 +103,15 @@ export class EditMaterialComponent implements OnInit {
       },
     };
 
-
     this.PmService.updatePrimaryMaterial(updated).subscribe(
-    (response) => {
-      if (response) {
-        this.loading = false;
-        this.toast.success("Matière premiére modifié avec succès .");
-        this.router.navigate(["admin/primaryMatter"]);
-      }
-    }
-    ,e => console.log(e));
+      (response) => {
+        if (response) {
+          this.loading = false;
+          this.toast.success("Matière premiére modifié avec succès .");
+          this.router.navigate(["admin/primaryMatter"]);
+        }
+      },
+      (e) => console.log(e)
+    );
   };
 }

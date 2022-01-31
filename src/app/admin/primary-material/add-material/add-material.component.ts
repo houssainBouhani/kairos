@@ -25,7 +25,6 @@ export class AddMaterialComponent implements OnInit {
   providers: Provider[];
   lots: Lot[];
 
-
   constructor(
     private PmService: primaryMatter,
     private route: ActivatedRoute,
@@ -45,18 +44,14 @@ export class AddMaterialComponent implements OnInit {
 
     this.PmService.getAllLot().subscribe((data: Lot[]) => {
       this.lots = data;
-      console.log(this.lots)
+      console.log(this.lots);
     });
 
     this.PrimaryMatterForm = this.fb.group({
       barcode: new FormControl("", [Validators.required]),
       description: new FormControl("", [Validators.required]),
-      initialQuantity: new FormControl("", [
-        Validators.required,
-      ]),
-      quantityUnit: new FormControl("", [
-        Validators.required,
-      ]),
+      initialQuantity: new FormControl("", [Validators.required]),
+      quantityUnit: new FormControl("", [Validators.required]),
       openQuantity: new FormControl("", [Validators.required]),
       dateExp: new FormControl("", [Validators.required]),
       fournisseur: new FormControl("", [Validators.required]),
@@ -104,5 +99,5 @@ export class AddMaterialComponent implements OnInit {
 
   goBack = () => {
     this.router.navigate(["admin/primaryMatter"]);
-  }
+  };
 }
